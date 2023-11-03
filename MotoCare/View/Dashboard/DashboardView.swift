@@ -58,8 +58,8 @@ struct DashboardView: View {
                                             VStack(alignment: .leading) {
                                                 Text("\(motorcycles.first?.currentMileage ?? 0) Km")
                                                     .font(.largeTitle)
-                                                   .foregroundColor(.black)
-                                                   .fontWeight(.bold)
+                                                    .foregroundColor(.black)
+                                                    .fontWeight(.bold)
                                             }
                                         }
                                         .padding(.leading, 20)
@@ -145,8 +145,8 @@ struct SectionView: View {
                         //Gauge View
                         ZStack {
                             RoundedRectangle(cornerRadius: 14)
-                                                            .fill(Color(red: 0.12, green: 0.12, blue: 0.12))
-                                                            .frame(width: 172, height: 172)
+                                .fill(Color(red: 0.12, green: 0.12, blue: 0.12))
+                                .frame(width: 172, height: 172)
 
                             VStack {
                                 Gauge(value: data.value, in: data.minimum...data.maximum) {

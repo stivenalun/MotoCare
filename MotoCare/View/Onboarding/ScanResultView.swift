@@ -1,6 +1,10 @@
 import SwiftUI
+import SwiftData
 
 struct ScanResultView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query var motorcycles: [Motorcycle]
+    
     @State private var text = ""
     @Binding var extractedText: String?
     
@@ -16,6 +20,25 @@ struct ScanResultView: View {
                     Text("Ini nih hasil scan riwayat servismu.")
                         .font(.system(size: 17))
                         .frame(width: 360, height: 80, alignment: .topLeading)
+                    
+                    Text("Jarak tempuh/ Odometer saat ini")
+                        .font(.system(size: 20))
+                        .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
+                    
+                    HStack{
+                        Text("Jarak Tempuh")
+                            .font(.system(size: 16))
+                        TextField("\(motorcycles.first?.currentMileage ?? 0) Km", text: Binding(get: { String(motorcycles.first?.currentMileage ?? 0) }, set: { newValue in
+                           motorcycles.first?.currentMileage = Int(newValue) ?? 0
+                        }))
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 0)
+                    .frame(width: 390, height: 40, alignment: .topLeading)
                     
                     Text("Riwayat Servis 1*")
                         .font(.system(size: 20))
