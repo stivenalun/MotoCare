@@ -1,24 +1,24 @@
 //
 //  SparepartHistory.swift
-//  MotorCareSwiftData
+//  MotoCare
 //
-//  Created by Nur Hidayatul Fatihah on 30/10/23.
+//  Created by Nur Hidayatul Fatihah on 04/11/23.
 //
 
-import Foundation
+import SwiftUI
 import SwiftData
 
 @Model
 class SparepartHistory {
-    @Attribute(.unique) var id_spareparthistory: String
+    var id_spareparthistory: UUID
+    var maintenanceHistory: [MaintenanceHistory]
+    var sparePartData: [SparepartData]
     var status: String
-    @Relationship var maintenanceHistory: MaintenanceHistory
-    @Relationship var sparePart: SparepartData
     
-    init(id_spareparthistory: String, status: String, maintenanceHistory: MaintenanceHistory, sparePart: SparepartData) {
+    init(id_spareparthistory: UUID, maintenanceHistory: [MaintenanceHistory], sparePartData: [SparepartData], status: String) {
         self.id_spareparthistory = id_spareparthistory
-        self.status = status
         self.maintenanceHistory = maintenanceHistory
-        self.sparePart = sparePart
+        self.sparePartData = sparePartData
+        self.status = status
     }
 }

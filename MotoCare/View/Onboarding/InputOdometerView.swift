@@ -50,7 +50,7 @@ struct InputOdometerView: View {
             
             VStack{
                 Button(action: {
-                    let motorcycle = Motorcycle(id_motorcycle: UUID(), currentMileage: Int(currentMileage) ?? 0)
+                    let motorcycle = Motorcycle(id_motorcycle: UUID(), currentMileage: Int(currentMileage) ?? 0, sparePartsData: [])
                     
                         modelContext.insert(motorcycle)
                    

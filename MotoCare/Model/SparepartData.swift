@@ -10,17 +10,23 @@ import SwiftData
 
 @Model
 class SparepartData {
-    @Attribute(.unique) var id_sparepartdata: String
+    @Attribute(.unique) var id_sparepartdata: UUID
     var name: String
-    var durabilityInKilometer: Double
-    var durabilityInMonth: Int
+    var checkIntervalInKilometer: Int?
+    var checkIntervalInMonth: Int?
+    var replaceIntervalInKilometer: Int
+    var replaceIntervalInMonth: Int?
     var icon: String
+    var image: String
     
-    init(id_sparepartdata: String, name: String, durabilityInKilometer: Double, durabilityInMonth: Int, icon: String) {
+    init(id_sparepartdata: UUID, name: String, checkIntervalInKilometer: Int? = nil, checkIntervalInMonth: Int? = nil, replaceIntervalInKilometer: Int, replaceIntervalInMonth: Int? = nil, icon: String, image: String) {
         self.id_sparepartdata = id_sparepartdata
         self.name = name
-        self.durabilityInKilometer = durabilityInKilometer
-        self.durabilityInMonth = durabilityInMonth
+        self.checkIntervalInKilometer = checkIntervalInKilometer
+        self.checkIntervalInMonth = checkIntervalInMonth
+        self.replaceIntervalInKilometer = replaceIntervalInKilometer
+        self.replaceIntervalInMonth = replaceIntervalInMonth
         self.icon = icon
+        self.image = image
     }
 }

@@ -12,11 +12,11 @@ import SwiftData
 final class Motorcycle {
     @Attribute(.unique) var id_motorcycle: UUID
     var currentMileage: Int
+    var sparePartsData: [SparepartData]
     
-    init(id_motorcycle: UUID, currentMileage: Int) {
+    init(id_motorcycle: UUID, currentMileage: Int, sparePartsData: [SparepartData]) {
         self.id_motorcycle = id_motorcycle
         self.currentMileage = currentMileage
+        self.sparePartsData = sparePartsData
     }
 }
-
-
