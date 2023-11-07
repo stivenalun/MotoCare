@@ -42,11 +42,6 @@ struct MaintenanceHistoryView: View {
     }
 }
 
-struct MaintenanceHistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        MaintenanceHistoryView()
-    }
-}
 
 #Preview {
     MaintenanceHistoryView()
