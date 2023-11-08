@@ -25,84 +25,88 @@ struct DashboardView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
+            ZStack{
+                BackgroundView()
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
-                        ZStack {
-                            Image("BackDashboard")
-                            VStack(alignment: .leading) {
-                                Text("Yamaha Lexi S ABS")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.white)
-                                    .padding(.leading, 30)
-                                    .padding(.top)
+                        VStack(alignment: .leading) {
+                            ZStack {
+                                Image("BackDashboard")
+                                VStack(alignment: .leading) {
+                                    Text("Yamaha Lexi S ABS")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.white)
+                                        .padding(.leading, 30)
+                                        .padding(.top)
                                     
-                                ZStack(alignment: .leading) {
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .fill(.white)
-                                        .frame(width: 330, height: 104)
-                                        .onTapGesture {
-                                            isModalPresented = true
-                                        }
-                                    VStack(alignment: .leading) {
-                                        Text("Jarak Tempuh")
-                                            .font(.title3)
-                                            .fontWeight(.medium)
-                                            .foregroundColor(.black)
-                                            .padding(.leading, 20)
-                                        HStack {
-                                            Image(systemName: "gauge.open.with.lines.needle.33percent")
-                                                .resizable()
-                                                .frame(width: 39, height: 34)
-                                                .foregroundColor(.black)
-                                            VStack(alignment: .leading) {
-                                                Text("\(motorcycles.first?.currentMileage ?? 0) Km")
-                                                    .font(.largeTitle)
-                                                   .foregroundColor(.black)
-                                                   .fontWeight(.bold)
+                                    ZStack(alignment: .leading) {
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .fill(.white)
+                                            .frame(width: 330, height: 104)
+                                            .onTapGesture {
+                                                isModalPresented = true
                                             }
+                                        VStack(alignment: .leading) {
+                                            Text("Jarak Tempuh")
+                                                .font(.title3)
+                                                .fontWeight(.medium)
+                                                .foregroundColor(.black)
+                                                .padding(.leading, 20)
+                                            HStack {
+                                                Image(systemName: "gauge.open.with.lines.needle.33percent")
+                                                    .resizable()
+                                                    .frame(width: 39, height: 34)
+                                                    .foregroundColor(.black)
+                                                VStack(alignment: .leading) {
+                                                    Text("\(motorcycles.first?.currentMileage ?? 0) Km")
+                                                        .font(.largeTitle)
+                                                        .foregroundColor(.black)
+                                                        .fontWeight(.bold)
+                                                }
+                                            }
+                                            .padding(.leading, 20)
+                                            
                                         }
-                                        .padding(.leading, 20)
-
                                     }
+                                    .sheet(isPresented: $isModalPresented) {
+                                        // Tampilkan konten sheet modal di sini
+                                        ModalOdometerView()
+                                    }
+                                    
+                                    
+                                    
+                                    Button(action: {}) {
+                                        Text("Check-In Perbaikan")
+                                            .font(.callout)
+                                            .fontWeight(.medium)
+                                            .foregroundStyle(.black)
+                                    }
+                                    .padding(10)
+                                    .frame(width: 330, alignment: .center)
+                                    .background(Color("TabIconColor"))
+                                    .cornerRadius(11)
                                 }
-                                .sheet(isPresented: $isModalPresented) {
-                                    // Tampilkan konten sheet modal di sini
-                                    ModalOdometerView()
-                                }
-                                
-                                
-                                
-                                Button(action: {}) {
-                                    Text("Check-In Perbaikan")
-                                        .font(.callout)
-                                        .fontWeight(.medium)
-                                        .foregroundStyle(.black)
-                                }
-                                .padding(10)
-                                .frame(width: 330, alignment: .center)
-                                .background(Color("TabIconColor"))
-                                .cornerRadius(11)
                             }
+                            .frame(width: 357, height: 232)
                         }
-                        .frame(width: 357, height: 232)
+                        
+                        SectionView(title: "Rekomendasi Penggantian", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
+                        SectionView(title: "Rekomendasi Pengecekan", data: filterData(category: .checkingRequired), showModal: $showModal, selectedItem: $selectedItem)
+                        SectionView(title: "Kondisi Bagus", data: filterData(category: .safeToGo), showModal: $showModal, selectedItem: $selectedItem)
+                    }
+                }
+                .padding()
+                .navigationBarTitle("Dashboard")
+            }
+            .sheet(isPresented: $showModal) {
+                if let selectedItem = selectedItem {
+                    NavigationView {
+                        ModalSparepartView(data: selectedItem)
+                            .padding()
+                            .background(Color.black.edgesIgnoringSafeArea(.all))
+                            .presentationDragIndicator(.visible)
                     }
                     
-                    SectionView(title: "Rekomendasi Penggantian", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
-                    SectionView(title: "Rekomendasi Pengecekan", data: filterData(category: .checkingRequired), showModal: $showModal, selectedItem: $selectedItem)
-                    SectionView(title: "Kondisi Bagus", data: filterData(category: .safeToGo), showModal: $showModal, selectedItem: $selectedItem)
-                }
-            }
-            .padding()
-            .navigationBarTitle("Dashboard")
-        }
-        .sheet(isPresented: $showModal) {
-            if let selectedItem = selectedItem {
-                NavigationView {
-                    ModalSparepartView(data: selectedItem)
-                        .padding()
-                        .background(Color.black.edgesIgnoringSafeArea(.all))
-                        .presentationDragIndicator(.visible)
                 }
             }
         }

@@ -13,74 +13,93 @@ struct InputOdometerView: View {
     
     @State private var currentMileage: String = ""
     @State private var isShowingInputLastReceiptView = false
+    @FocusState var isInputActive: Bool
     
     var isTextFieldEmpty: Bool {
         return currentMileage.isEmpty
     }
     
     var body: some View {
-        VStack {
-//            Image("odometer")
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
-//                .padding(.horizontal, 45)
-            LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
-                .frame(width: 200, height: 300)
-            
-            
-            Text("Jarak tempuh motormu\nsudah sampai mana ya?")
-                .font(.system(size: 28))
-                .padding(.horizontal, 20)
-                .padding(.bottom, 15)
-                .fontWeight(.bold)
-                .frame(width: 355)
-            
-            Text("Cek odometer untuk mengetahui jarak tempuh kamu yang terkini. Kondisi spare-part-mu akan kami ukur berdasarkan ini.")
-                .padding(.horizontal, 20)
-                .font(.system(size: 17))
-                .frame(width: 355, alignment: .topLeading)
-            
-            HStack {
-                TextField("Masukan jarak tempuhmu", text: $currentMileage)
-                    .foregroundColor(.primary)
-                    .background(Color("BackColor").cornerRadius(8))
-                    .font(.system(size: 22))
-                    .padding(.horizontal, 38)
-                    .padding(.top, 40)
-                    .keyboardType(.numberPad)
-            }
-            .frame(width: 390, height: 30)
-            
-            VStack{
+        ZStack{
+            BackgroundView()
+            VStack {
+                Image("odometer1")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.horizontal, 18)
+                    .padding(.top, 60)
+                
+//                Spacer()
+//                    .frame(height: 60)
+                
+//                LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
+//                    .frame(width: 200, height: 300)
+                
+                Text("Jarak tempuh motormu sudah sampai mana ya?")
+                    .font(.system(size: 34))
+                    .foregroundColor(.white)
+                    .padding(.top, 100)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: 330, alignment: .topLeading)
+                
+                Rectangle()
+                    .fill(Color("BackColor"))
+                    .cornerRadius(10)
+                    .frame(width: 330, height: 35)
+                    .overlay(
+                        TextField("Masukan jarak tempuhmu", text: $currentMileage)
+                            .foregroundColor(.primary)
+                            .padding(.horizontal, 10)
+                            .keyboardType(.numberPad)
+                            .focused($isInputActive)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
+                                    Button("Done"){
+                                        isInputActive = false
+                                    }
+                                }
+                            }
+                    )
+                
+                Text("Ketahui kondisi part motor Anda dari angka yang tertera di odometer.")
+                    .font(.system(size: 17))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: 330, alignment: .topLeading)
+                    .padding(.bottom, 30)
+                
+    
+                Spacer()
+                
                 Button(action: {
                     let motorcycle = Motorcycle(id_motorcycle: UUID(), currentMileage: Int(currentMileage) ?? 0)
                     
-                        modelContext.insert(motorcycle)
-                   
+                    modelContext.insert(motorcycle)
+                    
                     do {
-                       try modelContext.save()
-                       if !isTextFieldEmpty {
-                           isShowingInputLastReceiptView.toggle()
-                       }
+                        try modelContext.save()
+                        if !isTextFieldEmpty {
+                            isShowingInputLastReceiptView.toggle()
+                        }
                         
-                   } catch {
-                       print(error.localizedDescription)
-                   }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }) {
-                   Text("Lanjutkan")
-                       .font(.headline)
-                       .foregroundColor(.black)
-                       .frame(width: 335, height: 55)
-                       .background(Color(red: 1, green: 0.83, blue: 0.15))
-                       .cornerRadius(25)
+                    Text("Lanjutkan")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(width: 335, height: 45)
+                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                        .cornerRadius(20)
                 }
-                .padding(.top, 65)
+                    .padding(.bottom, 30)
                 .disabled(isTextFieldEmpty)
             }
-        }
-        .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
-            InputLastReceiptsView()
-        }
+            .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
+                InputLastReceiptsView()
+            }
+        } .ignoresSafeArea(.keyboard)
     }
 }
 

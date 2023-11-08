@@ -17,13 +17,13 @@ struct InputLastReceiptsView: View {
     
     var body: some View {
         NavigationStack {
-
             ZStack{
+                BackgroundView()
                 VStack{
                     Image("receipt")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                       
+                    
                         .padding(.top, 50)
                         .frame(width: 350, height: 310)
                     
@@ -33,18 +33,20 @@ struct InputLastReceiptsView: View {
                         .fontWeight(.bold)
                         .padding(.top, 15)
                         .frame(width: 355, height: 100, alignment: .topLeading)
-                        
+                        .foregroundColor(.white)
+                    
                     Text("Update otomatis kondisi spare-partmu dengan scan 1 sampai 3 resi perbaikanmu. Bisa juga update kondisi spare-partmu secara manual.")
                         .padding(.top, 20)
                         .font(.system(size: 17))
                         .frame(width: 355, height: 100, alignment: .topLeading)
+                        .foregroundColor(.white)
                     
                     Spacer()
                 }
                 VStack{
                     
                     Spacer()
-    
+                    
                     Button(action: {
                         self.showingScanningView = true
                     }) {
@@ -52,7 +54,7 @@ struct InputLastReceiptsView: View {
                             .font(.headline)
                             .foregroundColor(.black)
                             .frame(width: 335, height: 55, alignment: .center)
-                            .background(Color(red: 1, green: 0.83, blue: 0.15))
+                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(25)
                     }
                     .padding(10)
@@ -62,7 +64,7 @@ struct InputLastReceiptsView: View {
                             .font(.headline)
                             .foregroundColor(.black)
                             .frame(width: 335, height: 55, alignment: .center)
-                            .background(Color(red: 1, green: 0.83, blue: 0.15))
+                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(25)
                     } )
                     Spacer()

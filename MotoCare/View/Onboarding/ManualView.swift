@@ -31,130 +31,134 @@ struct ManualView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    Text("Masukkan data servis terakhir!")
-                        .font(.system(size: 18))
-                        .frame(width: 355, height: 50, alignment: .topLeading)
-                    
-                    Text("Servis 1")
-                        .modifier(ServisTitleModifier())
-                    
-                    Rectangle()
-                        .fill(Color("BackColor"))
-                        .cornerRadius(5)
-                        .frame(width: 360, height: 40)
-                        .overlay(
-                            TextField("Jarak tempuh", text: $servis1)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal, 20)
-                                .focused($isInputActive)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
+            ZStack{
+                BackgroundView()
+                VStack {
+                    ScrollView {
+                        Text("Masukkan data servis terakhir!")
+                            .font(.system(size: 18))
+                            .frame(width: 355, height: 50, alignment: .topLeading)
+                            .foregroundColor(.white)
+                        
+                        Text("Servis 1")
+                            .modifier(ServisTitleModifier())
+                        
+                        Rectangle()
+                            .fill(Color("BackColor"))
+                            .cornerRadius(5)
+                            .frame(width: 360, height: 40)
+                            .overlay(
+                                TextField("Jarak tempuh", text: $servis1)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal, 20)
+                                    .focused($isInputActive)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            Spacer()
+                                        }
                                     }
-                                }
-                        )
-                        .padding(.bottom, 5)
-                    
-                    Button("+ Sparepart") {
-                        isModalPresented.toggle()
-                        currentServisSelection = 1
-                    }
-                    .modifier(ButtonStyleModifier())
-                    
-                    HStack {
-                        ForEach(selectedSparepartsServis1, id: \.id) { selectedSparepart in
-                            Text(selectedSparepart.name)
-                                .modifier(SelectedSparepartModifier())
+                            )
+                            .padding(.bottom, 5)
+                        
+                        Button("+ Sparepart") {
+                            isModalPresented.toggle()
+                            currentServisSelection = 1
                         }
-                    }
-                    
-                    Text("Servis 2")
-                        .modifier(ServisTitleModifier())
-                    
-                    Rectangle()
-                        .fill(Color("BackColor"))
-                        .cornerRadius(10)
-                        .frame(width: 360, height: 40)
-                        .overlay(
-                            TextField("Jarak tempuh", text: $servis2)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal, 20)
-                                .focused($isInputActive)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
+                        .modifier(ButtonStyleModifier())
+                        
+                        HStack {
+                            ForEach(selectedSparepartsServis1, id: \.id) { selectedSparepart in
+                                Text(selectedSparepart.name)
+                                    .modifier(SelectedSparepartModifier())
+                            }
+                        }
+                        
+                        Text("Servis 2")
+                            .modifier(ServisTitleModifier())
+                        
+                        Rectangle()
+                            .fill(Color("BackColor"))
+                            .cornerRadius(10)
+                            .frame(width: 360, height: 40)
+                            .overlay(
+                                TextField("Jarak tempuh", text: $servis2)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal, 20)
+                                    .focused($isInputActive)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            Spacer()
+                                        }
                                     }
-                                }
-                        )
-                        .padding(.bottom, 5)
-                    
-                    Button("+ Sparepart ") {
-                        isModalPresented.toggle()
-                        currentServisSelection = 2
-                    }
-                    .modifier(ButtonStyleModifier())
-                    
-                    HStack {
-                        ForEach(selectedSparepartsServis2, id: \.id) { selectedSparepart in
-                            Text(selectedSparepart.name)
-                                .modifier(SelectedSparepartModifier())
+                            )
+                            .padding(.bottom, 5)
+                        
+                        Button("+ Sparepart ") {
+                            isModalPresented.toggle()
+                            currentServisSelection = 2
                         }
-                    }
-                    
-                    Text("Servis 3")
-                        .modifier(ServisTitleModifier())
-                    
-                    Rectangle()
-                        .fill(Color("BackColor"))
-                        .cornerRadius(10)
-                        .frame(width: 360, height: 40)
-                        .overlay(
-                            TextField("Jarak tempuh", text: $servis3)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal, 20)
-                                .focused($isInputActive)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
+                        .modifier(ButtonStyleModifier())
+                        
+                        HStack {
+                            ForEach(selectedSparepartsServis2, id: \.id) { selectedSparepart in
+                                Text(selectedSparepart.name)
+                                    .modifier(SelectedSparepartModifier())
+                            }
+                        }
+                        
+                        Text("Servis 3")
+                            .modifier(ServisTitleModifier())
+                        
+                        Rectangle()
+                            .fill(Color("BackColor"))
+                            .cornerRadius(10)
+                            .frame(width: 360, height: 40)
+                            .overlay(
+                                TextField("Jarak tempuh", text: $servis3)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal, 20)
+                                    .focused($isInputActive)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            Spacer()
+                                        }
                                     }
-                                }
-                        )
-                        .padding(.bottom, 5)
-                    
-                    Button("+ Sparepart ") {
-                        isModalPresented.toggle()
-                        currentServisSelection = 3
-                    }
-                    .modifier(ButtonStyleModifier())
-                    
-                    HStack {
-                        ForEach(selectedSparepartsServis3, id: \.id) { selectedSparepart in
-                            Text(selectedSparepart.name)
-                                .modifier(SelectedSparepartModifier())
+                            )
+                            .padding(.bottom, 5)
+                        
+                        Button("+ Sparepart ") {
+                            isModalPresented.toggle()
+                            currentServisSelection = 3
                         }
+                        .modifier(ButtonStyleModifier())
+                        
+                        HStack {
+                            ForEach(selectedSparepartsServis3, id: \.id) { selectedSparepart in
+                                Text(selectedSparepart.name)
+                                    .modifier(SelectedSparepartModifier())
+                            }
+                        }
+                        
+                        VStack{
+                            NavigationLink(destination: FinishOnboardingView(), label: {
+                                Text("Selesai")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .frame(width: 335, height: 55, alignment: .center)
+                                    .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                    .cornerRadius(25)
+                            } )
+                        }
+                        .padding(.top, 60)
                     }
-                    
-                    VStack{
-                        NavigationLink(destination: FinishOnboardingView(), label: {
-                            Text("Selesai")
-                                .font(.headline)
-                                .foregroundColor(.black)
-                                .frame(width: 335, height: 55, alignment: .center)
-                                .background(Color(red: 1, green: 0.83, blue: 0.15))
-                                .cornerRadius(25)
-                        } )
+                    .navigationTitle("Input Manual")
+                    .sheet(isPresented: $isModalPresented) {
+                        // Pass state isSelectionConfirmed ke SparepartSelectionView
+                        SparepartSelectionView(spareparts: availableSpareparts,
+                                               selectedSpareparts: currentServisSelection == 1 ? $selectedSparepartsServis1 : (currentServisSelection == 2 ? $selectedSparepartsServis2 : $selectedSparepartsServis3),
+                                               isModalPresented: $isModalPresented)
+                        .presentationDetents([.large, .medium, .fraction(0.42)])
                     }
-                    .padding(.top, 60)
-                }
-                .navigationTitle("Input Manual")
-                .sheet(isPresented: $isModalPresented) {
-                    // Pass state isSelectionConfirmed ke SparepartSelectionView
-                    SparepartSelectionView(spareparts: availableSpareparts,
-                                           selectedSpareparts: currentServisSelection == 1 ? $selectedSparepartsServis1 : (currentServisSelection == 2 ? $selectedSparepartsServis2 : $selectedSparepartsServis3),
-                                           isModalPresented: $isModalPresented)
-                    .presentationDetents([.large, .medium, .fraction(0.42)])
                 }
             }
         }
@@ -215,6 +219,7 @@ struct ServisTitleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 20))
+            .foregroundColor(.white)
             .fontWeight(.bold)
             .frame(width: 355, alignment: .topLeading)
     }
