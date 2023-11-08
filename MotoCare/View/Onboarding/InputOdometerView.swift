@@ -20,10 +20,13 @@ struct InputOdometerView: View {
     
     var body: some View {
         VStack {
-            Image("odometer")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(.horizontal, 45)
+//            Image("odometer")
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//                .padding(.horizontal, 45)
+            LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
+                .frame(width: 200, height: 300)
+            
             
             Text("Jarak tempuh motormu\nsudah sampai mana ya?")
                 .font(.system(size: 28))

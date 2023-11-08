@@ -15,7 +15,11 @@ struct FinishOnboardingView: View {
                     .font(.system(size: 31))
                     .fontWeight(.bold)
                     .frame(width: 355, height: 158, alignment: .topLeading)
-                    .padding(250)
+                    .padding(.top, 100)
+                
+                VStack{
+                    LottiePlusView(name: Constants.lego, loopMode: .loop, contentMode: .scaleAspectFill)
+                }
                 
                 VStack{
                 NavigationLink(destination: MainTabView(), label: {
@@ -31,6 +35,7 @@ struct FinishOnboardingView: View {
         }.navigationBarBackButtonHidden(true)
         }
     }
+
 
 #Preview {
     FinishOnboardingView()

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D6DA08E2AFB3FC700A00673 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6DA08D2AFB3FC700A00673 /* Lottie */; };
+		6D6DA0902AFB405900A00673 /* Lottie Lego.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D6DA08F2AFB405900A00673 /* Lottie Lego.json */; };
+		6D6DA0922AFB40E600A00673 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0912AFB40E600A00673 /* LottieView.swift */; };
+		6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0932AFB436C00A00673 /* Constants.swift */; };
+		6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */; };
+		6D6DA0982AFB4DA600A00673 /* Arduino.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D6DA0972AFB4DA600A00673 /* Arduino.json */; };
 		E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97435872AF0F24600248CD8 /* ScanDocumentView.swift */; };
 		E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */; };
 		E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */; };
@@ -33,6 +39,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D6DA08F2AFB405900A00673 /* Lottie Lego.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Lottie Lego.json"; sourceTree = "<group>"; };
+		6D6DA0912AFB40E600A00673 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		6D6DA0932AFB436C00A00673 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewPlus.swift; sourceTree = "<group>"; };
+		6D6DA0972AFB4DA600A00673 /* Arduino.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arduino.json; sourceTree = "<group>"; };
 		E97435872AF0F24600248CD8 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotoCare.swift; sourceTree = "<group>"; };
@@ -64,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D6DA08E2AFB3FC700A00673 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +85,7 @@
 		E9AB955D2AEFEB4C004EE0F4 = {
 			isa = PBXGroup;
 			children = (
+				6D6DA0932AFB436C00A00673 /* Constants.swift */,
 				E9AB95682AEFEB4C004EE0F4 /* MotoCare */,
 				E9AB95672AEFEB4C004EE0F4 /* Products */,
 			);
@@ -94,6 +107,10 @@
 				E9AB95B72AF033F5004EE0F4 /* View */,
 				E9AB957F2AEFF21A004EE0F4 /* Model */,
 				E9AB956D2AEFEB4E004EE0F4 /* Assets.xcassets */,
+				6D6DA0912AFB40E600A00673 /* LottieView.swift */,
+				6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */,
+				6D6DA08F2AFB405900A00673 /* Lottie Lego.json */,
+				6D6DA0972AFB4DA600A00673 /* Arduino.json */,
 				E9AB956F2AEFEB4E004EE0F4 /* Preview Content */,
 			);
 			path = MotoCare;
@@ -188,6 +205,9 @@
 			dependencies = (
 			);
 			name = MotoCare;
+			packageProductDependencies = (
+				6D6DA08D2AFB3FC700A00673 /* Lottie */,
+			);
 			productName = MotorCareSwiftData;
 			productReference = E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +236,9 @@
 				Base,
 			);
 			mainGroup = E9AB955D2AEFEB4C004EE0F4;
+			packageReferences = (
+				6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = E9AB95672AEFEB4C004EE0F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +255,8 @@
 			files = (
 				E9AB95712AEFEB4E004EE0F4 /* Preview Assets.xcassets in Resources */,
 				E9AB956E2AEFEB4E004EE0F4 /* Assets.xcassets in Resources */,
+				6D6DA0982AFB4DA600A00673 /* Arduino.json in Resources */,
+				6D6DA0902AFB405900A00673 /* Lottie Lego.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +274,11 @@
 				E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */,
 				E9AB95C72AF03553004EE0F4 /* ModalSparepartView.swift in Sources */,
 				E9AB95B92AF03403004EE0F4 /* OpeningOnboardingView.swift in Sources */,
+				6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */,
 				E9AB95782AEFEBAC004EE0F4 /* Motorcycle.swift in Sources */,
 				E9AB95BB2AF03428004EE0F4 /* InputOdometerView.swift in Sources */,
+				6D6DA0922AFB40E600A00673 /* LottieView.swift in Sources */,
+				6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */,
 				E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */,
 				E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */,
 				E9AB95CB2AF03591004EE0F4 /* SettingsView.swift in Sources */,
@@ -470,6 +498,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D6DA08D2AFB3FC700A00673 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9AB955E2AEFEB4C004EE0F4 /* Project object */;
 }
