@@ -11,15 +11,14 @@ import SwiftData
 @Model
 class MaintenanceHistory {
     @Attribute(.unique) var id_maintenancehistory: UUID
-    var date: Date
-    var maintenanceMileage: Double
-    @Relationship var sparePartHistory: SparepartHistory
+    var date: Date?
+    var lastServiceMileage: Int
+    var selectedSpareparts: [String]
     
-    init(id_maintenancehistory: UUID, date: Date, maintenanceMileage: Double, sparePartHistory: SparepartHistory) {
+    init(id_maintenancehistory: UUID, date: Date? = nil, lastServiceMileage: Int, selectedSpareparts: [String]) {
         self.id_maintenancehistory = id_maintenancehistory
         self.date = date
-        self.maintenanceMileage = maintenanceMileage
-        self.sparePartHistory = sparePartHistory
+        self.lastServiceMileage = lastServiceMileage
+        self.selectedSpareparts = selectedSpareparts
     }
-    
 }

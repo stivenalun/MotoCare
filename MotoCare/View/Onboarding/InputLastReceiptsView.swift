@@ -15,9 +15,11 @@ struct InputLastReceiptsView: View {
     @State var extractedText: String?
     @State var isScanned: Bool = false
     
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let motorcycle: Motorcycle
+    
     var body: some View {
         NavigationStack {
-
             ZStack{
                 VStack{
                     Image("receipt")
@@ -57,7 +59,7 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(), label: {
+                    NavigationLink(destination: ManualView( motorcycle: motorcycleVM.motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
@@ -87,6 +89,6 @@ struct InputLastReceiptsView: View {
     }
 }
 
-#Preview {
-    InputLastReceiptsView()
-}
+//#Preview {
+//    InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
+//}

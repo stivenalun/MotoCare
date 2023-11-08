@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            DashboardView()
+            NewDashboardView()
                 .tabItem {
                     Image(systemName: "gauge.open.with.lines.needle.33percent")
                     Text("Dashboard")

@@ -12,13 +12,13 @@ import SwiftData
 class SparepartHistory {
     var id_spareparthistory: UUID
     var maintenanceHistory: [MaintenanceHistory]
-    var sparePartData: [SparepartData]
+//    var sparePartData: [SparepartData]
     var status: String
     
-    init(id_spareparthistory: UUID, maintenanceHistory: [MaintenanceHistory], sparePartData: [SparepartData], status: String) {
+    init(id_spareparthistory: UUID, maintenanceHistory: [MaintenanceHistory], /*sparePartData: [SparepartData],*/ status: String) {
         self.id_spareparthistory = id_spareparthistory
         self.maintenanceHistory = maintenanceHistory
-        self.sparePartData = sparePartData
+//        self.sparePartData = sparePartData
         self.status = status
     }
 }

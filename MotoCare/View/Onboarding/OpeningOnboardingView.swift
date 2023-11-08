@@ -10,6 +10,7 @@ import SwiftUI
 struct OpeningOnboardingView: View {
     
     @State var isOdometerViewPresented: Bool = false
+    @StateObject var motorcycleVM = MotorcycleViewModel()
     
     var body: some View {
         NavigationStack {
@@ -41,6 +42,7 @@ struct OpeningOnboardingView: View {
             }
            
         }
+        .environmentObject(motorcycleVM)
     }
 }
 

@@ -11,6 +11,7 @@ import SwiftData
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
     @Query var motorcycles: [Motorcycle]
+    @Query var sparePartData: [SparepartData]
     
     enum GaugeCategory {
         case needReplacement
@@ -109,17 +110,19 @@ struct DashboardView: View {
     }
 
     func filterData(category: GaugeCategory) -> [GaugeData] {
-       // Define your gauge data and filter it based on the category
-       return gaugeData.filter { data in
-           switch category {
-           case .needReplacement:
-               return data.value <= (data.maximum / 2) && data.value < data.maximum && data.color == .red
-           case .checkingRequired:
-               return data.value >= (data.maximum / 2) && data.value < data.maximum && data.color == .yellow
-           case .safeToGo:
-               return data.value >= data.maximum && data.color == .green
-           }
-       }
+        return sparePartData.map { sparePart in
+            let value = Double(motorcycles.first?.currentMileage ?? 0)
+            let color: ColorCategory
+            switch category {
+            case .needReplacement:
+                color = .red
+            case .checkingRequired:
+                color = .yellow
+            case .safeToGo:
+                color = .green
+            }
+            return GaugeData(value: value, minimum: 0.0, maximum: 100.0, iconSparePart: /*sparePart.icon*/ "", labelText: sparePart.name, imageSparePart: /*sparePart.image*/ "", color: color)
+        }
     }
 }
 
@@ -189,7 +192,7 @@ enum ColorCategory {
 }
 
 struct GaugeData {
-   var value: Double
+    var value: Double
    var minimum: Double
    var maximum: Double
    var iconSparePart: String
@@ -198,6 +201,11 @@ struct GaugeData {
    var color: ColorCategory
 }
 
+//struct GaugeMapper {
+//    static func mapGauge(gauge: SparepartData) -> GaugeData {
+//        return GaugeData(value: gauge., minimum: <#T##Double#>, maximum: <#T##Double#>, iconSparePart: <#T##String#>, labelText: <#T##String#>, imageSparePart: <#T##String#>, color: <#T##ColorCategory#>)
+//    }
+//}
 
 
 let gaugeData: [GaugeData] = [

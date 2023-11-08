@@ -6,30 +6,49 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct Sparepart: Identifiable, Equatable { // Conform ke Equatable
+struct Xparepart: Identifiable, Equatable { // Conform ke Equatable
     let id = UUID()
     let name: String
 
-    static func == (lhs: Sparepart, rhs: Sparepart) -> Bool {
+    static func == (lhs: Xparepart, rhs: Xparepart) -> Bool {
         return lhs.id == rhs.id
     }
 }
 
 struct ManualView: View {
+    @Environment(\.modelContext) var modelContext
+//    @Query var motorcycles: [Motorcycle]
+    
+//    @Bindable var motorcycles: Motorcycle
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let motorcycle: Motorcycle
+    
     @State private var isModalPresented = false
-    @State private var servis1 = ""
-    @State private var selectedSpareparts: [Sparepart] = [] // Menggunakan array untuk mengelola spareparts yang dipilih
+    @State private var lastServiceMileage = ""
+    @State private var selectedSpareparts: [Xparepart] = [] // Menggunakan array untuk mengelola spareparts yang dipilih
     @FocusState var isInputActive: Bool
+    @State private var isNavigate = false
 
     // Dummy data for spareparts
-    let availableSpareparts: [Sparepart] = [
-        Sparepart(name: "Oli Gardan"),
-        Sparepart(name: "Oli Mesin"),
-        Sparepart(name: "V-Belt"),
-        Sparepart(name: "Busi"),
-        Sparepart(name: "Air Filter"),
+    let availableSpareparts: [Xparepart] = [
+        Xparepart(name: "Oli Gardan"),
+        Xparepart(name: "Oli Mesin"),
+        Xparepart(name: "V-Belt"),
+        Xparepart(name: "Busi"),
+        Xparepart(name: "Air Filter"),
     ]
+    
+    @State private var s = Sparepart()
+    
+//    private var sparepartDatas : [SparepartData] = [
+//        SparepartData(name: "Oli Gardan"),
+//        SparepartData(name: "Oli Mesin"),
+//        SparepartData(name: "V-Belt"),
+//        SparepartData(name: "Busi"),
+//        SparepartData(name: "Air Filter")
+//    ]
 
     var body: some View {
         NavigationView {
@@ -49,7 +68,7 @@ struct ManualView: View {
                         .cornerRadius(10)
                         .frame(width: 360, height: 40)
                         .overlay(
-                            TextField("Jarak Tempuh dalam Kilometer", text: $servis1)
+                            TextField("Jarak Tempuh dalam Kilometer", text: $lastServiceMileage)
                                 .foregroundColor(.primary)
                                 .padding(.horizontal, 20)
                                 .focused($isInputActive)
@@ -98,14 +117,29 @@ struct ManualView: View {
                     }
                     
                     VStack{
-                        NavigationLink(destination: FinishOnboardingView(), label: {
+                        Button {
+                            //hajar aja buat save data
+//                            let selectedSparepartsNames = selectedSpareparts.map { \$0.name }
+//                                let serviceData = MaintenanceHistory(lastServiceMileage: lastServiceMileage, selectedSpareparts: selectedSparepartsNames)
+//                                modelContext.insert(serviceData)
+//                                do {
+//                                    try modelContext.save()
+//                                    isNavigate = true
+//                                } catch {
+//                                    print(error.localizedDescription)
+//                                }
+                            
+                            addSpareparts()
+                            isNavigate = true
+                            
+                        } label: {
                             Text("Selesai")
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .frame(width: 335, height: 55, alignment: .center)
                                 .background(Color(red: 1, green: 0.83, blue: 0.15))
                                 .cornerRadius(25)
-                        } )
+                        }
                     }
                     .padding(.top, 280)
                 }
@@ -115,14 +149,26 @@ struct ManualView: View {
                     SparepartSelectionView(spareparts: availableSpareparts, selectedSpareparts: $selectedSpareparts, isModalPresented: $isModalPresented)
                         .presentationDetents([.large, .medium, .fraction(0.45)])
                 }
+                .navigationDestination(isPresented: $isNavigate) {
+                    FinishOnboardingView()
+                }
             }
+        }
+    }
+    
+    func addSpareparts() {
+        for part in selectedSpareparts {
+            let sparepart = Sparepart(name: part.name, lastServiceMileage: Int(lastServiceMileage)!)
+//            motorcycleVM.motorcycle.spareparts?.append(sparepart)
+            sparepart.motorcycle = motorcycle
+            motorcycle.spareparts?.append(sparepart)
         }
     }
 }
 
 struct SparepartSelectionView: View {
-    var spareparts: [Sparepart]
-    @Binding var selectedSpareparts: [Sparepart]
+    var spareparts: [Xparepart]
+    @Binding var selectedSpareparts: [Xparepart]
     @Binding var isModalPresented: Bool
 
     var body: some View {
@@ -157,6 +203,6 @@ struct SparepartSelectionView: View {
 }
 
 
-#Preview {
-    ManualView()
-}
+//#Preview {
+//    ManualView()
+//}
