@@ -13,6 +13,7 @@
 		6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0932AFB436C00A00673 /* Constants.swift */; };
 		6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */; };
 		6D6DA0982AFB4DA600A00673 /* Arduino.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D6DA0972AFB4DA600A00673 /* Arduino.json */; };
+		6D6DA09D2AFB8B9400A00673 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */; };
 		E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97435872AF0F24600248CD8 /* ScanDocumentView.swift */; };
 		E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */; };
 		E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 		6D6DA0932AFB436C00A00673 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewPlus.swift; sourceTree = "<group>"; };
 		6D6DA0972AFB4DA600A00673 /* Arduino.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arduino.json; sourceTree = "<group>"; };
+		6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		E97435872AF0F24600248CD8 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotoCare.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AB95B82AF03403004EE0F4 /* OpeningOnboardingView.swift */,
+				6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */,
 				E9AC4E092AF2090F001DDCF3 /* TextTextFieldView.swift */,
 				E9AB95BA2AF03428004EE0F4 /* InputOdometerView.swift */,
 				E9AB95BC2AF03444004EE0F4 /* InputLastReceiptsView.swift */,
@@ -282,6 +285,7 @@
 				E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */,
 				E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */,
 				E9AB95CB2AF03591004EE0F4 /* SettingsView.swift in Sources */,
+				6D6DA09D2AFB8B9400A00673 /* BackgroundView.swift in Sources */,
 				E9AB957C2AEFEF9C004EE0F4 /* MaintenanceHistory.swift in Sources */,
 				E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */,
 				E9AB957E2AEFF0AA004EE0F4 /* SparepartHistory.swift in Sources */,
