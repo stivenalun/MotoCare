@@ -43,7 +43,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
            // Menghapus "Ganti" dari processedText1
            processedText1 = processedText1.replacingOccurrences(of: "Ganti", with: "")
             
-            print(processedText1)
+//            print(processedText1)
 //            print(processedText2)
 
            // Mengganti "Oli Gear" dengan "Oli Gardan"
