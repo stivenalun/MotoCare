@@ -2,7 +2,9 @@ import SwiftUI
 
 struct ScanResultView: View {
     @State private var text = ""
-    @Binding var extractedText: String?
+    @Binding var extractedText1: String?
+    @Binding var extractedText2: String?
+    
     
     var body: some View {
         ScrollView{
@@ -23,25 +25,34 @@ struct ScanResultView: View {
                         .frame(width: 355, alignment: .topLeading)
                     
                     HStack{
-                        Text("Jarak Tempuh")
-                            .font(.system(size: 16))
-                        TextField("xxx kilometer", text: $text)
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                     Text("Jarak Tempuh")
+                        .font(.system(size: 16))
+                     TextField("xxx kilometer", text: Binding<String>(
+                        get: {
+                            return extractedText2 ?? ""
+                        },
+                        set: { newValue in
+                            extractedText2 = newValue
+                        }
+                     ))
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 0)
                     .frame(width: 390, height: 40, alignment: .topLeading)
-                    
+
+
+
                     Text("Perbaikan")
                         .font(.system(size: 16))
                         .fontWeight(.bold)
                         .frame(width: 355, alignment: .topLeading)
                     
                     HStack {
-                        if let extractedText = extractedText {
-                            let data = extractedText.components(separatedBy: ",")
+                        if let extractedText1 = extractedText1 {
+                            let data = extractedText1.components(separatedBy: ",")
                             ForEach(data, id: \.self) { item in
                                 if item != "" {
                                     Text(item)
@@ -78,5 +89,5 @@ struct ScanResultView: View {
 
 
 #Preview {
-    ScanResultView(extractedText: .constant(""))
+    ScanResultView(extractedText1: .constant(""), extractedText2: .constant(""))
 }
