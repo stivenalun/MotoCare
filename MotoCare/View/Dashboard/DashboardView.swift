@@ -75,8 +75,10 @@ struct DashboardView: View {
                                     
                                     
                                     
-                                    Button(action: {}) {
-                                        Text("Check-In Perbaikan")
+                                    Button(action: {
+                                        isModalPresented = true
+                                    }) {
+                                        Text("Perbarui Jarak Tempuh")
                                             .font(.callout)
                                             .fontWeight(.medium)
                                             .foregroundStyle(.black)
