@@ -12,14 +12,10 @@
 		6D6DA0922AFB40E600A00673 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0912AFB40E600A00673 /* LottieView.swift */; };
 		6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0932AFB436C00A00673 /* Constants.swift */; };
 		6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */; };
-<<<<<<< HEAD
-=======
-		6D6DA0982AFB4DA600A00673 /* Arduino.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D6DA0972AFB4DA600A00673 /* Arduino.json */; };
->>>>>>> main
 		6D6DA09F2AFB9ACC00A00673 /* ManualView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */; };
 		6DA46FB72AFCCA960068EA15 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA46FB62AFCCA960068EA15 /* SplashView.swift */; };
-		6DD936362AFD28DB00EE7124 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD936352AFD28DB00EE7124 /* BackgroundView.swift */; };
 		6DD936382AFD3F5300EE7124 /* Done.json in Resources */ = {isa = PBXBuildFile; fileRef = 6DD936372AFD3F5300EE7124 /* Done.json */; };
+		6DD9363C2AFD4ACC00EE7124 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */; };
 		E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97435872AF0F24600248CD8 /* ScanDocumentView.swift */; };
 		E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */; };
 		E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */; };
@@ -42,7 +38,6 @@
 		E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */; };
 		E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */; };
 		E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */; };
-		E9E649172AFD2BD500288DF7 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E649162AFD2BD500288DF7 /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,14 +45,10 @@
 		6D6DA0912AFB40E600A00673 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		6D6DA0932AFB436C00A00673 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewPlus.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
-		6D6DA0972AFB4DA600A00673 /* Arduino.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arduino.json; sourceTree = "<group>"; };
->>>>>>> main
 		6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualView2.swift; sourceTree = "<group>"; };
 		6DA46FB62AFCCA960068EA15 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		6DD936352AFD28DB00EE7124 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		6DD936372AFD3F5300EE7124 /* Done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Done.json; sourceTree = "<group>"; };
+		6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		E97435872AF0F24600248CD8 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotoCare.swift; sourceTree = "<group>"; };
@@ -81,8 +72,6 @@
 		E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
 		E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMaintenanceCheckin.swift; sourceTree = "<group>"; };
 		E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOdometerView.swift; sourceTree = "<group>"; };
-		E9E649162AFD2BD500288DF7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		E9E649162AFD2BD500288DF7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,12 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				6DA46FB62AFCCA960068EA15 /* SplashView.swift */,
-				E9E649162AFD2BD500288DF7 /* BackgroundView.swift */,
-<<<<<<< HEAD
-				6DD936352AFD28DB00EE7124 /* BackgroundView.swift */,
-=======
-				E9E649162AFD2BD500288DF7 /* BackgroundView.swift */,
->>>>>>> main
 				E9AB95B82AF03403004EE0F4 /* OpeningOnboardingView.swift */,
 				E9AB95BA2AF03428004EE0F4 /* InputOdometerView.swift */,
 				E9AB95BC2AF03444004EE0F4 /* InputLastReceiptsView.swift */,
@@ -191,6 +174,7 @@
 				E9AB95BE2AF03476004EE0F4 /* ManualView.swift */,
 				6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */,
 				E9AB95C02AF034F7004EE0F4 /* FinishOnboardingView.swift */,
+				6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -291,12 +275,7 @@
 			files = (
 				E9AB95BF2AF03476004EE0F4 /* ManualView.swift in Sources */,
 				E9AB957A2AEFEE5E004EE0F4 /* SparepartData.swift in Sources */,
-				E9E649172AFD2BD500288DF7 /* BackgroundView.swift in Sources */,
-<<<<<<< HEAD
-				6DD936362AFD28DB00EE7124 /* BackgroundView.swift in Sources */,
-=======
-				E9E649172AFD2BD500288DF7 /* BackgroundView.swift in Sources */,
->>>>>>> main
+				6DD9363C2AFD4ACC00EE7124 /* BackgroundView.swift in Sources */,
 				E9AB95C12AF034F7004EE0F4 /* FinishOnboardingView.swift in Sources */,
 				E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */,
 				E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */,
