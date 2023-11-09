@@ -23,7 +23,7 @@ struct ModalOdometerView: View {
         ZStack {
             BackgroundView()
             VStack {
-                LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
+                LottiePlusView(name: Constants.done, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
                     .frame(width: 200, height: 300)
                 
                 Text("Jarak tempuh motormu\nsudah sampai mana ya?")
