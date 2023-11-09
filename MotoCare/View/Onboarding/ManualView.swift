@@ -27,20 +27,21 @@ struct ManualView: View {
     
     @State private var isModalPresented = false
     @State private var lastServiceMileage = ""
-    @State private var selectedSpareparts: [Xparepart] = [] // Menggunakan array untuk mengelola spareparts yang dipilih
+    @State private var selectedSpareparts: [Sparepart] = [] // Menggunakan array untuk mengelola spareparts yang dipilih
     @FocusState var isInputActive: Bool
     @State private var isNavigate = false
 
     // Dummy data for spareparts
-    let availableSpareparts: [Xparepart] = [
-        Xparepart(name: "Oli Gardan"),
-        Xparepart(name: "Oli Mesin"),
-        Xparepart(name: "V-Belt"),
-        Xparepart(name: "Busi"),
-        Xparepart(name: "Air Filter"),
-    ]
+//    let availableSpareparts: [Xparepart] = [
+//        Xparepart(name: "Oli Gardan"),
+//        Xparepart(name: "Oli Mesin"),
+//        Xparepart(name: "V-Belt"),
+//        Xparepart(name: "Busi"),
+//        Xparepart(name: "Air Filter"),
+//    ]
+    let availableSpareparts: [Sparepart] = sparepartData
     
-    @State private var s = Sparepart()
+//    @State private var s = SparepartHistory()
     
 //    private var sparepartDatas : [SparepartData] = [
 //        SparepartData(name: "Oli Gardan"),
@@ -158,7 +159,7 @@ struct ManualView: View {
     
     func addSpareparts() {
         for part in selectedSpareparts {
-            let sparepart = Sparepart(name: part.name, lastServiceMileage: Int(lastServiceMileage)!)
+            let sparepart = SparepartHistory(name: part.name, lastServiceMileage: Int(lastServiceMileage)!, sparepartType: part.type)
 //            motorcycleVM.motorcycle.spareparts?.append(sparepart)
             sparepart.motorcycle = motorcycle
             motorcycle.spareparts?.append(sparepart)
@@ -167,8 +168,8 @@ struct ManualView: View {
 }
 
 struct SparepartSelectionView: View {
-    var spareparts: [Xparepart]
-    @Binding var selectedSpareparts: [Xparepart]
+    var spareparts: [Sparepart]
+    @Binding var selectedSpareparts: [Sparepart]
     @Binding var isModalPresented: Bool
 
     var body: some View {

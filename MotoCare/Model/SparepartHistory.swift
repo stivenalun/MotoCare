@@ -1,24 +1,23 @@
 //
-//  SparepartHistory.swift
+//  Sparepart.swift
 //  MotoCare
 //
-//  Created by Nur Hidayatul Fatihah on 04/11/23.
+//  Created by Nur Hidayatul Fatihah on 08/11/23.
 //
 
-import SwiftUI
+import Foundation
 import SwiftData
 
 @Model
 class SparepartHistory {
-    var id_spareparthistory: UUID
-    var maintenanceHistory: [MaintenanceHistory]
-//    var sparePartData: [SparepartData]
-    var status: String
+    var name: String
+    var lastServiceMileage: Int
+    var motorcycle: Motorcycle?
+    var sparepartType: SparepartType
     
-    init(id_spareparthistory: UUID, maintenanceHistory: [MaintenanceHistory], /*sparePartData: [SparepartData],*/ status: String) {
-        self.id_spareparthistory = id_spareparthistory
-        self.maintenanceHistory = maintenanceHistory
-//        self.sparePartData = sparePartData
-        self.status = status
+    init(name: String = "", lastServiceMileage: Int = 0, sparepartType: SparepartType) {
+        self.name = name
+        self.lastServiceMileage = lastServiceMileage
+        self.sparepartType = sparepartType
     }
 }

@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E905C7922AF64AA1000A1E98 /* SparepartHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905C7912AF64AA1000A1E98 /* SparepartHistory.swift */; };
+		E905C7922AF64AA1000A1E98 /* SparepartHistory2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905C7912AF64AA1000A1E98 /* SparepartHistory2.swift */; };
 		E905C7962AF6A3C7000A1E98 /* NewDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905C7952AF6A3C7000A1E98 /* NewDashboardView.swift */; };
-		E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97435872AF0F24600248CD8 /* ScanDocumentView.swift */; };
 		E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */; };
 		E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */; };
 		E9AB956E2AEFEB4E004EE0F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AB956D2AEFEB4E004EE0F4 /* Assets.xcassets */; };
@@ -30,15 +29,15 @@
 		E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */; };
 		E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */; };
 		E9AFB08B2AFB7A36003D4E23 /* MotorcycleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFB08A2AFB7A36003D4E23 /* MotorcycleViewModel.swift */; };
-		E9AFB08D2AFB8083003D4E23 /* Sparepart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFB08C2AFB8083003D4E23 /* Sparepart.swift */; };
+		E9AFB08D2AFB8083003D4E23 /* SparepartHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFB08C2AFB8083003D4E23 /* SparepartHistory.swift */; };
 		E9AFB08F2AFB8CEB003D4E23 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFB08E2AFB8CEB003D4E23 /* TestView.swift */; };
+		E9AFB0932AFCE2A1003D4E23 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AFB0922AFCE2A1003D4E23 /* ScanDocumentView.swift */; };
 		E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E905C7912AF64AA1000A1E98 /* SparepartHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparepartHistory.swift; sourceTree = "<group>"; };
+		E905C7912AF64AA1000A1E98 /* SparepartHistory2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparepartHistory2.swift; sourceTree = "<group>"; };
 		E905C7952AF6A3C7000A1E98 /* NewDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDashboardView.swift; sourceTree = "<group>"; };
-		E97435872AF0F24600248CD8 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotoCare.swift; sourceTree = "<group>"; };
 		E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,8 +59,9 @@
 		E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
 		E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMaintenanceCheckin.swift; sourceTree = "<group>"; };
 		E9AFB08A2AFB7A36003D4E23 /* MotorcycleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleViewModel.swift; sourceTree = "<group>"; };
-		E9AFB08C2AFB8083003D4E23 /* Sparepart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sparepart.swift; sourceTree = "<group>"; };
+		E9AFB08C2AFB8083003D4E23 /* SparepartHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparepartHistory.swift; sourceTree = "<group>"; };
 		E9AFB08E2AFB8CEB003D4E23 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		E9AFB0922AFCE2A1003D4E23 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOdometerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,8 +120,8 @@
 				E9AB95772AEFEBAC004EE0F4 /* Motorcycle.swift */,
 				E9AB95792AEFEE5E004EE0F4 /* SparepartData.swift */,
 				E9AB957B2AEFEF9C004EE0F4 /* MaintenanceHistory.swift */,
-				E905C7912AF64AA1000A1E98 /* SparepartHistory.swift */,
-				E9AFB08C2AFB8083003D4E23 /* Sparepart.swift */,
+				E905C7912AF64AA1000A1E98 /* SparepartHistory2.swift */,
+				E9AFB08C2AFB8083003D4E23 /* SparepartHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 				E9AB95B82AF03403004EE0F4 /* OpeningOnboardingView.swift */,
 				E9AB95BA2AF03428004EE0F4 /* InputOdometerView.swift */,
 				E9AB95BC2AF03444004EE0F4 /* InputLastReceiptsView.swift */,
-				E97435872AF0F24600248CD8 /* ScanDocumentView.swift */,
+				E9AFB0922AFCE2A1003D4E23 /* ScanDocumentView.swift */,
 				E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */,
 				E9AB95BE2AF03476004EE0F4 /* ManualView.swift */,
 				E9AB95C02AF034F7004EE0F4 /* FinishOnboardingView.swift */,
@@ -264,8 +264,8 @@
 				E9AB957A2AEFEE5E004EE0F4 /* SparepartData.swift in Sources */,
 				E9AB95C12AF034F7004EE0F4 /* FinishOnboardingView.swift in Sources */,
 				E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */,
+				E9AFB0932AFCE2A1003D4E23 /* ScanDocumentView.swift in Sources */,
 				E905C7962AF6A3C7000A1E98 /* NewDashboardView.swift in Sources */,
-				E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */,
 				E9AB95C72AF03553004EE0F4 /* ModalSparepartView.swift in Sources */,
 				E9AB95B92AF03403004EE0F4 /* OpeningOnboardingView.swift in Sources */,
 				E9AB95782AEFEBAC004EE0F4 /* Motorcycle.swift in Sources */,
@@ -278,8 +278,8 @@
 				E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */,
 				E9AFB08B2AFB7A36003D4E23 /* MotorcycleViewModel.swift in Sources */,
 				E9AB95BD2AF03444004EE0F4 /* InputLastReceiptsView.swift in Sources */,
-				E905C7922AF64AA1000A1E98 /* SparepartHistory.swift in Sources */,
-				E9AFB08D2AFB8083003D4E23 /* Sparepart.swift in Sources */,
+				E905C7922AF64AA1000A1E98 /* SparepartHistory2.swift in Sources */,
+				E9AFB08D2AFB8083003D4E23 /* SparepartHistory.swift in Sources */,
 				E9AB95C52AF0352A004EE0F4 /* DashboardView.swift in Sources */,
 				E9AB95C32AF03510004EE0F4 /* MainTabView.swift in Sources */,
 				E9AB95C92AF03578004EE0F4 /* MaintenanceHistoryView.swift in Sources */,
@@ -416,7 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 62B759R8T7;
+				DEVELOPMENT_TEAM = GNTKTFQL7U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -430,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.motocare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.fatihah.motocare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -446,7 +446,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 62B759R8T7;
+				DEVELOPMENT_TEAM = GNTKTFQL7U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -460,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.motocare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.fatihah.motocare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

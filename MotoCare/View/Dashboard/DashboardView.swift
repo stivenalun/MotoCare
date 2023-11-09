@@ -209,7 +209,7 @@ struct GaugeData {
 
 
 let gaugeData: [GaugeData] = [
-    GaugeData(value: 150.0, minimum: 0.0, maximum: 100.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage", color: .green),
+    GaugeData(value: 150.0, minimum: 0.0, maximum: 8000.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage", color: .green),
     GaugeData(value: 40.0, minimum: 0.0, maximum: 100.0, iconSparePart: "spark-plug", labelText: "Busi", imageSparePart: "SparkPlugImage", color: .red),
     GaugeData(value: 50.0, minimum: 0.0, maximum: 100.0, iconSparePart: "air-filter", labelText: "Air Filter", imageSparePart: "AirFilterImage", color: .yellow),
     GaugeData(value: 120.0, minimum: 0.0, maximum: 100.0, iconSparePart: "final-drive-oil", labelText: "Oli Gear", imageSparePart: "FinalDriveOilImage", color: .green),

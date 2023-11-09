@@ -8,29 +8,29 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     @Binding var extractedText: String?
     
     func makeCoordinator() -> Coordinator {
-            Coordinator(recognizedText: $recognizedText, extractedText: $extractedText, parent: self)
-        }
+        Coordinator(recognizedText: $recognizedText, extractedText: $extractedText, parent: self)
+    }
     
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
-            let documentViewController = VNDocumentCameraViewController()
-            documentViewController.delegate = context.coordinator
-            return documentViewController
-        }
+        let documentViewController = VNDocumentCameraViewController()
+        documentViewController.delegate = context.coordinator
+        return documentViewController
+    }
     
     func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
-            // nothing to do here
-        }
+        // nothing to do here
+    }
     
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
-            var recognizedText: Binding<String>
-            var extractedText: Binding<String?> // Menggunakan @Binding
-            var parent: ScanDocumentView
-            
-            init(recognizedText: Binding<String>, extractedText: Binding<String?>, parent: ScanDocumentView) {
-                self.recognizedText = recognizedText
-                self.extractedText = extractedText
-                self.parent = parent
-            }
+        var recognizedText: Binding<String>
+        var extractedText: Binding<String?> // Menggunakan @Binding
+        var parent: ScanDocumentView
+        
+        init(recognizedText: Binding<String>, extractedText: Binding<String?>, parent: ScanDocumentView) {
+            self.recognizedText = recognizedText
+            self.extractedText = extractedText
+            self.parent = parent
+        }
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             let extractedImages = extractImages(from: scan)
@@ -39,9 +39,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             recognizedText.wrappedValue = processedText
             extractedText.wrappedValue = processedText // Menyimpan hasil ke extractedText
             parent.presentationMode.wrappedValue.dismiss()
-            
         }
-
         
         fileprivate func extractImages(from scan: VNDocumentCameraScan) -> [CGImage] {
             var extractedImages = [CGImage]()

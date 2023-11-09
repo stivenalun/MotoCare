@@ -36,9 +36,7 @@ struct TestView: View {
                     } label: {
                         Text("\(motorcycle.brand) - \(motorcycle.currentMileage)")
                     }
-                    
                 }
-                
                 
                 Spacer()
             }
@@ -57,7 +55,7 @@ struct TestDetailView: View {
             TextField("Note text", text: $text)
                 .textFieldStyle(.roundedBorder)
                 .onSubmit {
-                    let sparepart = Sparepart(name: text, lastServiceMileage: 20)
+                    let sparepart = SparepartHistory(name: text, lastServiceMileage: 20, sparepartType: .airfilter)
                     sparepart.motorcycle = motorcycle
 //                    modelContext.insert(sparepart)
                     
@@ -69,7 +67,6 @@ struct TestDetailView: View {
                 Text("\(sparepart.name) - \(sparepart.lastServiceMileage)")
             }
             Spacer()
-            
         }
     }
 }

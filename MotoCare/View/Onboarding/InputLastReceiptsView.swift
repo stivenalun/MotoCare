@@ -76,14 +76,14 @@ struct InputLastReceiptsView: View {
                 ScanResultView(extractedText: $extractedText)
             })
             .sheet(isPresented: $showingScanningView) {
-                ScanDocumentView(
-                    recognizedText: $recognizedText,
-                    extractedText: $extractedText
-                )
-                .onDisappear {
-                    isScanned = true
-                    print(isScanned)
-                }
+//                ScanDocumentView(
+//                    recognizedText: $recognizedText,
+//                    extractedText: $extractedText
+//                )
+//                .onDisappear {
+//                    isScanned = true
+//                    print(isScanned)
+//                }
             }
         }
     }
