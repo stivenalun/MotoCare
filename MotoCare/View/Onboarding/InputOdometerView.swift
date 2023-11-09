@@ -23,11 +23,13 @@ struct InputOdometerView: View {
         ZStack{
             BackgroundView()
             VStack {
-                Image("odometer1")
+                Spacer()
+                Image("odometer2")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(width: 308, height: 187)
                     .padding(.horizontal, 18)
-                    .padding(.top, 60)
+                    .padding(.top, 10)
                 
 //                Spacer()
 //                    .frame(height: 60)
@@ -36,18 +38,19 @@ struct InputOdometerView: View {
 //                    .frame(width: 200, height: 300)
                 
                 Text("Jarak tempuh motormu sudah sampai mana ya?")
-                    .font(.system(size: 34))
+                    .font(.system(size: 33))
                     .foregroundColor(.white)
-                    .padding(.top, 100)
+                    .padding(.top, 50)
+                    .padding(.bottom, 20)
                     .fontWeight(.bold)
-                    .frame(maxWidth: 330, alignment: .topLeading)
+                    .frame(maxWidth: 340, alignment: .topLeading)
                 
                 Rectangle()
                     .fill(Color("BackColor"))
                     .cornerRadius(10)
-                    .frame(width: 330, height: 35)
+                    .frame(width: 340, height: 35)
                     .overlay(
-                        TextField("Masukan jarak tempuhmu", text: $currentMileage)
+                        TextField("Masukan jarak tempuhmu                  Km", text: $currentMileage)
                             .foregroundColor(.primary)
                             .padding(.horizontal, 10)
                             .keyboardType(.numberPad)
@@ -62,11 +65,12 @@ struct InputOdometerView: View {
                             }
                     )
                 
-                Text("Ketahui kondisi part motor Anda dari angka yang tertera di odometer.")
+                Text("Ketahui kondisi sparepart motor Anda dari jarak tempuh yang tertera di odometer.")
                     .font(.system(size: 17))
                     .foregroundColor(.white)
-                    .frame(maxWidth: 330, alignment: .topLeading)
-                    .padding(.bottom, 30)
+                    .frame(maxWidth: 340, alignment: .topLeading)
+                    .padding(.bottom, 40)
+                    .padding(.top, 5)
                 
     
                 Spacer()

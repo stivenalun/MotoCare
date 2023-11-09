@@ -21,7 +21,7 @@ struct FinishOnboardingView: View {
                         .foregroundColor(.white)
                     
                     VStack{
-                        LottiePlusView(name: Constants.lego, loopMode: .loop, contentMode: .scaleAspectFill)
+                        LottiePlusView(name: Constants.done, loopMode: .playOnce, contentMode: .scaleAspectFill)
                     }
                     
                     VStack{
