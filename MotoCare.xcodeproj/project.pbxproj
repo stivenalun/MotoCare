@@ -82,6 +82,7 @@
 		E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMaintenanceCheckin.swift; sourceTree = "<group>"; };
 		E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOdometerView.swift; sourceTree = "<group>"; };
 		E9E649162AFD2BD500288DF7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		E9E649162AFD2BD500288DF7 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				6DA46FB62AFCCA960068EA15 /* SplashView.swift */,
+				E9E649162AFD2BD500288DF7 /* BackgroundView.swift */,
 <<<<<<< HEAD
 				6DD936352AFD28DB00EE7124 /* BackgroundView.swift */,
 =======
@@ -289,6 +291,7 @@
 			files = (
 				E9AB95BF2AF03476004EE0F4 /* ManualView.swift in Sources */,
 				E9AB957A2AEFEE5E004EE0F4 /* SparepartData.swift in Sources */,
+				E9E649172AFD2BD500288DF7 /* BackgroundView.swift in Sources */,
 <<<<<<< HEAD
 				6DD936362AFD28DB00EE7124 /* BackgroundView.swift in Sources */,
 =======
