@@ -92,7 +92,7 @@ struct DashboardView: View {
                             .frame(width: 357, height: 232)
                         }
                         
-                        SectionView(title: "Status Spare Part", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
+                        SectionView(title: "Rekomendasi Penggantian", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
                         SectionView(title: "Rekomendasi Pengecekan", data: filterData(category: .checkingRequired), showModal: $showModal, selectedItem: $selectedItem)
                         SectionView(title: "Kondisi Bagus", data: filterData(category: .safeToGo), showModal: $showModal, selectedItem: $selectedItem)
                     }

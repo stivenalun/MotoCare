@@ -14,6 +14,8 @@
 		6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */; };
 		6D6DA0982AFB4DA600A00673 /* Arduino.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D6DA0972AFB4DA600A00673 /* Arduino.json */; };
 		6D6DA09D2AFB8B9400A00673 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */; };
+		6D6DA09F2AFB9ACC00A00673 /* ManualView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */; };
+		6DA46FB72AFCCA960068EA15 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA46FB62AFCCA960068EA15 /* SplashView.swift */; };
 		E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97435872AF0F24600248CD8 /* ScanDocumentView.swift */; };
 		E9AB956A2AEFEB4C004EE0F4 /* MotoCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */; };
 		E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */; };
@@ -45,6 +47,8 @@
 		6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewPlus.swift; sourceTree = "<group>"; };
 		6D6DA0972AFB4DA600A00673 /* Arduino.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Arduino.json; sourceTree = "<group>"; };
 		6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualView2.swift; sourceTree = "<group>"; };
+		6DA46FB62AFCCA960068EA15 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E97435872AF0F24600248CD8 /* ScanDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDocumentView.swift; sourceTree = "<group>"; };
 		E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotoCare.swift; sourceTree = "<group>"; };
@@ -161,6 +165,9 @@
 		E9AB95CD2AF035AB004EE0F4 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				E9AC4E092AF2090F001DDCF3 /* TextTextFieldView.swift */,
+				6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */,
+				6DA46FB62AFCCA960068EA15 /* SplashView.swift */,
 				E9AB95B82AF03403004EE0F4 /* OpeningOnboardingView.swift */,
 				6D6DA09C2AFB8B9400A00673 /* BackgroundView.swift */,
 				E9AB95BA2AF03428004EE0F4 /* InputOdometerView.swift */,
@@ -168,6 +175,7 @@
 				E97435872AF0F24600248CD8 /* ScanDocumentView.swift */,
 				E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */,
 				E9AB95BE2AF03476004EE0F4 /* ManualView.swift */,
+				6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */,
 				E9AB95C02AF034F7004EE0F4 /* FinishOnboardingView.swift */,
 			);
 			path = Onboarding;
@@ -272,8 +280,10 @@
 				E9AB95C12AF034F7004EE0F4 /* FinishOnboardingView.swift in Sources */,
 				E9AB956C2AEFEB4C004EE0F4 /* ContentView.swift in Sources */,
 				E97435882AF0F24600248CD8 /* ScanDocumentView.swift in Sources */,
+				6D6DA09F2AFB9ACC00A00673 /* ManualView2.swift in Sources */,
 				E9AB95C72AF03553004EE0F4 /* ModalSparepartView.swift in Sources */,
 				E9AB95B92AF03403004EE0F4 /* OpeningOnboardingView.swift in Sources */,
+				6DA46FB72AFCCA960068EA15 /* SplashView.swift in Sources */,
 				6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */,
 				E9AB95782AEFEBAC004EE0F4 /* Motorcycle.swift in Sources */,
 				E9AB95BB2AF03428004EE0F4 /* InputOdometerView.swift in Sources */,
@@ -349,6 +359,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -406,6 +418,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
