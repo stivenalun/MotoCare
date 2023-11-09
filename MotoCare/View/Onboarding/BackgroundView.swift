@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 //  BackgroundView.swift
 //  MotoCare
 //
 //  Created by Stiven on 08/11/23.
+=======
+//
+//  BackgroundView.swift
+//  MotoCare
+//
+//  Created by Nur Hidayatul Fatihah on 09/11/23.
+>>>>>>> main
 //
 
 import SwiftUI
@@ -15,3 +23,10 @@ struct BackgroundView: View {
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+#Preview {
+    BackgroundView()
+}
+>>>>>>> main
