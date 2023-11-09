@@ -12,7 +12,8 @@ struct InputLastReceiptsView: View {
     @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
     @State private var showingScanningView = false
     
-    @State var extractedText: String?
+    @State var extractedText1: String?
+    @State var extractedText2: String?
     @State var isScanned: Bool = false
     
     var body: some View {
@@ -73,12 +74,12 @@ struct InputLastReceiptsView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $isScanned, destination: {
-                ScanResultView(extractedText: $extractedText)
+                ScanResultView(extractedText1: $extractedText1, extractedText2: $extractedText2)
             })
             .sheet(isPresented: $showingScanningView) {
                 ScanDocumentView(
                     recognizedText: $recognizedText,
-                    extractedText: $extractedText
+                    extractedText1: $extractedText1, extractedText2: $extractedText2
                 )
                 .onDisappear {
                     isScanned = true
