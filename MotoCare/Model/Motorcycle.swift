@@ -9,12 +9,13 @@ import SwiftUI
 import SwiftData
 
 @Model
-final class Motorcycle {
-    @Attribute(.unique) var id_motorcycle: UUID
+class Motorcycle {
+    var brand: String
     var currentMileage: Int
+    @Relationship(deleteRule: .cascade) var spareparts: [SparepartHistory]?
     
-    init(id_motorcycle: UUID, currentMileage: Int) {
-        self.id_motorcycle = id_motorcycle
+    init(brand: String = "Yamaha Lexi", currentMileage: Int = 0) {
+        self.brand = brand
         self.currentMileage = currentMileage
     }
 }

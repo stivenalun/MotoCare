@@ -1,15 +1,7 @@
 import SwiftUI
 
-struct Sparepart: Identifiable, Equatable { // Conform ke Equatable
-    let id = UUID()
-    let name: String
-    
-    static func == (lhs: Sparepart, rhs: Sparepart) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
 struct ManualView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var isModalPresented = false
     @State private var servis1 = ""
     @State private var servis2 = ""
@@ -20,14 +12,7 @@ struct ManualView: View {
     @FocusState var isInputActive: Bool
     @State private var currentServisSelection: Int = 1
     
-    // Dummy data for spareparts
-    let availableSpareparts: [Sparepart] = [
-        Sparepart(name: "Oli Gardan"),
-        Sparepart(name: "Oli Mesin"),
-        Sparepart(name: "V-Belt"),
-        Sparepart(name: "Busi"),
-        Sparepart(name: "Air Filter"),
-    ]
+    let availableSpareparts: [Sparepart] = sparepartData
     
     var body: some View {
         NavigationView {
@@ -45,7 +30,7 @@ struct ManualView: View {
                         
                         Rectangle()
                             .fill(Color("BackColor"))
-                            .cornerRadius(5)
+                            .cornerRadius(10)
                             .frame(width: 360, height: 40)
                             .overlay(
                                 TextField("Jarak tempuh", text: $servis1)
@@ -57,6 +42,7 @@ struct ManualView: View {
                                             Spacer()
                                         }
                                     }
+                                    .keyboardType(.decimalPad)
                             )
                             .padding(.bottom, 5)
                         
@@ -90,6 +76,7 @@ struct ManualView: View {
                                             Spacer()
                                         }
                                     }
+                                    .keyboardType(.decimalPad)
                             )
                             .padding(.bottom, 5)
                         
@@ -123,6 +110,7 @@ struct ManualView: View {
                                             Spacer()
                                         }
                                     }
+                                    .keyboardType(.decimalPad)
                             )
                             .padding(.bottom, 5)
                         
