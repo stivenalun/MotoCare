@@ -93,26 +93,66 @@ struct DashboardView: View {
                                                     .cornerRadius(11)
                                                     .sheet(isPresented: $isModalPresented) {
                                                         ModalOdometerView()
-                                                                    }
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                     .frame(width: 357, height: 132)
                                 }
-                                Text("Status Spare Part")
-                                    .font(.system(size: 22))
-                                    .fontWeight(.bold)
-                                    .foregroundStyle(.white)
-                                    .padding(.top, 17)
+                                
+                                StatusSparepartView(motorcycle: motorcycleVM.motorcycle)
                             }
                             .padding()
                             .navigationBarTitle("Dashboard")
                         }
-                        
                     }
                 }
             }
+        }
+    }
+}
+
+struct StatusSparepartView : View{
+    let motorcycle: Motorcycle
+    
+    @State private var text: String = ""
+    @Environment(\.modelContext) private var modelContext
+    
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Status Spare Part")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.top)
+            
+            List(motorcycle.spareparts ?? []) { sparepart in
+                Text("\(sparepart.name) -  \(estimateSparepartStatus(lastServiceMillage:sparepart.lastServiceMileage, currentMillage: motorcycle.currentMileage, type: sparepart.sparepartType))")
+            }
+        }
+    }
+    
+    func estimateSparepartStatus(lastServiceMillage: Int, currentMillage: Int, type: SparepartType) -> String {
+        let totalMillageFromService = currentMillage - lastServiceMillage
+        
+        guard var checkIntervalMillage = sparepartData.filter { sparepart in
+            sparepart.type == type
+        }.first?.checkIntervalInKilometer else { return "" }
+        
+        guard var replaceIntervalMillage = sparepartData.filter { sparepart in
+            sparepart.type == type
+        }.first?.replaceIntervalInKilometer  else { return "" }
+        
+//        print(checkIntervalMillage)
+//        print(replaceIntervalMillage)
+        
+        if totalMillageFromService <= checkIntervalMillage && totalMillageFromService >= replaceIntervalMillage {
+            return "CHECK"
+        } else if totalMillageFromService >= replaceIntervalMillage {
+            return "GANTI"
+        } else {
+            return "AMAN"
         }
     }
 }
