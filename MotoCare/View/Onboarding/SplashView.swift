@@ -18,7 +18,7 @@ struct SplashView: View {
                 OpeningOnboardingView()
             } else {
                 Rectangle()
-                    .background(Color.black)
+                Color("Black")
                 Image("logo")
                     .resizable()
                     .scaledToFit()
@@ -27,10 +27,10 @@ struct SplashView: View {
                     Spacer()
                     Text("Your Motorcycle Companion App")
                         .foregroundColor(.white)
-                        .padding(.bottom, 30)
+                        .padding(.bottom, 60)
                 }
             }
-        }
+        } .edgesIgnoringSafeArea(.all)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation {

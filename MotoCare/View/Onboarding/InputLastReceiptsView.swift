@@ -53,17 +53,17 @@ struct InputLastReceiptsView: View {
                             .foregroundColor(.black)
                             .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(25)
+                            .cornerRadius(11)
                     }
                     .padding(10)
                     
                     NavigationLink(destination: ManualView(), label: {
                         Text("Manual")
                             .font(.headline)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(25)
+                            .cornerRadius(11)
                     } )
                 } .padding(.bottom, 30)
             }
