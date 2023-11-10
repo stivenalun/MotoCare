@@ -10,18 +10,12 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     
-    enum GaugeCategory {
-        case needReplacement
-        case checkingRequired
-        case safeToGo
-    }
-    
-    //    @State var motorMileageNumber: Int
     @State private var showModal = false
     @State private var isModalPresented = false
-//    @State private var selectedItem: GaugeData?
+    @State private var selectedItem: SparepartData?
     
     var body: some View {
         NavigationView {
@@ -74,8 +68,7 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-                                                    
-                                                    Text("\(motorcycles.first?.currentMileage ?? 0) Km")
+                                                    Text("\(motorcycleVM.motorcycle.currentMileage ) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)

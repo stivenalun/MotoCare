@@ -93,7 +93,7 @@ struct InputOdometerView: View {
                 .disabled(isTextFieldEmpty)
             }
             .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
-                InputLastReceiptsView()
+                InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
             }
         } .ignoresSafeArea(.keyboard)
     }
