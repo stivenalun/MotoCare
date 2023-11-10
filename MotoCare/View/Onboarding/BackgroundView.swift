@@ -1,10 +1,3 @@
-//
-//  BackgroundView.swift
-//  MotoCare
-//
-//  Created by Stiven on 08/11/23.
-//
-
 import SwiftUI
 
 struct BackgroundView: View {
@@ -15,4 +8,8 @@ struct BackgroundView: View {
                 .edgesIgnoringSafeArea(.all)
         }
     }
+}
+
+#Preview {
+    BackgroundView()
 }

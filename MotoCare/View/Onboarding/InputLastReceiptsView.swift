@@ -25,37 +25,34 @@ struct InputLastReceiptsView: View {
                     Image("receipt")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                    
                         .padding(.top, 50)
-                        .frame(width: 350, height: 310)
+                        .frame(width: 350, height: 280)
                     
-                    Text("Yuk update kondisi spare-partmu!")
+                    Text("Ayo isi riwayat servis part motormu!")
                         .navigationBarBackButtonHidden(true)
                         .font(.system(size: 34))
                         .fontWeight(.bold)
-                        .padding(.top, 15)
-                        .frame(width: 355, height: 100, alignment: .topLeading)
+                        .padding(.top, 45)
+                        .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
                     
-                    Text("Update otomatis kondisi spare-partmu dengan scan 1 sampai 3 resi perbaikanmu. Bisa juga update kondisi spare-partmu secara manual.")
+                    Text("Isi riwayat servis sparepart motormu dengan cara men-scan 3 resi dari bengkel atau isi manual. Mulai dari busi, oli, v-belt, oli gardan, shock breaker, dan air filter.")
                         .padding(.top, 20)
                         .font(.system(size: 17))
-                        .frame(width: 355, height: 100, alignment: .topLeading)
+                        .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
-                    
                     Spacer()
                 }
+                
                 VStack{
-                    
                     Spacer()
-                    
                     Button(action: {
                         self.showingScanningView = true
                     }) {
                         Text("Scan")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: 335, height: 55, alignment: .center)
+                            .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(25)
                     }
@@ -65,15 +62,13 @@ struct InputLastReceiptsView: View {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: 335, height: 55, alignment: .center)
+                            .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(25)
                     } )
-                    Spacer()
-                        .frame(height: 45)
-                }
+                } .padding(.bottom, 30)
             }
-            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(false)
             .navigationDestination(isPresented: $isScanned, destination: {
                 ScanResultView(extractedText1: $extractedText1, extractedText2: $extractedText2, extractedText3: $extractedText3)
             })

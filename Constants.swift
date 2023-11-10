@@ -9,5 +9,5 @@ import Foundation
 
 enum Constants {
     static var lego = "Lottie Lego"
-    static var arduino = "Arduino"
+    static var done = "Done"
 }

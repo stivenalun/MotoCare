@@ -12,7 +12,7 @@ import SwiftData
 struct MotorCareSwiftDataApp: App {
     var body: some Scene {
         WindowGroup {
-            OpeningOnboardingView()
+            SplashView()
         }
         .modelContainer(for: [Motorcycle.self, SparepartData.self, MaintenanceHistory.self, SparepartHistory.self])
     }

@@ -30,73 +30,91 @@ struct DashboardView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            ZStack {
-                                Image("BackDashboard")
-                                VStack(alignment: .leading) {
-                                    Text("Yamaha Lexi S ABS")
+                            Text("Merek Motor")
+                                .font(.system(size: 17))
+                                .foregroundColor(.white)
+                            HStack {
+                                Text("Lexi S ABS")
+                                    .font(.system(size: 34))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                Spacer()
+                                HStack {
+                                    Text("IoT Tidak Terhubung")
                                         .font(.system(size: 14))
-                                        .foregroundColor(.white)
-                                        .padding(.leading, 30)
-                                        .padding(.top)
-                                    
+                                }
+                                .padding(10)
+                                .frame(width: 159, height: 27, alignment: .center)
+                                .background(Color(red: 0.51, green: 0.51, blue: 0.51))
+                                .cornerRadius(40)
+                            }
+                            
+                            ZStack {
+                                Rectangle()
+                                  .foregroundColor(.clear)
+                                  .frame(width: 357, height: 142)
+                                  .background(
+                                    LinearGradient(
+                                      stops: [
+                                        Gradient.Stop(color: Color(red: 0.19, green: 0.29, blue: 0.3), location: 0.08),
+                                        Gradient.Stop(color: Color(red: 0.09, green: 0.11, blue: 0.11), location: 1.00),
+                                      ],
+                                      startPoint: UnitPoint(x: 0.5, y: 0),
+                                      endPoint: UnitPoint(x: 0.5, y: 1.46)
+                                    )
+                                  )
+                                  .cornerRadius(16)
+                                VStack(alignment: .leading) {
                                     ZStack(alignment: .leading) {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .fill(.white)
-                                            .frame(width: 330, height: 104)
-                                            .onTapGesture {
-                                                isModalPresented = true
-                                            }
+//                                        RoundedRectangle(cornerRadius: 14)
+//                                            .fill(.white)
+//                                            .frame(width: 330, height: 104)
+//                                            .onTapGesture {
+//                                                isModalPresented = true
+//                                            }
                                         VStack(alignment: .leading) {
                                             Text("Jarak Tempuh")
-                                                .font(.title3)
-                                                .fontWeight(.medium)
-                                                .foregroundColor(.black)
-                                                .padding(.leading, 20)
-                                            HStack {
-                                                Image(systemName: "gauge.open.with.lines.needle.33percent")
-                                                    .resizable()
-                                                    .frame(width: 39, height: 34)
-                                                    .foregroundColor(.black)
-                                                VStack(alignment: .leading) {
-                                                    Text("\(motorcycles.first?.currentMileage ?? 0) Km")
-                                                        .font(.largeTitle)
-                                                        .foregroundColor(.black)
-                                                        .fontWeight(.bold)
-                                                }
-                                            }
-                                            .padding(.leading, 20)
+                                                .font(.system(size: 13))
+                                                .foregroundColor(.white)
+                                                
                                             
+                                            Text("\(motorcycles.first?.currentMileage ?? 0) Km")
+                                                .font(.system(size: 36))
+                                                .italic()
+                                                .foregroundColor(.white)
+                                                .fontWeight(.bold)
+                                                .padding(.bottom, 13)
+                                            HStack {
+                                                
+                                            }
+                                            Button(action: {
+                                                isModalPresented = true
+                                            }) {
+                                                Text("Perbarui Jarak Tempuh")
+                                                    .font(.system(size: 16))
+                                                    .fontWeight(.semibold)
+                                                    .foregroundStyle(.black)
+                                                    .padding(5)
+                                            }
+                                            .padding(6)
+                                            .frame(width: 318, height: 44, alignment: .center)
+                                            .background(Color("TabIconColor"))
+                                            .cornerRadius(11)
                                         }
                                     }
-                                    .sheet(isPresented: $isModalPresented) {
-                                        // Tampilkan konten sheet modal di sini
-                                        ModalOdometerView()
-                                    }
-                                    
-                                    
-                                    
-                                    Button(action: {}) {
-                                        Text("Check-In Perbaikan")
-                                            .font(.callout)
-                                            .fontWeight(.medium)
-                                            .foregroundStyle(.black)
-                                    }
-                                    .padding(10)
-                                    .frame(width: 330, alignment: .center)
-                                    .background(Color("TabIconColor"))
-                                    .cornerRadius(11)
                                 }
                             }
-                            .frame(width: 357, height: 232)
+                            .frame(width: 357, height: 132)
                         }
                         
-                        SectionView(title: "Status Spare Part", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
+                        SectionView(title: "Rekomendasi Penggantian", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
                         SectionView(title: "Rekomendasi Pengecekan", data: filterData(category: .checkingRequired), showModal: $showModal, selectedItem: $selectedItem)
                         SectionView(title: "Kondisi Bagus", data: filterData(category: .safeToGo), showModal: $showModal, selectedItem: $selectedItem)
                     }
                 }
                 .padding()
                 .navigationBarTitle("Dashboard")
+                
             }
             .sheet(isPresented: $showModal) {
                 if let selectedItem = selectedItem {
