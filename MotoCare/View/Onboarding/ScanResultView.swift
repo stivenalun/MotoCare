@@ -4,6 +4,7 @@ struct ScanResultView: View {
     @State private var text = ""
     @Binding var extractedText1: String?
     @Binding var extractedText2: String?
+    @Binding var extractedText3: String?
     
     
     var body: some View {
@@ -32,7 +33,12 @@ struct ScanResultView: View {
                             return extractedText2 ?? ""
                         },
                         set: { newValue in
-                            extractedText2 = newValue
+                            if let distance = Int(extractedText2 ?? "") {
+                               let newDistance = distance - 3100
+                               extractedText2 = String(newDistance)
+                            } else {
+                               print("Invalid input")
+                            }
                         }
                      ))
                         .foregroundColor(.white)
@@ -89,5 +95,5 @@ struct ScanResultView: View {
 
 
 #Preview {
-    ScanResultView(extractedText1: .constant(""), extractedText2: .constant(""))
+    ScanResultView(extractedText1: .constant(""), extractedText2: .constant(""), extractedText3: .constant(""))
 }
