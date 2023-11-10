@@ -24,10 +24,10 @@ struct InputOdometerView: View {
             BackgroundView()
             VStack {
                 Spacer()
-                Image("odometer2")
+                Image("odometer3")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 308, height: 187)
+                    .frame(width: 358, height: 187)
                     .padding(.horizontal, 18)
                     .padding(.top, 10)
                 
@@ -43,12 +43,12 @@ struct InputOdometerView: View {
                     .padding(.top, 50)
                     .padding(.bottom, 20)
                     .fontWeight(.bold)
-                    .frame(maxWidth: 340, alignment: .topLeading)
+                    .frame(maxWidth: 350, alignment: .topLeading)
                 
                 Rectangle()
                     .fill(Color("BackColor"))
                     .cornerRadius(10)
-                    .frame(width: 340, height: 35)
+                    .frame(width: 350, height: 35)
                     .overlay(
                         TextField("Masukan jarak tempuhmu                  Km", text: $currentMileage)
                             .foregroundColor(.primary)
@@ -65,14 +65,13 @@ struct InputOdometerView: View {
                             }
                     )
                 
-                Text("Ketahui kondisi sparepart motor Anda dari jarak tempuh yang tertera di odometer.")
+                Text("Ketahui kondisi part motor Anda dari jarak tempuh yang tertera di odometer.")
                     .font(.system(size: 17))
                     .foregroundColor(.white)
-                    .frame(maxWidth: 340, alignment: .topLeading)
+                    .frame(maxWidth: 350, alignment: .topLeading)
                     .padding(.bottom, 40)
                     .padding(.top, 5)
                 
-    
                 Spacer()
                 
                 Button(action: {
@@ -93,9 +92,9 @@ struct InputOdometerView: View {
                     Text("Lanjutkan")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 335, height: 45)
+                        .frame(width: 350, height: 45)
                         .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                        .cornerRadius(20)
+                        .cornerRadius(11)
                 }
                     .padding(.bottom, 30)
                 .disabled(isTextFieldEmpty)

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct OpeningOnboardingView: View {
     
-//    @State var isOdometerViewPresented: Bool = false
-    
     var body: some View {
         NavigationStack {
             ZStack{
@@ -25,14 +23,14 @@ struct OpeningOnboardingView: View {
                         .font(.system(size: 34))
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
-                        .frame(maxWidth: 330, alignment: .topLeading)
+                        .frame(maxWidth: 350, alignment: .topLeading)
                     
-                    Text("Estimasikan waktu terbaik kapan sparepart motor kamu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
+                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
                         .font(.system(size: 17))
                         .padding(.top, 1)
                         .padding(.bottom, 100)
                         .foregroundColor(Color.white)
-                        .frame(maxWidth: 330, alignment: .topLeading)
+                        .frame(maxWidth: 350, alignment: .topLeading)
                 }
                 
                 VStack{
@@ -41,9 +39,9 @@ struct OpeningOnboardingView: View {
                         Text("Lanjutkan")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: 335, height: 45)
+                            .frame(width: 350, height: 44)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(20)
+                            .cornerRadius(11)
                             .padding(.bottom, 30)
                     }
                 }
