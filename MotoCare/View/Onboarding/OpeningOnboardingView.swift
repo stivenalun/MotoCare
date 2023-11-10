@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OpeningOnboardingView: View {
     
+    @StateObject var motorcycleVM = MotorcycleViewModel()
+    
     var body: some View {
         NavigationStack {
             ZStack{
@@ -47,6 +49,7 @@ struct OpeningOnboardingView: View {
                 }
             }
         }
+        .environmentObject(motorcycleVM)
     }
 }
 

@@ -10,6 +10,9 @@ import SwiftData
 
 struct InputOdometerView: View {
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    
+    @Query private var motorcycle: [Motorcycle]
     
     @State private var currentMileage: String = ""
     @State private var isShowingInputLastReceiptView = false
@@ -75,19 +78,9 @@ struct InputOdometerView: View {
                 Spacer()
                 
                 Button(action: {
-                    let motorcycle = Motorcycle(currentMileage: Int(currentMileage) ?? 0)
-                    
-                    modelContext.insert(motorcycle)
-                    
-                    do {
-                        try modelContext.save()
-                        if !isTextFieldEmpty {
-                            isShowingInputLastReceiptView.toggle()
-                        }
-                        
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
+                    modelContext.insert(motorcycleVM.motorcycle)
+                    isShowingInputLastReceiptView.toggle()
                 }) {
                     Text("Lanjutkan")
                         .font(.headline)
@@ -96,7 +89,7 @@ struct InputOdometerView: View {
                         .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                         .cornerRadius(11)
                 }
-                    .padding(.bottom, 30)
+                .padding(.bottom, 30)
                 .disabled(isTextFieldEmpty)
             }
             .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
