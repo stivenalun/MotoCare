@@ -86,10 +86,6 @@ struct NewDashboardView: View {
                     
                     StatusSparepartView(motorcycle: motorcycleVM.motorcycle)
                     
-                    
-//                    SectionView(title: "Rekomendasi Penggantian", data: filterData(category: .needReplacement), showModal: $showModal, selectedItem: $selectedItem)
-//                    SectionView(title: "Rekomendasi Pengecekan", data: filterData(category: .checkingRequired), showModal: $showModal, selectedItem: $selectedItem)
-//                    SectionView(title: "Kondisi Bagus", data: filterData(category: .safeToGo), showModal: $showModal, selectedItem: $selectedItem)
                 }
                 .padding()
                 .navigationBarTitle("Dashboard")
@@ -100,17 +96,11 @@ struct NewDashboardView: View {
 }
 
 struct StatusSparepartView : View{
-//    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-    
     let motorcycle: Motorcycle
     
     @State private var text: String = ""
     @Environment(\.modelContext) private var modelContext
-//    @Query var sparepart: [Sparepart]
-    
-//    let data: [SparepartData]
-//    @Binding var showModal: Bool
-//    @Binding var selectedItem: SparepartData?
+
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -120,7 +110,7 @@ struct StatusSparepartView : View{
                 .padding(.top)
             
             List(motorcycle.spareparts ?? []) { sparepart in
-                Text("\(sparepart.name) - \(sparepart.lastServiceMileage)")
+                Text("\(sparepart.name) -  \(estimateSparepartStatus(lastServiceMillage:sparepart.lastServiceMileage, currentMillage: motorcycle.currentMileage, type: sparepart.sparepartType))")
                 
             }
 //            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
@@ -131,6 +121,29 @@ struct StatusSparepartView : View{
 //                    })
 //                }
 //            }
+        }
+    }
+    
+    func estimateSparepartStatus(lastServiceMillage: Int, currentMillage: Int, type: SparepartType) -> String {
+        let totalMillageFromService = currentMillage - lastServiceMillage
+        
+        guard var checkIntervalMillage = sparepartData.filter { sparepart in
+            sparepart.type == type
+        }.first?.checkIntervalInKilometer else { return "" }
+        
+        guard var replaceIntervalMillage = sparepartData.filter { sparepart in
+            sparepart.type == type
+        }.first?.replaceIntervalInKilometer  else { return "" }
+        
+        print(checkIntervalMillage)
+        print(replaceIntervalMillage)
+        
+        if totalMillageFromService <= checkIntervalMillage && totalMillageFromService >= replaceIntervalMillage {
+            return "CHECK"
+        } else if totalMillageFromService >= replaceIntervalMillage {
+            return "GANTI"
+        } else {
+            return "AMAN"
         }
     }
 }
