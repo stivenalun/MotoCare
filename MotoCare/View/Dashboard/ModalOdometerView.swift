@@ -11,6 +11,8 @@ import SwiftData
 struct ModalOdometerView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    
     @Query var motorcycles: [Motorcycle]
     
     @State private var currentMileage: String = ""
@@ -47,15 +49,9 @@ struct ModalOdometerView: View {
             
             VStack{
                 Button(action: {
-                    if let motorcycle = motorcycles.first {
-                        motorcycle.currentMileage = Int(currentMileage) ?? 0
-                        do {
-                            try modelContext.save()
-                            presentationMode.wrappedValue.dismiss()
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                    }
+                    motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
+                    modelContext.insert(motorcycleVM.motorcycle)
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                    Text("Simpan")
                        .font(.headline)

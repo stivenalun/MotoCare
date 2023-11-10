@@ -51,7 +51,6 @@ struct NewDashboardView: View {
                                                 .frame(width: 39, height: 34)
                                                 .foregroundColor(.black)
                                             VStack(alignment: .leading) {
-//                                                Text("\(motorcycles.first?.currentMileage ?? 0) Km")
                                                 Text("\(motorcycleVM.motorcycle.currentMileage ) Km")
                                                     .font(.largeTitle)
                                                     .foregroundColor(.black)
@@ -100,7 +99,7 @@ struct StatusSparepartView : View{
     
     @State private var text: String = ""
     @Environment(\.modelContext) private var modelContext
-
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -111,16 +110,8 @@ struct StatusSparepartView : View{
             
             List(motorcycle.spareparts ?? []) { sparepart in
                 Text("\(sparepart.name) -  \(estimateSparepartStatus(lastServiceMillage:sparepart.lastServiceMileage, currentMillage: motorcycle.currentMileage, type: sparepart.sparepartType))")
-                
+
             }
-//            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
-//                ForEach(data, id: \.value) { data in
-//                    Button(action: {
-//                        self.selectedItem = data
-//                        self.showModal.toggle()
-//                    })
-//                }
-//            }
         }
     }
     
@@ -135,8 +126,8 @@ struct StatusSparepartView : View{
             sparepart.type == type
         }.first?.replaceIntervalInKilometer  else { return "" }
         
-        print(checkIntervalMillage)
-        print(replaceIntervalMillage)
+//        print(checkIntervalMillage)
+//        print(replaceIntervalMillage)
         
         if totalMillageFromService <= checkIntervalMillage && totalMillageFromService >= replaceIntervalMillage {
             return "CHECK"
@@ -147,14 +138,6 @@ struct StatusSparepartView : View{
         }
     }
 }
-
-//let newgaugeData: [SparepartData] = [
-//    SparepartData(name: "Air Filter", replaceIntervalInKilometer: 16000, icon: "air-filter", image: "AirFilterImage"),
-//    SparepartData(name: "Busi", checkIntervalInKilometer: 4000, replaceIntervalInKilometer: 5000, icon: "spark-plug", image: "SparkPlugImage"),
-//    SparepartData(name: "V-Belt",checkIntervalInKilometer: 8000, replaceIntervalInKilometer: 25000, icon: "v-belt", image: "VBeltImage"),
-//    SparepartData(name: "Oli Mesin", replaceIntervalInKilometer: 4000, icon: "engine-oil", image: "EngineOilImage"),
-//    SparepartData(name: "Oli Gardan", checkIntervalInKilometer: 4000, replaceIntervalInKilometer: 12000, icon: "final-drive-oil", image: "FinalDriveOilImage")
-//]
 
 #Preview {
     NewDashboardView()
