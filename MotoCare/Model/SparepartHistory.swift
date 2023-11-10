@@ -10,15 +10,14 @@ import SwiftData
 
 @Model
 class SparepartHistory {
-    @Attribute(.unique) var id_spareparthistory: String
-    var status: String
-    @Relationship var maintenanceHistory: MaintenanceHistory
-    @Relationship var sparePart: SparepartData
+    var name: String
+    var lastServiceMileage: Int
+    var motorcycle: Motorcycle?
+    var sparepartType: SparepartType
     
-    init(id_spareparthistory: String, status: String, maintenanceHistory: MaintenanceHistory, sparePart: SparepartData) {
-        self.id_spareparthistory = id_spareparthistory
-        self.status = status
-        self.maintenanceHistory = maintenanceHistory
-        self.sparePart = sparePart
+    init(name: String = "", lastServiceMileage: Int = 0, sparepartType: SparepartType) {
+        self.name = name
+        self.lastServiceMileage = lastServiceMileage
+        self.sparepartType = sparepartType
     }
 }

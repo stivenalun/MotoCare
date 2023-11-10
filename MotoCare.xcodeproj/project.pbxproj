@@ -38,6 +38,7 @@
 		E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */; };
 		E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */; };
 		E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */; };
+		E9E6491A2AFEA56100288DF7 /* MotorcycleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
 		E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMaintenanceCheckin.swift; sourceTree = "<group>"; };
 		E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOdometerView.swift; sourceTree = "<group>"; };
+		E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				E9AB95692AEFEB4C004EE0F4 /* MotoCare.swift */,
 				E9AB956B2AEFEB4C004EE0F4 /* ContentView.swift */,
+				E9E649182AFEA52000288DF7 /* View Model */,
 				E9AB95B72AF033F5004EE0F4 /* View */,
 				E9AB957F2AEFF21A004EE0F4 /* Model */,
 				E9AB956D2AEFEB4E004EE0F4 /* Assets.xcassets */,
@@ -193,6 +196,14 @@
 				E9AB95C82AF03578004EE0F4 /* MaintenanceHistoryView.swift */,
 			);
 			path = "Maintenance History";
+			sourceTree = "<group>";
+		};
+		E9E649182AFEA52000288DF7 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				E9AB957E2AEFF0AA004EE0F4 /* SparepartHistory.swift in Sources */,
 				E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */,
 				E9AB95BD2AF03444004EE0F4 /* InputLastReceiptsView.swift in Sources */,
+				E9E6491A2AFEA56100288DF7 /* MotorcycleViewModel.swift in Sources */,
 				E9AB95C52AF0352A004EE0F4 /* DashboardView.swift in Sources */,
 				E9AB95C32AF03510004EE0F4 /* MainTabView.swift in Sources */,
 				E9AB95C92AF03578004EE0F4 /* MaintenanceHistoryView.swift in Sources */,

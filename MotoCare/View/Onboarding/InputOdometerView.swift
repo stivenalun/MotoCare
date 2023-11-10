@@ -76,7 +76,7 @@ struct InputOdometerView: View {
                 Spacer()
                 
                 Button(action: {
-                    let motorcycle = Motorcycle(id_motorcycle: UUID(), currentMileage: Int(currentMileage) ?? 0)
+                    let motorcycle = Motorcycle(currentMileage: Int(currentMileage) ?? 0)
                     
                     modelContext.insert(motorcycle)
                     

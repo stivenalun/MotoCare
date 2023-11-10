@@ -14,6 +14,6 @@ struct MotorCareSwiftDataApp: App {
         WindowGroup {
             SplashView()
         }
-        .modelContainer(for: [Motorcycle.self, SparepartData.self, MaintenanceHistory.self, SparepartHistory.self])
+        .modelContainer(for: Motorcycle.self)
     }
 }
