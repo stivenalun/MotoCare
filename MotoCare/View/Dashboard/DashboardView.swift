@@ -98,7 +98,8 @@ struct DashboardView: View {
                     }
                 }
                 .padding()
-                .navigationBarTitle("Dashboard")
+                .navigationBarTitle("Test Dashboard")
+                
             }
             .sheet(isPresented: $showModal) {
                 if let selectedItem = selectedItem {
