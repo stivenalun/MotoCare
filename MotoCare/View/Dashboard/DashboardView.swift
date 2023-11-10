@@ -86,6 +86,7 @@ struct DashboardView: View {
                                                     }
                                                     Button(action: {
                                                         isModalPresented = true
+                                                        
                                                     }) {
                                                         Text("Perbarui Jarak Tempuh")
                                                             .font(.system(size: 16))
@@ -97,6 +98,9 @@ struct DashboardView: View {
                                                     .frame(width: 318, height: 44, alignment: .center)
                                                     .background(Color("TabIconColor"))
                                                     .cornerRadius(11)
+                                                    .sheet(isPresented: $isModalPresented) {
+                                                        ModalOdometerView()
+                                                                    }
                                                 }
                                             }
                                         }
