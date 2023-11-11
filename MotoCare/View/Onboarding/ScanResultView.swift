@@ -13,19 +13,20 @@ struct ScanResultView: View {
         ScrollView {
             VStack(spacing: 20) {
                 Text("Hampir Selesai!")
-                    .font(.title)
+                    .font(.system(size: 34))
                     .fontWeight(.bold)
+                    .frame(width: 355, height: 30, alignment: .topLeading)
                 
                 Text("Ini nih hasil scan riwayat servismu.")
-                    .font(.subheadline)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 300)
+                    .font(.system(size: 17))
+                    .frame(width: 355, height: 50, alignment: .topLeading)
                 
                 // Riwayat Servis 1
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Riwayat Servis 1")
-                        .font(.title2)
+                        .font(.system(size: 20))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     // Jarak Tempuh
                     HStack {
@@ -50,13 +51,14 @@ struct ScanResultView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
-                .frame(width: 300)
+                .frame(width: 300, height: 50)
                 
                 // Perbaikan
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Perbaikan")
-                        .font(.body)
+                        .font(.system(size: 16))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     HStack{
                         if let extractedText1 = extractedText1 {
@@ -78,15 +80,16 @@ struct ScanResultView: View {
                                 }
                             }
                         }
-                    }
+                    } .padding(20)
                 }
                 .padding(20)
                 
                 // Riwayat Servis 2
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Riwayat Servis 2")
-                        .font(.title2)
+                        .font(.system(size: 20))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     // Jarak Tempuh
                     HStack {
@@ -111,13 +114,14 @@ struct ScanResultView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
-                .frame(width: 300)
+                .frame(width: 300, height: 50)
                 
                 // Perbaikan
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Perbaikan")
-                        .font(.body)
+                        .font(.system(size: 16))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     HStack{
                         if let extractedText3 = extractedText3 {
@@ -139,15 +143,16 @@ struct ScanResultView: View {
                                 }
                             }
                         }
-                    }
+                    } .padding(20)
                 }
                 .padding(20)
                 
                 // Riwayat Servis 3
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Riwayat Servis 3")
-                        .font(.title2)
+                        .font(.system(size: 20))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     // Jarak Tempuh
                     HStack {
@@ -172,13 +177,14 @@ struct ScanResultView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
-                .frame(width: 300)
+                .frame(width: 300, height: 50)
                 
                 // Perbaikan
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Perbaikan")
-                        .font(.body)
+                        .font(.system(size: 16))
                         .fontWeight(.bold)
+                        .frame(width: 355, alignment: .topLeading)
                     
                     HStack{
                         if let extractedText5 = extractedText5 {
@@ -200,7 +206,7 @@ struct ScanResultView: View {
                                 }
                             }
                         }
-                    }
+                    } .padding(20)
                 }
                 .padding(20)
                 
