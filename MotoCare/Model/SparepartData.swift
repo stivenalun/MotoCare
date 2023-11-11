@@ -22,7 +22,7 @@ class SparepartData {
 }
 
 
-struct Sparepart {
+struct Sparepart: Identifiable, Equatable {
     let id = UUID()
     var name: String
     var checkIntervalInKilometer: Int?
@@ -30,6 +30,10 @@ struct Sparepart {
     var type: SparepartType
     var icon: String
     var image: String
+    
+    static func == (lhs: Sparepart, rhs: Sparepart) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 enum SparepartType: Codable {
