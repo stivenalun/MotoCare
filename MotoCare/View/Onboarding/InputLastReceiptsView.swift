@@ -1,6 +1,16 @@
+//
+//  InputLastReceiptView.swift
+//  MotorCareSwiftData
+//
+//  Created by Nur Hidayatul Fatihah on 31/10/23.
+//
+
 import SwiftUI
 
 struct InputLastReceiptsView: View {
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let motorcycle: Motorcycle
+    
     @State private var isShowingManualReceiptView = false
     @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
     @State private var showingScanningView = false
@@ -15,9 +25,9 @@ struct InputLastReceiptsView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack{
                 BackgroundView()
-                VStack {
+                VStack{
                     Image("receipt")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -37,11 +47,10 @@ struct InputLastReceiptsView: View {
                         .font(.system(size: 17))
                         .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
-                    
                     Spacer()
                 }
                 
-                VStack {
+                VStack{
                     Spacer()
                     Button(action: {
                         self.showingScanningView = true
@@ -65,12 +74,11 @@ struct InputLastReceiptsView: View {
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                     }
-                }
-                .padding(.bottom, 30)
+                    .padding(10)
+                } .padding(.bottom, 30)
             }
-            .navigationBarBackButtonHidden(false)
             .navigationDestination(isPresented: $isScanned) {
-                ScanResultView(
+                ScanResultView (
                     extractedText1: $extractedText1,
                     extractedText2: $extractedText2,
                     extractedText3: $extractedText3,
@@ -80,7 +88,7 @@ struct InputLastReceiptsView: View {
                 )
             }
             .sheet(isPresented: $showingScanningView) {
-                ScanDocumentView(
+                ScanDocumentView (
                     recognizedText: $recognizedText,
                     extractedText1: $extractedText1,
                     extractedText2: $extractedText2,
@@ -94,18 +102,16 @@ struct InputLastReceiptsView: View {
                     print(isScanned)
                 }
             }
-            // Sheet untuk menampilkan ManualView
             .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualView()
+                ManualView(motorcycle: motorcycleVM.motorcycle)
             }
         }
     }
 }
 
 // Preview
-struct InputLastReceiptsView_Previews: PreviewProvider {
-    static var previews: some View {
-        InputLastReceiptsView()
-    }
-}
-
+//struct InputLastReceiptsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
+//    }
+//}

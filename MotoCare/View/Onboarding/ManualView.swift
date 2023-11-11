@@ -2,15 +2,20 @@ import SwiftUI
 
 struct ManualView: View {
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    
+    let motorcycle: Motorcycle
+    
     @State private var isModalPresented = false
-    @State private var servis1 = ""
-    @State private var servis2 = ""
-    @State private var servis3 = ""
-    @State private var selectedSparepartsServis1: [Sparepart] = []
+    @State private var lastServiceMileage = ""
+    @State private var lastServiceMileage2 = ""
+    @State private var lastServiceMileage3 = ""
+    @State private var selectedSpareparts: [Sparepart] = []
     @State private var selectedSparepartsServis2: [Sparepart] = []
     @State private var selectedSparepartsServis3: [Sparepart] = []
     @FocusState var isInputActive: Bool
     @State private var currentServisSelection: Int = 1
+    @State private var isNavigate = false
     
     let availableSpareparts: [Sparepart] = sparepartData
     
@@ -33,7 +38,7 @@ struct ManualView: View {
                             .cornerRadius(10)
                             .frame(width: 360, height: 40)
                             .overlay(
-                                TextField("Jarak tempuh", text: $servis1)
+                                TextField("Jarak tempuh", text: $lastServiceMileage)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal, 20)
                                     .focused($isInputActive)
@@ -53,7 +58,7 @@ struct ManualView: View {
                         .modifier(ButtonStyleModifier())
                         
                         HStack {
-                            ForEach(selectedSparepartsServis1, id: \.id) { selectedSparepart in
+                            ForEach(selectedSpareparts, id: \.id) { selectedSparepart in
                                 Text(selectedSparepart.name)
                                     .modifier(SelectedSparepartModifier())
                             }
@@ -61,19 +66,23 @@ struct ManualView: View {
                         
                         Text("Servis 2")
                             .modifier(ServisTitleModifier())
+                            .padding(.vertical)
                         
                         Rectangle()
                             .fill(Color("BackColor"))
                             .cornerRadius(10)
                             .frame(width: 360, height: 40)
                             .overlay(
-                                TextField("Jarak tempuh", text: $servis2)
+                                TextField("Jarak tempuh", text: $lastServiceMileage2)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal, 20)
                                     .focused($isInputActive)
                                     .toolbar {
                                         ToolbarItemGroup(placement: .keyboard) {
                                             Spacer()
+                                            Button("Done"){
+                                                isInputActive = false
+                                            }
                                         }
                                     }
                                     .keyboardType(.decimalPad)
@@ -95,13 +104,14 @@ struct ManualView: View {
                         
                         Text("Servis 3")
                             .modifier(ServisTitleModifier())
+                            .padding(.vertical)
                         
                         Rectangle()
                             .fill(Color("BackColor"))
                             .cornerRadius(10)
                             .frame(width: 360, height: 40)
                             .overlay(
-                                TextField("Jarak tempuh", text: $servis3)
+                                TextField("Jarak tempuh", text: $lastServiceMileage3)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal, 20)
                                     .focused($isInputActive)
@@ -128,14 +138,17 @@ struct ManualView: View {
                         }
                         
                         VStack{
-                            NavigationLink(destination: FinishOnboardingView(), label: {
+                            Button {
+                                addSpareparts()
+                                isNavigate = true
+                            } label: {
                                 Text("Selesai")
                                     .font(.headline)
                                     .foregroundColor(.black)
                                     .frame(width: 335, height: 55, alignment: .center)
-                                    .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                    .background(Color("TabIconColor"))
                                     .cornerRadius(25)
-                            } )
+                            }
                         }
                         .padding(.top, 60)
                     }
@@ -143,16 +156,27 @@ struct ManualView: View {
                     .sheet(isPresented: $isModalPresented) {
                         // Pass state isSelectionConfirmed ke SparepartSelectionView
                         SparepartSelectionView(spareparts: availableSpareparts,
-                                               selectedSpareparts: currentServisSelection == 1 ? $selectedSparepartsServis1 : (currentServisSelection == 2 ? $selectedSparepartsServis2 : $selectedSparepartsServis3),
+                                               selectedSpareparts: currentServisSelection == 1 ? $selectedSpareparts : (currentServisSelection == 2 ? $selectedSparepartsServis2 : $selectedSparepartsServis3),
                                                isModalPresented: $isModalPresented)
                         .presentationDetents([.large, .medium, .fraction(0.42)])
+                    }
+                    .navigationDestination(isPresented: $isNavigate) {
+                        FinishOnboardingView()
                     }
                 }
             }
         }
     }
+    
+    func addSpareparts() {
+        for part in selectedSpareparts {
+            let sparepart = SparepartHistory(name: part.name, lastServiceMileage: Int(lastServiceMileage)!, sparepartType: part.type)
+            sparepart.motorcycle = motorcycle
+            motorcycle.spareparts?.append(sparepart)
+        }
+    }
 }
-
+    
 struct SparepartSelectionView: View {
     var spareparts: [Sparepart]
     @Binding var selectedSpareparts: [Sparepart]
@@ -226,9 +250,9 @@ struct ButtonStyleModifier: ViewModifier {
     }
 }
 
-#Preview {
-    ManualView()
-}
+//#Preview {
+//    ManualView()
+//}
 
 
 

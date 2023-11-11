@@ -36,7 +36,6 @@
 		E9AB95C92AF03578004EE0F4 /* MaintenanceHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95C82AF03578004EE0F4 /* MaintenanceHistoryView.swift */; };
 		E9AB95CB2AF03591004EE0F4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95CA2AF03591004EE0F4 /* SettingsView.swift */; };
 		E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */; };
-		E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */; };
 		E9B27D682AF09D950041D1C2 /* ModalOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */; };
 		E9E6491A2AFEA56100288DF7 /* MotorcycleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -71,7 +70,6 @@
 		E9AB95C82AF03578004EE0F4 /* MaintenanceHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceHistoryView.swift; sourceTree = "<group>"; };
 		E9AB95CA2AF03591004EE0F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
-		E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMaintenanceCheckin.swift; sourceTree = "<group>"; };
 		E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOdometerView.swift; sourceTree = "<group>"; };
 		E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,7 +156,6 @@
 			children = (
 				E9AB95C22AF03510004EE0F4 /* MainTabView.swift */,
 				E9AB95C42AF0352A004EE0F4 /* DashboardView.swift */,
-				E9AC4E272AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift */,
 				E9B27D672AF09D950041D1C2 /* ModalOdometerView.swift */,
 				E9AB95C62AF03553004EE0F4 /* ModalSparepartView.swift */,
 			);
@@ -305,7 +302,6 @@
 				E9AB957C2AEFEF9C004EE0F4 /* MaintenanceHistory.swift in Sources */,
 				E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */,
 				E9AB957E2AEFF0AA004EE0F4 /* SparepartHistory.swift in Sources */,
-				E9AC4E282AF22DE9001DDCF3 /* ModalMaintenanceCheckin.swift in Sources */,
 				E9AB95BD2AF03444004EE0F4 /* InputLastReceiptsView.swift in Sources */,
 				E9E6491A2AFEA56100288DF7 /* MotorcycleViewModel.swift in Sources */,
 				E9AB95C52AF0352A004EE0F4 /* DashboardView.swift in Sources */,
@@ -448,13 +444,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 8F62H4MXUZ;
+				DEVELOPMENT_TEAM = GNTKTFQL7U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,7 +459,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,13 +475,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 8F62H4MXUZ;
+				DEVELOPMENT_TEAM = GNTKTFQL7U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -492,7 +490,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
