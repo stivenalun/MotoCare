@@ -1,10 +1,3 @@
-//
-//  InputLastReceiptView.swift
-//  MotorCareSwiftData
-//
-//  Created by Nur Hidayatul Fatihah on 31/10/23.
-//
-
 import SwiftUI
 
 struct InputLastReceiptsView: View {
@@ -15,13 +8,16 @@ struct InputLastReceiptsView: View {
     @State var extractedText1: String?
     @State var extractedText2: String?
     @State var extractedText3: String?
+    @State var extractedText4: String?
+    @State var extractedText5: String?
+    @State var extractedText6: String?
     @State var isScanned: Bool = false
     
     var body: some View {
         NavigationStack {
-            ZStack{
+            ZStack {
                 BackgroundView()
-                VStack{
+                VStack {
                     Image("receipt")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -41,10 +37,11 @@ struct InputLastReceiptsView: View {
                         .font(.system(size: 17))
                         .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
+                    
                     Spacer()
                 }
                 
-                VStack{
+                VStack {
                     Spacer()
                     Button(action: {
                         self.showingScanningView = true
@@ -58,34 +55,57 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(), label: {
+                    Button(action: {
+                        self.isShowingManualReceiptView = true
+                    }) {
                         Text("Manual")
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
-                    } )
-                } .padding(.bottom, 30)
+                    }
+                }
+                .padding(.bottom, 30)
             }
             .navigationBarBackButtonHidden(false)
-            .navigationDestination(isPresented: $isScanned, destination: {
-                ScanResultView(extractedText1: $extractedText1, extractedText2: $extractedText2, extractedText3: $extractedText3)
-            })
+            .navigationDestination(isPresented: $isScanned) {
+                ScanResultView(
+                    extractedText1: $extractedText1,
+                    extractedText2: $extractedText2,
+                    extractedText3: $extractedText3,
+                    extractedText4: $extractedText4,
+                    extractedText5: $extractedText5,
+                    extractedText6: $extractedText6
+                )
+            }
             .sheet(isPresented: $showingScanningView) {
                 ScanDocumentView(
                     recognizedText: $recognizedText,
-                    extractedText1: $extractedText1, extractedText2: $extractedText2, extractedText3: $extractedText3
+                    extractedText1: $extractedText1,
+                    extractedText2: $extractedText2,
+                    extractedText3: $extractedText3,
+                    extractedText4: $extractedText4,
+                    extractedText5: $extractedText5,
+                    extractedText6: $extractedText6
                 )
                 .onDisappear {
                     isScanned = true
                     print(isScanned)
                 }
             }
+            // Sheet untuk menampilkan ManualView
+            .sheet(isPresented: $isShowingManualReceiptView) {
+                ManualView()
+            }
         }
     }
 }
 
-#Preview {
-    InputLastReceiptsView()
+// Preview
+struct InputLastReceiptsView_Previews: PreviewProvider {
+    static var previews: some View {
+        InputLastReceiptsView()
+    }
 }
+
