@@ -18,6 +18,9 @@ struct InputLastReceiptsView: View {
     @State var extractedText1: String?
     @State var extractedText2: String?
     @State var extractedText3: String?
+    @State var extractedText4: String?
+    @State var extractedText5: String?
+    @State var extractedText6: String?
     @State var isScanned: Bool = false
     
     var body: some View {
@@ -61,34 +64,54 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(motorcycle: motorcycleVM.motorcycle), label: {
+                    Button(action: {
+                        self.isShowingManualReceiptView = true
+                    }) {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
                             .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
-                    } )
+                    }
+                    .padding(10)
                 } .padding(.bottom, 30)
             }
-            .navigationBarBackButtonHidden(false)
-            .navigationDestination(isPresented: $isScanned, destination: {
-                ScanResultView(extractedText1: $extractedText1, extractedText2: $extractedText2, extractedText3: $extractedText3)
-            })
+            .navigationDestination(isPresented: $isScanned) {
+                ScanResultView (
+                    extractedText1: $extractedText1,
+                    extractedText2: $extractedText2,
+                    extractedText3: $extractedText3,
+                    extractedText4: $extractedText4,
+                    extractedText5: $extractedText5,
+                    extractedText6: $extractedText6
+                )
+            }
             .sheet(isPresented: $showingScanningView) {
-                ScanDocumentView(
+                ScanDocumentView (
                     recognizedText: $recognizedText,
-                    extractedText1: $extractedText1, extractedText2: $extractedText2, extractedText3: $extractedText3
+                    extractedText1: $extractedText1,
+                    extractedText2: $extractedText2,
+                    extractedText3: $extractedText3,
+                    extractedText4: $extractedText4,
+                    extractedText5: $extractedText5,
+                    extractedText6: $extractedText6
                 )
                 .onDisappear {
                     isScanned = true
                     print(isScanned)
                 }
             }
+            .sheet(isPresented: $isShowingManualReceiptView) {
+                ManualView(motorcycle: motorcycleVM.motorcycle)
+            }
         }
     }
 }
 
-//#Preview {
-//    InputLastReceiptsView()
+// Preview
+//struct InputLastReceiptsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
+//    }
 //}
