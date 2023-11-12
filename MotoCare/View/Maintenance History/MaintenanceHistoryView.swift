@@ -24,14 +24,17 @@ struct MaintenanceHistoryView: View {
 
     var body: some View {
         NavigationView {
-            List(maintenanceLogs) { log in
-                VStack(alignment: .leading) {
-                    Text("Date: \(formattedDate(log.date))")
-                    Text("Spare Part: \(log.sparePartType)")
-                    Text("Quantity Replaced: \(log.quantityReplaced)")
+            ZStack {
+                BackgroundView()
+                List(maintenanceLogs) { log in
+                    VStack(alignment: .leading) {
+                        Text("Date: \(formattedDate(log.date))")
+                        Text("Spare Part: \(log.sparePartType)")
+                        Text("Quantity Replaced: \(log.quantityReplaced)")
+                    }
                 }
+                .navigationTitle("History")
             }
-            .navigationTitle("History")
         }
     }
 

@@ -15,6 +15,7 @@ struct DashboardView: View {
     
     @State private var showModal = false
     @State private var isModalPresented = false
+    @State private var isUpdateModalPresented = false
     @State private var selectedItem: GaugeData?
     
     var body: some View {
@@ -102,6 +103,24 @@ struct DashboardView: View {
                                 }
                                 
                                 StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].spareparts ?? []), selectedItem: $selectedItem, showModal: $showModal)
+                                
+                                Button(action: {
+                                    isUpdateModalPresented = true
+                                    
+                                }) {
+                                    Text("Tambahkan Servis Baru")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.black)
+                                        .padding(5)
+                                }
+                                .padding(10)
+                                .frame(width: 357, height: 44, alignment: .center)
+                                .background(Color("TabIconColor"))
+                                .cornerRadius(11)
+                                .sheet(isPresented: $isUpdateModalPresented) {
+                                    InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
+                                }
                             }
                             .padding()
                             .navigationBarTitle("Dashboard")
@@ -111,6 +130,24 @@ struct DashboardView: View {
             }
             .onAppear {
                 print(motorcycles.count)
+            }
+        }
+        .sheet(isPresented: $showModal) {
+            if let selectedItem = selectedItem {
+                NavigationView {
+                    ModalSparepartView(data: selectedItem)
+                        .background(
+                            LinearGradient(
+                                stops: [
+                                    Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
+                                    Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
+                                ],
+                                startPoint: UnitPoint(x: 0.95, y: 0),
+                                endPoint: UnitPoint(x: 0.26, y: 0.98)
+                            ))
+                        .ignoresSafeArea()
+                    
+                }
             }
         }
     }
@@ -134,20 +171,21 @@ struct DashboardView: View {
                 replaceIntervalInKilometer = 25000
                 image = "VBeltImage"
             case .olimesin:
-                icon = "air-filter"
-                checkIntervalInKilometer = 16000
-                replaceIntervalInKilometer = 16000
-                image = "AirFilterImage"
-            case .oligardan:
                 icon = "engine-oil"
                 checkIntervalInKilometer = 4000
                 replaceIntervalInKilometer = 4000
                 image = "EngineOilImage"
-            case .airfilter:
+            case .oligardan:
                 icon = "final-drive-oil"
                 checkIntervalInKilometer = 4000
                 replaceIntervalInKilometer = 12000
                 image = "FinalDriveOilImage"
+            case .airfilter:
+                icon = "air-filter"
+                checkIntervalInKilometer = 16000
+                replaceIntervalInKilometer = 16000
+                image = "AirFilterImage"
+                
             }
             
             let gauge = GaugeData(
@@ -198,6 +236,7 @@ struct StatusSparepartView : View{
             Text("Status Spare Part")
                 .font(.title2)
                 .fontWeight(.bold)
+                .foregroundColor(.white)
                 .padding(.top)
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
@@ -225,7 +264,7 @@ struct StatusSparepartView : View{
                                 }
                                 .gaugeStyle(.accessoryCircularCapacity)
                                 .scaleEffect(1.10)
-                                .padding()
+                                .padding(3)
                                 .tint(data.status.tintColor)
                                 .overlay {
                                     Image(data.iconSparePart)
@@ -233,7 +272,7 @@ struct StatusSparepartView : View{
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 25, height: 80)
                                         .cornerRadius(14)
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.white)
                                 }
                                 VStack(alignment: .leading) {
                                     Text(data.labelText)
@@ -244,15 +283,17 @@ struct StatusSparepartView : View{
                                     HStack(spacing:3) {
                                         Image(systemName: data.status.iconStatus)
                                             .resizable()
-                                            .frame(width: 8, height:8)
+                                            .frame(width: 12, height:12)
+                                            .foregroundColor(data.status.tintColor)
                                         
                                         Text(data.status.rawValue)
                                             .font(.system(size: 12))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(data.status.tintColor)
                                     }
                                     .padding(8)
                                     .frame(height: 20, alignment: .center)
-                                    .background(data.status.tintColor
-                                    )
+                                    .background(data.status.tintColor.opacity(0.3))
                                     .cornerRadius(22)
                                 }
                             }
@@ -273,8 +314,6 @@ struct StatusSparepartView : View{
         }
     }
 }
-
-
 
 struct GaugeData: Identifiable {
     var id: UUID = UUID()
@@ -322,6 +361,17 @@ enum SparepartStatus: String {
             return .yellow
         case .aman:
             return .green
+        }
+    }
+    
+    var modalStatus: String {
+        switch self {
+        case .ganti:
+            return "Ganti Segera!"
+        case .periksa:
+            return "Lakukan Pemeriksaan"
+        case .aman:
+            return "Kondisi Bagus"
         }
     }
 }

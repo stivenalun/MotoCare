@@ -158,7 +158,7 @@ struct ManualView: View {
                         SparepartSelectionView(spareparts: availableSpareparts,
                                                selectedSpareparts: currentServisSelection == 1 ? $selectedSpareparts : (currentServisSelection == 2 ? $selectedSparepartsServis2 : $selectedSparepartsServis3),
                                                isModalPresented: $isModalPresented)
-                        .presentationDetents([.large, .medium, .fraction(0.42)])
+                        .presentationDetents([.large, .medium, .fraction(0.40)])
                     }
                     .navigationDestination(isPresented: $isNavigate) {
                         FinishOnboardingView()
@@ -185,28 +185,33 @@ struct SparepartSelectionView: View {
     
     var body: some View {
         NavigationView {
-            List(spareparts) { sparepart in
-                Button(action: {
-                    if selectedSpareparts.contains(sparepart) {
-                        selectedSpareparts.removeAll { $0 == sparepart }
-                    } else {
-                        selectedSpareparts.append(sparepart)
-                    }
-                }) {
-                    HStack {
-                        Text(sparepart.name)
-                        Spacer()
+            ZStack {
+                BackgroundView()
+                List(spareparts) { sparepart in
+                    Button(action: {
                         if selectedSpareparts.contains(sparepart) {
-                            Image(systemName: "checkmark")
+                            selectedSpareparts.removeAll { $0 == sparepart }
+                        } else {
+                            selectedSpareparts.append(sparepart)
+                        }
+                    }) {
+                        HStack {
+                            Text(sparepart.name)
+                            Spacer()
+                            if selectedSpareparts.contains(sparepart) {
+                                Image(systemName: "checkmark")
+                            }
                         }
                     }
                 }
-            }
-            .listStyle(InsetGroupedListStyle())
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        isModalPresented = false // Tutup modal saat "Konfirmasi" diklik
+                .navigationTitle(" ")
+                .foregroundColor(.black)
+                .listStyle(InsetGroupedListStyle())
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Done") {
+                            isModalPresented = false // Tutup modal saat "Konfirmasi" diklik
+                        }
                     }
                 }
             }
@@ -217,14 +222,12 @@ struct SparepartSelectionView: View {
 struct SelectedSparepartModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .padding(10)
+            .font(.system(size: 14))
             .foregroundColor(.black)
-            .padding(5)
-            .background(Color(red: 1, green: 0.94, blue: 0.71))
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .inset(by: 0.5)
-                    .stroke(Color.white, lineWidth: 1)
-            )
+            .frame(height: 40, alignment: .center)
+            .background(Color("TabIconColor"))
+            .cornerRadius(16)
     }
 }
 

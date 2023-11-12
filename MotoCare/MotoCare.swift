@@ -10,6 +10,10 @@ import SwiftData
 
 @main
 struct MotorCareSwiftDataApp: App {
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
     var body: some Scene {
         WindowGroup {
             SplashView()

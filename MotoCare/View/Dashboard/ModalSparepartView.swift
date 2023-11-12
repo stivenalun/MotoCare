@@ -1,114 +1,80 @@
-////
-////  ModalView.swift
-////  MotorCareSwiftData
-////
-////  Created by Nur Hidayatul Fatihah on 31/10/23.
-////
 //
-//import SwiftUI
+//  ModalView.swift
+//  MotorCareSwiftData
 //
-//struct ModalSparepartView: View {
-//    var data: GaugeData
-//    @Environment(\.presentationMode) var presentationMode
+//  Created by Nur Hidayatul Fatihah on 31/10/23.
 //
-//    var body: some View {
-//        ScrollView(showsIndicators: false) {
-//            VStack(alignment: .leading) {
-//                Image(data.imageSparePart)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                Text("Status")
-//                    .font(.title2)
-//                    .fontWeight(.bold)
-//                ZStack {
-//                    RoundedRectangle(cornerRadius: 14)
-//                        .fill(Color(red: 0.12, green: 0.12, blue: 0.12))
-//                    VStack(alignment: .leading) {
-//                        Text("\(data.labelText) perlu pengecekan")
-//                            .font(.title3)
-//                            .fontWeight(.bold)
-//                            .padding(.horizontal)
-//                            .padding(.top)
-//                        Text("1 bulan lagi sampai penggantian")
-//                            .font(.title3)
-//                            .fontWeight(.medium)
-//                            .padding(.horizontal)
-//                        HStack {
-//                            VStack(alignment: .leading) {
-//                                Text("Diperlukan pengecekan")
-//                                    .foregroundStyle(.yellow)
-//                                Text("28500/28000Km")
-//                                    .font(.title3)
-//                                    .fontWeight(.bold)
-//                                    .foregroundStyle(.yellow)
-//                                Spacer()
-//                                Text("Butuh penggantian")
-//                                Text("32000Km")
-//                                    .font(.title3)
-//                                    .fontWeight(.bold)
-//                                Spacer()
-//                                Text("Kondisi bagus")
-//                                Text("28500/27999Km")
-//                                    .font(.title3)
-//                                    .fontWeight(.bold)
-//                            }
-//                            Spacer()
-//                            VStack {
-//                                Gauge(value: data.value, in: data.minimum...data.maximum) {
-//                                }
-//                                .gaugeStyle(.accessoryCircular)
-//                                .scaleEffect(1.75)
-//                                .padding()
-//                                .tint(Gradient(colors: [.red, .yellow, .green]))
-//                                .overlay {
-//                                    Image(data.iconSparePart)
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fit)
-//                                        .frame(width: 35, height: 100)
-//                                        .cornerRadius(14)
-//                                        .foregroundColor(.primary)
-//                                }
-//                                Text(data.labelText)
-//                                    .font(.title3)
-//                                    .foregroundColor(.primary)
-//                                    .scaleEffect(0.75)
-//                            }
-//                        }
-//                        .padding()
-//                    }
-//                }
-//                .padding(.bottom)
-//                Text("Tentang \(data.labelText)")
-//                    .font(.title2)
-//                    .fontWeight(.bold)
-//                    .padding(.bottom)
-//                ZStack {
-//                    RoundedRectangle(cornerRadius: 14)
-//                        .fill(Color("BackColor"))
-//                    Text("Oli mesin pada motor adalah cairan pelumas yang melumasi, mendinginkan, membersihkan, dan melindungi mesin dari gesekan dan korosi. Ini penting untuk menjaga kinerja mesin tetap baik dan perlu diganti secara teratur sesuai rekomendasi pabrikan.")
-//                        .padding(10)
-//                }
-//            }
-//            .padding()
-//            .navigationBarTitle("\(data.labelText)", displayMode: .inline)
-//            .navigationBarItems(leading:
-//                HStack {
-//                    Button(action: {
-//                        presentationMode.wrappedValue.dismiss()
-//                    }) {
-//                        HStack {
-//                            Image(systemName: "chevron.backward")
-//                            Text("Back")
-//                        }
-//                        .accentColor(Color("TabIconColor"))
-//                    }
-//                }
-//        )
-//        }
-//    }
-//}
-//
-//
-//#Preview {
-//    ModalSparepartView(data: .init(value: 75.0, minimum: 0.0, maximum: 100.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage"))
-//}
+
+import SwiftUI
+
+struct ModalSparepartView: View {
+    var data: GaugeData
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .center) {
+                Image(data.imageSparePart)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(data.status.tintColor.opacity(0.3))
+                        .frame(width: 359, height: 42)
+                        .cornerRadius(22)
+                    HStack(spacing:10) {
+                        Image(systemName: data.status.iconStatus)
+                            .resizable()
+                            .frame(width: 22, height:22)
+                            .foregroundColor(data.status.tintColor)
+                        
+                        Text(data.status.modalStatus)
+                            .font(.system(size: 22))
+                            .fontWeight(.bold)
+                            .foregroundColor(data.status.tintColor)
+                    }
+                    .padding(20)
+                    
+                }
+                
+                Text("")
+                Gauge(value: data.value, in: data.minimum...data.maximum) {
+                    
+                }
+                .gaugeStyle(.accessoryCircularCapacity)
+                .scaleEffect(1.80)
+                .padding(40)
+                .tint(data.status.tintColor)
+                .overlay {
+                    Image(data.iconSparePart)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 45, height: 45)
+                        .cornerRadius(14)
+                        .foregroundColor(.white)
+                }
+            }
+            .padding()
+            .navigationBarTitle("\(data.labelText)", displayMode: .inline)
+            .foregroundColor(.white)
+            .navigationBarItems(trailing:
+                                    HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "xmark.circle.fill")
+                    }
+                    .accentColor(Color(.secondarySystemBackground))
+                }
+            }
+            )
+        }
+    }
+}
+
+
+#Preview {
+    ModalSparepartView(data: .init(value: 30.0, minimum: 0.0, maximum: 100.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage", status: .ganti))
+}
