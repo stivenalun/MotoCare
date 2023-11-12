@@ -7,15 +7,20 @@
 
 
 import SwiftUI
+import SwiftData
 
 struct SplashView: View {
     
+    @Query var motorcycles: [Motorcycle]
     @State var isActive: Bool = false
+    @State var goToDashboard = false
     
     var body: some View {
         ZStack {
             if self.isActive {
                 OpeningOnboardingView()
+            } else if goToDashboard {
+                MainTabView()
             } else {
                 Rectangle()
                 Color("Black")
@@ -34,7 +39,12 @@ struct SplashView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation {
-                    self.isActive = true
+                    if motorcycles.isEmpty {
+                        self.isActive = true
+                    } else {
+                        self.goToDashboard = true
+                    }
+                    
                 }
             }
         }

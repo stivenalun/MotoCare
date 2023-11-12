@@ -64,17 +64,15 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    Button(action: {
-                        self.isShowingManualReceiptView = true
-                    }) {
+                    NavigationLink(destination: ManualView(motorcycle: motorcycleVM.motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
                             .frame(width: 335, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
-                    }
-                    .padding(10)
+                    } )
+
                 } .padding(.bottom, 30)
             }
             .navigationDestination(isPresented: $isScanned) {

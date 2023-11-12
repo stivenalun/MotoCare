@@ -172,6 +172,7 @@ struct ManualView: View {
         for part in selectedSpareparts {
             let sparepart = SparepartHistory(name: part.name, lastServiceMileage: Int(lastServiceMileage)!, sparepartType: part.type)
             sparepart.motorcycle = motorcycle
+            // simpen ke database
             motorcycle.spareparts?.append(sparepart)
         }
     }

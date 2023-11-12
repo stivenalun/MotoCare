@@ -3,4 +3,70 @@
    uuid = "CF885ED3-FF58-4DD9-9D2E-846873C35963"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0990C93-F9A2-4939-91B1-C587A11503E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MotoCare/MotoCare.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B0990C93-F9A2-4939-91B1-C587A11503E3 - 519eef245d0f1322"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MotoCare.MotorCareSwiftDataApp.body.getter : some"
+                  moduleName = "MotoCare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nurhidayatulf/Documents/myAcademy/Macro/MotoCare/MotoCare/MotoCare.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "B0990C93-F9A2-4939-91B1-C587A11503E3 - 295b03149c265286"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; MotoCare.SplashView in MotoCare.MotorCareSwiftDataApp.body.getter : some"
+                  moduleName = "MotoCare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nurhidayatulf/Documents/myAcademy/Macro/MotoCare/MotoCare/MotoCare.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A001707-6F30-4036-ABDC-38A3503220D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MotoCare/View/Onboarding/SplashView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -8,7 +8,7 @@
 //import SwiftUI
 //
 //struct ModalSparepartView: View {
-//    let data: SparepartData
+//    var data: GaugeData
 //    @Environment(\.presentationMode) var presentationMode
 //
 //    var body: some View {
