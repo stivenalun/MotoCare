@@ -17,8 +17,6 @@ struct DashboardView: View {
     @State private var isModalPresented = false
     @State private var selectedItem: GaugeData?
     
-//    var motorcycle: Motorcycle
-    
     var body: some View {
         NavigationView {
             ZStack{
@@ -213,14 +211,14 @@ struct StatusSparepartView : View{
                             RoundedRectangle(cornerRadius: 14)
                                 .fill(LinearGradient(
                                     stops: [
-                                    Gradient.Stop(color: Color(red: 0.16, green: 0.22, blue: 0.23), location: 0.08),
-                                    Gradient.Stop(color: Color(red: 0.08, green: 0.09, blue: 0.09), location: 1.00),
+                                        Gradient.Stop(color: Color(red: 0.16, green: 0.22, blue: 0.23), location: 0.08),
+                                        Gradient.Stop(color: Color(red: 0.08, green: 0.09, blue: 0.09), location: 1.00),
                                     ],
                                     startPoint: UnitPoint(x: 0.5, y: 0),
                                     endPoint: UnitPoint(x: 0.5, y: 1)
-                                    ))
+                                ))
                                 .frame(width: 176, height: 123)
-
+                            
                             HStack {
                                 Gauge(value: data.value, in: data.minimum...data.maximum) {
                                     
@@ -247,15 +245,14 @@ struct StatusSparepartView : View{
                                         Image(systemName: data.status.iconStatus)
                                             .resizable()
                                             .frame(width: 8, height:8)
-                
-                                            Text(data.status.rawValue)
-                                                .font(.system(size: 12))
                                         
+                                        Text(data.status.rawValue)
+                                            .font(.system(size: 12))
                                     }
                                     .padding(8)
                                     .frame(height: 20, alignment: .center)
                                     .background(data.status.tintColor
-                                )
+                                    )
                                     .cornerRadius(22)
                                 }
                             }
@@ -267,76 +264,14 @@ struct StatusSparepartView : View{
                     }
                 }
             }
-
-                
         }
         .onAppear {
-//                let gaugeData: [GaugeData] = [
-//                    GaugeData(value: 180.0, minimum: 0.0, maximum: 100.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage"),
-//                    GaugeData(value: 60.0, minimum: 0.0, maximum: 100.0, iconSparePart: "spark-plug", labelText: "Busi", imageSparePart: "SparkPlugImage"),
-//                    GaugeData(value: 190.0, minimum: 0.0, maximum: 100.0, iconSparePart: "air-filter", labelText: "Oli Gear", imageSparePart: "AirFilterImage"),
-//                    GaugeData(value: 40.0, minimum: 0.0, maximum: 100.0, iconSparePart: "final-drive-oil", labelText: "Air Filter", imageSparePart: "FinalDriveOilImage"),
-//                    GaugeData(value: 10.0, minimum: 0.0, maximum: 100.0, iconSparePart: "v-belt", labelText: "V-Belt", imageSparePart: "VBeltImage")
-//                ]
-//            data = convertData(history: motorcycle.spareparts ?? [])
+            //            data = convertData(history: motorcycle.spareparts ?? [])
             print("spareparts: ", data.count)
-//                print(convertData(history: motorcycle.spareparts ?? []).count)
-//                data = convertData(history: motorcycle.spareparts ?? [])
+            //                print(convertData(history: motorcycle.spareparts ?? []).count)
+            //                data = convertData(history: motorcycle.spareparts ?? [])
         }
-            
-            //            List(motorcycle.spareparts ?? []) { sparepart in
-            //                Text("\(sparepart.name) -  \(estimateSparepartStatus(lastServiceMillage:sparepart.lastServiceMileage, currentMillage: motorcycle.currentMileage, type: sparepart.sparepartType).rawValue)")
-            //            }
     }
-    
-//    func convertData(history: [SparepartHistory]) -> [GaugeData] {
-//        var gauges = [GaugeData]()
-//        for data in history {
-//            var icon = ""
-//            var checkIntervalInKilometer: Double = 0
-//            var replaceIntervalInKilometer: Double = 0
-//            var image = ""
-//            switch data.sparepartType {
-//            case .busi:
-//                icon = "spark-plug"
-//                checkIntervalInKilometer = 4000
-//                replaceIntervalInKilometer = 8000
-//                image = "SparkPlugImage"
-//            case .vbelt:
-//                icon = "v-belt"
-//                checkIntervalInKilometer = 8000
-//                replaceIntervalInKilometer = 25000
-//                image = "VBeltImage"
-//            case .olimesin:
-//                icon = "air-filter"
-//                checkIntervalInKilometer = 16000
-//                replaceIntervalInKilometer = 16000
-//                image = "AirFilterImage"
-//            case .oligardan:
-//                icon = "engine-oil"
-//                checkIntervalInKilometer = 4000
-//                replaceIntervalInKilometer = 4000
-//                image = "EngineOilImage"
-//            case .airfilter:
-//                icon = "final-drive-oil"
-//                checkIntervalInKilometer = 4000
-//                replaceIntervalInKilometer = 12000
-//                image = "FinalDriveOilImage"
-//            }
-//            
-//            let gauge = GaugeData(
-//                value: Double(data.motorcycle?.currentMileage ?? 0) - Double(data.lastServiceMileage),
-//                minimum: 0,
-//                maximum: replaceIntervalInKilometer,
-//                iconSparePart: icon,
-//                labelText: data.name,
-//                imageSparePart: image
-//            )
-//            gauges.append(gauge)
-//        }
-//        return gauges
-//    }
-    
 }
 
 
@@ -352,36 +287,21 @@ struct GaugeData: Identifiable {
     var status: SparepartStatus
 }
 
-//let gaugeData: [GaugeData] = [
-//    GaugeData(value: 180.0, minimum: 0.0, maximum: 100.0, iconSparePart: "engine-oil", labelText: "Oli Mesin", imageSparePart: "EngineOilImage"),
-//    GaugeData(value: 60.0, minimum: 0.0, maximum: 100.0, iconSparePart: "spark-plug", labelText: "Busi", imageSparePart: "SparkPlugImage"),
-//    GaugeData(value: 190.0, minimum: 0.0, maximum: 100.0, iconSparePart: "air-filter", labelText: "Oli Gear", imageSparePart: "AirFilterImage"),
-//    GaugeData(value: 40.0, minimum: 0.0, maximum: 100.0, iconSparePart: "final-drive-oil", labelText: "Air Filter", imageSparePart: "FinalDriveOilImage"),
-//    GaugeData(value: 10.0, minimum: 0.0, maximum: 100.0, iconSparePart: "v-belt", labelText: "V-Belt", imageSparePart: "VBeltImage")
-//]
-
-//struct GaugeMapper {
-//    static func mapGauge(gauge: Sparepart) -> GaugeData {
-//        return GaugeData(value: <#T##Double#>, minimum: 0.0, maximum: Double(gauge.replaceIntervalInKilometer), sparepartName: gauge.name, iconSparePart: gauge.icon, imageSparePart: gauge.image, sparepartStatus: <#SparepartStatus#>)
-//    }
-//}
-
-
 enum SparepartStatus: String {
-  case ganti = "GANTI"
-  case periksa = "PERIKSA"
-  case aman = "AMAN"
-
-  var sparepartStatusValue: String {
-      switch self {
-      case .ganti:
-          return "GANTI"
-      case .periksa:
-          return "CEK"
-      case .aman:
-          return "AMAN"
-      }
-  }
+    case ganti = "GANTI"
+    case periksa = "PERIKSA"
+    case aman = "AMAN"
+    
+    var sparepartStatusValue: String {
+        switch self {
+        case .ganti:
+            return "GANTI"
+        case .periksa:
+            return "CEK"
+        case .aman:
+            return "AMAN"
+        }
+    }
     
     var iconStatus: String {
         switch self {
@@ -406,7 +326,7 @@ enum SparepartStatus: String {
     }
 }
 
-    
+
 #Preview {
     DashboardView()
 }
