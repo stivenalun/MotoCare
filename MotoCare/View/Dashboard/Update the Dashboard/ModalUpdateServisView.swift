@@ -1,13 +1,13 @@
 //
-//  InputLastReceiptView.swift
-//  MotorCareSwiftData
+//  ModalUpdateServisView.swift
+//  MotoCare
 //
-//  Created by Nur Hidayatul Fatihah on 31/10/23.
+//  Created by Nur Hidayatul Fatihah on 13/11/23.
 //
 
 import SwiftUI
 
-struct InputLastReceiptsView: View {
+struct ModalUpdateServisView: View {
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     let motorcycle: Motorcycle
     
@@ -34,7 +34,7 @@ struct InputLastReceiptsView: View {
                         .padding(.top, 50)
                         .frame(width: 350, height: 280)
                     
-                    Text("Ayo isi riwayat servis part motormu!")
+                    Text("Perbarui riwayat servis sparepart motor.")
                         .navigationBarBackButtonHidden(true)
                         .font(.system(size: 34))
                         .fontWeight(.bold)
@@ -42,7 +42,7 @@ struct InputLastReceiptsView: View {
                         .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
                     
-                    Text("Isi riwayat servis sparepart motormu dengan cara men-scan 3 resi dari bengkel atau isi manual. Mulai dari busi, oli, v-belt, oli gardan, shock breaker, dan air filter.")
+                    Text("Perbarui kondisi spare-part motormu dengan men-scan resi atau isi manual. ")
                         .padding(.top, 20)
                         .font(.system(size: 17))
                         .frame(maxWidth: 345, alignment: .topLeading)
@@ -64,7 +64,7 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(motorcycle: motorcycleVM.motorcycle), label: {
+                    NavigationLink(destination: ManualView2(motorcycle: motorcycleVM.motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
@@ -107,9 +107,6 @@ struct InputLastReceiptsView: View {
     }
 }
 
-// Preview
-//struct InputLastReceiptsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
-//    }
+//#Preview {
+//    ModalUpdateServisView()
 //}

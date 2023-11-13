@@ -119,7 +119,7 @@ struct DashboardView: View {
                                 .background(Color("TabIconColor"))
                                 .cornerRadius(11)
                                 .sheet(isPresented: $isUpdateModalPresented) {
-                                    ModalUpdateServisView()
+//                                    ModalUpdateServisView()
                                 }
                             }
                             .padding()

@@ -224,7 +224,7 @@ enum Part: String {
 }
     
     
-#Preview {
-    ManualView2()
-}
+//#Preview {
+//    ManualView2(motorcycle: motorcycleVM.motorcycle)
+//}
 
