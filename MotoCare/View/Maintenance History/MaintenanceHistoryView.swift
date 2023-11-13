@@ -31,13 +31,14 @@ struct MaintenanceHistoryView: View {
                         Text("Date: \(formattedDate(log.date))")
                         Text("Spare Part: \(log.sparePartType)")
                         Text("Quantity Replaced: \(log.quantityReplaced)")
-                    }
-                }
+                            
+                    } .listRowBackground(Color.white.opacity(0.5))
+                } .scrollContentBackground(.hidden)
                 .navigationTitle("History")
             }
         }
     }
-
+    
     func formattedDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
