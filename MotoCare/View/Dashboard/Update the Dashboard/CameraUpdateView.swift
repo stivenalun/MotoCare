@@ -17,12 +17,12 @@ extension CharacterSet {
 
 struct CameraUpdateView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var recognizedTextUpdate: String // Menggunakan @Binding
+    @Binding var recognizedText: String
     @Binding var extractedUpdatedText1: String?
     @Binding var extractedUpdatedText2: String?
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(recognizedTextUpdate: $recognizedTextUpdate, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2, parent: self)
+        Coordinator(recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2, parent: self)
     }
     
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
@@ -32,17 +32,17 @@ struct CameraUpdateView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
-        // nothing to do here
+        
     }
     
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
-        var recognizedTextUpdate: Binding<String>
-        var extractedUpdatedText1: Binding<String?> // Menggunakan @Binding
+        var recognizedText: Binding<String>
+        var extractedUpdatedText1: Binding<String?>
         var extractedUpdatedText2: Binding<String?>
         var parent: CameraUpdateView
         
-        init(recognizedTextUpdate: Binding<String>, extractedUpdatedText1: Binding<String?>, extractedUpdatedText2: Binding<String?>, parent: CameraUpdateView) {
-            self.recognizedTextUpdate = recognizedTextUpdate
+        init(recognizedText: Binding<String>, extractedUpdatedText1: Binding<String?>, extractedUpdatedText2: Binding<String?>, parent: CameraUpdateView) {
+            self.recognizedText = recognizedText
             self.extractedUpdatedText1 = extractedUpdatedText1
             self.extractedUpdatedText2 = extractedUpdatedText2
             self.parent = parent
@@ -53,7 +53,7 @@ struct CameraUpdateView: UIViewControllerRepresentable {
             var processedUpdatedText1 = recognizeAndExtractText1(from: extractedImages, targetText: "Ganti")
             var processedUpdatedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "km.")
             
-            // Menghapus "Ganti" dari processedText1
+            
             processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "Ganti", with: "")
             processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
             processedUpdatedText2 = cleanString(processedUpdatedText2)
@@ -71,18 +71,16 @@ struct CameraUpdateView: UIViewControllerRepresentable {
                 print("String is empty")
             }
             
-            let targetIndexes = [0]
+//            let targetIndexes = [0]
             
-            recognizedTextUpdate.wrappedValue = processedUpdatedText1 + processedUpdatedText2
+            recognizedText.wrappedValue = processedUpdatedText1 + processedUpdatedText2
             extractedUpdatedText1.wrappedValue = processedUpdatedText1
             self.extractedUpdatedText2.wrappedValue = processedUpdatedText2
             parent.presentationMode.wrappedValue.dismiss()
         }
         
-        
-        // Fungsi untuk membersihkan string dari karakter non-numeric
         fileprivate func cleanString(_ input: String) -> String {
-            return String(input.unicodeScalars.filter { CharacterSet.numericCharacters.contains($0) })
+            return String(input.unicodeScalars.filter { CharacterSet.numericCharacters1.contains($0) })
         }
         
         
@@ -103,12 +101,12 @@ struct CameraUpdateView: UIViewControllerRepresentable {
         
         
         fileprivate func recognizeAndExtractText(from images: [CGImage], targetText: String, targetIndex: Int) -> String {
-            var extractedText = ""
+            var extractedUpdateText = ""
             
             // Pastikan bahwa targetIndex tidak melampaui batas indeks gambar yang ada
             guard images.indices.contains(targetIndex) else {
                 print("Error: Index \(targetIndex) is out of bounds.")
-                return extractedText
+                return extractedUpdateText
             }
             
             let image = images[targetIndex]  // Mengambil gambar dengan indeks targetIndex
@@ -123,7 +121,7 @@ struct CameraUpdateView: UIViewControllerRepresentable {
                     
                     let recognizedText = candidate.string
                     if recognizedText.contains(targetText) {
-                        extractedText += "\(recognizedText),"
+                        extractedUpdateText += "\(recognizedText),"
                     }
                 }
             }
@@ -132,7 +130,7 @@ struct CameraUpdateView: UIViewControllerRepresentable {
             let requestHandler = VNImageRequestHandler(cgImage: image, options: [:])
             try? requestHandler.perform([recognizeTextRequest])
             
-            return extractedText
+            return extractedUpdateText
         }
         
         fileprivate func recognizeAndExtractText1(from images: [CGImage], targetText: String) -> String {

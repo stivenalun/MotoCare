@@ -12,8 +12,8 @@ struct ModalUpdateServisView: View {
     let motorcycle: Motorcycle
     
     @State private var isShowingManualReceiptView = false
-    @State private var recognizedTextUpdate = "Now, please scan or manually input your three last maintenance receipt."
-    @State private var showingScanningView = false
+    @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
+    @State private var showingScanningView2 = false
     
     @State var extractedUpdatedText1: String?
     @State var extractedUpdatedText2: String?
@@ -49,7 +49,7 @@ struct ModalUpdateServisView: View {
                 VStack{
                     Spacer()
                     Button(action: {
-                        self.showingScanningView = true
+                        self.showingScanningView2 = true
                     }) {
                         Text("Scan")
                             .font(.headline)
@@ -77,9 +77,9 @@ struct ModalUpdateServisView: View {
                     extractedUpdatedText2: $extractedUpdatedText2
                 )
             }
-            .sheet(isPresented: $showingScanningView) {
+            .sheet(isPresented: $showingScanningView2) {
                 CameraUpdateView(
-                    recognizedTextUpdate: $recognizedTextUpdate, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
+                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
                 )
                 .onDisappear {
                     isScanned = true
