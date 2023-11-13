@@ -64,7 +64,7 @@ struct ModalUpdateServisView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView2(motorcycle: motorcycleVM.motorcycle), label: {
+                    NavigationLink(destination: ManualUpdateView(), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)

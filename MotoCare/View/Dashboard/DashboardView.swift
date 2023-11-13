@@ -105,7 +105,7 @@ struct DashboardView: View {
                                 StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].spareparts ?? []), selectedItem: $selectedItem, showModal: $showModal)
                                 
                                 Button(action: {
-                                    isUpdateModalPresented = true
+                                    isUpdateModalPresented.toggle()
                                     
                                 }) {
                                     Text("Tambahkan Servis Baru")
@@ -119,7 +119,7 @@ struct DashboardView: View {
                                 .background(Color("TabIconColor"))
                                 .cornerRadius(11)
                                 .sheet(isPresented: $isUpdateModalPresented) {
-//                                    ModalUpdateServisView()
+                                    ModalUpdateServisView(motorcycle: motorcycles[0])
                                 }
                             }
                             .padding()
