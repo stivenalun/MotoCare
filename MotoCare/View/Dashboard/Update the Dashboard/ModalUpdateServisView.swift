@@ -12,15 +12,11 @@ struct ModalUpdateServisView: View {
     let motorcycle: Motorcycle
     
     @State private var isShowingManualReceiptView = false
-    @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
+    @State private var recognizedTextUpdate = "Now, please scan or manually input your three last maintenance receipt."
     @State private var showingScanningView = false
     
-    @State var extractedText1: String?
-    @State var extractedText2: String?
-    @State var extractedText3: String?
-    @State var extractedText4: String?
-    @State var extractedText5: String?
-    @State var extractedText6: String?
+    @State var extractedUpdatedText1: String?
+    @State var extractedUpdatedText2: String?
     @State var isScanned: Bool = false
     
     var body: some View {
@@ -76,24 +72,14 @@ struct ModalUpdateServisView: View {
                 } .padding(.bottom, 30)
             }
             .navigationDestination(isPresented: $isScanned) {
-                ScanResultView (
-                    extractedText1: $extractedText1,
-                    extractedText2: $extractedText2,
-                    extractedText3: $extractedText3,
-                    extractedText4: $extractedText4,
-                    extractedText5: $extractedText5,
-                    extractedText6: $extractedText6
+                UpdateResultView (
+                    extractedUpdatedText1: $extractedUpdatedText1,
+                    extractedUpdatedText2: $extractedUpdatedText2
                 )
             }
             .sheet(isPresented: $showingScanningView) {
-                ScanDocumentView (
-                    recognizedText: $recognizedText,
-                    extractedText1: $extractedText1,
-                    extractedText2: $extractedText2,
-                    extractedText3: $extractedText3,
-                    extractedText4: $extractedText4,
-                    extractedText5: $extractedText5,
-                    extractedText6: $extractedText6
+                CameraUpdateView(
+                    recognizedTextUpdate: $recognizedTextUpdate, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
                 )
                 .onDisappear {
                     isScanned = true
