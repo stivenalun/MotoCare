@@ -12,11 +12,12 @@ import SwiftData
 class Motorcycle {
     var brand: String
     var currentMileage: Int
-    @Relationship(deleteRule: .cascade) var spareparts: [SparepartHistory]?
+    @Relationship(deleteRule: .cascade) var maintenanceHistory: [MaintenanceHistory]
     
-    init(brand: String = "Yamaha Lexi", currentMileage: Int = 0) {
+    init(brand: String = "Yamaha Lexi", currentMileage: Int = 0, maintenanceHistory: [MaintenanceHistory] = []) {
         self.brand = brand
         self.currentMileage = currentMileage
+        self.maintenanceHistory = maintenanceHistory
     }
 }
 

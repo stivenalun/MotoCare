@@ -124,9 +124,9 @@ struct ManualView: View {
                             )
                             .padding(.bottom, 5)
                         
-                        Button("+ Sparepart ") {
+                        Button("+ Sparepart") {
                             isModalPresented.toggle()
-                            currentServisSelection = 3
+                            currentServisSelection = 1
                         }
                         .modifier(ButtonStyleModifier())
                         
@@ -139,7 +139,7 @@ struct ManualView: View {
                         
                         VStack{
                             Button {
-                                addSpareparts()
+                                saveMaintenanceHistory()
                                 isNavigate = true
                             } label: {
                                 Text("Selesai")
@@ -168,12 +168,26 @@ struct ManualView: View {
         }
     }
     
-    func addSpareparts() {
+    
+    func saveMaintenanceHistory() {
+        let date = Date()
+        var sparepartHistory = [SparepartHistory]()
+        
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, lastServiceMileage: Int(lastServiceMileage)!, sparepartType: part.type)
-            sparepart.motorcycle = motorcycle
-            // simpen ke database
-            motorcycle.spareparts?.append(sparepart)
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            sparepartHistory.append(sparepart)
+        }
+        
+        let maintenance = MaintenanceHistory(date: date,
+                                             maintenanceMileage: Double(lastServiceMileage) ?? 0.0,
+                                             sparePartHistory: sparepartHistory)
+        
+        motorcycle.modelContext?.insert(maintenance)
+        // modelContext.insert(maintenance)
+        do {
+            try motorcycle.modelContext?.save()
+        } catch {
+            print("Failed to save: \(error)")
         }
     }
 }
