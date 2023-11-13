@@ -23,7 +23,7 @@ struct ScanResultView: View {
                 
                 // Riwayat Servis 1
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Riwayat Servis 1")
+                    Text("Servis 1")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .frame(width: 355, alignment: .topLeading)
@@ -86,7 +86,7 @@ struct ScanResultView: View {
                 
                 // Riwayat Servis 2
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Riwayat Servis 2")
+                    Text("Servis 2")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .frame(width: 355, alignment: .topLeading)
@@ -149,7 +149,7 @@ struct ScanResultView: View {
                 
                 // Riwayat Servis 3
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Riwayat Servis 3")
+                    Text("Servis 3")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                         .frame(width: 355, alignment: .topLeading)

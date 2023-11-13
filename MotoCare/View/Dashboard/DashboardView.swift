@@ -376,7 +376,6 @@ enum SparepartStatus: String {
     }
 }
 
-
-#Preview {
-    DashboardView()
-}
+//#Preview {
+//    DashboardView()
+//}
