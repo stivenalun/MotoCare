@@ -93,7 +93,7 @@ struct DashboardView: View {
                                                     .background(Color("TabIconColor"))
                                                     .cornerRadius(11)
                                                     .sheet(isPresented: $isModalPresented) {
-                                                        ModalOdometerView()
+                                                        ModalUpdateOdometerView()
                                                     }
                                                 }
                                             }
