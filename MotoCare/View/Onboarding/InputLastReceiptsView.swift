@@ -64,7 +64,7 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(motorcycle: motorcycleVM.motorcycle), label: {
+                    NavigationLink(destination: ManualView2(motorcycle: motorcycleVM.motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
