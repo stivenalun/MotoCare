@@ -16,54 +16,56 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Form {
-                    Section("IOT Configuration") {
-                        List {
-                            HStack {
-                                Text("Status")
-                                Spacer()
-                                Text(isDeviceConnected ? "Connected" : "Disconnected")
-                                    .foregroundColor(isDeviceConnected ? .green : .red)
+            ZStack{
+                BackgroundView()
+                VStack(alignment: .leading) {
+                    Form {
+                        Section("IOT Configuration") {
+                            List {
+                                HStack {
+                                    Text("Status")
+                                    Spacer()
+                                    Text(isDeviceConnected ? "Connected" : "Disconnected")
+                                        .foregroundColor(isDeviceConnected ? .green : .red)
+                                }
+                                HStack {
+                                    Text("Battery")
+                                    Spacer()
+                                    Text("\(batteryPercentage)%")
+                                }
+            
                             }
-                            HStack {
-                                Text("Battery")
-                                Spacer()
-                                Text("\(batteryPercentage)%")
-                            }
-                            
                         }
-                    }
-                    
-                    Section {
-                        if isDeviceConnected {
+                        
+                        Section {
+                            if isDeviceConnected {
+                                Button(action: {
+                                    // Action to disconnect IoT device
+                                    isDeviceConnected = false
+                                }) {
+                                    Text("Disconnect")
+                                        .foregroundStyle(.red)
+                                }
+                            }
+                        }
+                        
+                        NavigationLink(
+                            destination: DetectedDevicesView(isIOTConnected: $isIOTConnected, isDeviceConnected: $isDeviceConnected), isActive: $showDetectedDevices
+                        ) {
                             Button(action: {
-                            // Action to disconnect IoT device
-                            isDeviceConnected = false
+                                // Action to pair IoT device
+                                isIOTPaired = true
                             }) {
-                                Text("Disconnect")
-                                .foregroundStyle(.red)
+                                Text("Pair IoT")
+                                    .foregroundStyle(.blue)
+                            }
+                            .onTapGesture {
+                                showDetectedDevices = true
                             }
                         }
-                    }
-                    
-                    NavigationLink(
-                        destination: DetectedDevicesView(isIOTConnected: $isIOTConnected, isDeviceConnected: $isDeviceConnected), isActive: $showDetectedDevices
-                    ) {
-                        Button(action: {
-                        // Action to pair IoT device
-                            isIOTPaired = true
-                        }) {
-                            Text("Pair IoT")
-                                .foregroundStyle(.blue)
-                        }
-                        .onTapGesture {
-                            showDetectedDevices = true
-                        }
-                    }
-                    
+                    } .scrollContentBackground(.hidden)
+                    .navigationTitle("Settings")
                 }
-                .navigationTitle("Settings")
             }
         }
     }
