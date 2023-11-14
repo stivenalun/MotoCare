@@ -12,6 +12,8 @@ struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
+    @Query var sparepartHistories: [SparepartHistory]
+    @Query var maintenanceHistories: [MaintenanceHistory]
     
     @State private var showModal = false
     @State private var isModalPresented = false
@@ -101,8 +103,12 @@ struct DashboardView: View {
                                     }
                                     .frame(width: 357, height: 132)
                                 }
+                                .onAppear {
+                                    print(motorcycles[0].maintenanceHistories)
+                                    
+                                }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].spareparts ?? []), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].maintenanceHistories.last?.sparePartHistory ?? []), selectedItem: $selectedItem, showModal: $showModal)
                                 
                                 Button(action: {
                                     isUpdateModalPresented.toggle()
@@ -119,9 +125,7 @@ struct DashboardView: View {
                                 .background(Color("TabIconColor"))
                                 .cornerRadius(11)
                                 .sheet(isPresented: $isUpdateModalPresented) {
-                                    NavigationView {
-                                            ModalUpdateServisView(motorcycle: motorcycles[0])
-                                        }
+                                    ModalUpdateServisView(motorcycle: motorcycles[0])
                                 }
                             }
                             .padding()
@@ -148,7 +152,6 @@ struct DashboardView: View {
                                 endPoint: UnitPoint(x: 0.26, y: 0.98)
                             ))
                         .ignoresSafeArea()
-                    
                 }
             }
         }
@@ -191,13 +194,15 @@ struct DashboardView: View {
             }
             
             let gauge = GaugeData(
-                value: Double(data.motorcycle?.currentMileage ?? 0) - Double(data.lastServiceMileage),
+                value: Double(motorcycles[0].currentMileage - (motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0)),
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
                 labelText: data.name,
                 imageSparePart: image,
-                status: estimateSparepartStatus(lastServiceMillage: data.lastServiceMileage, currentMillage: data.motorcycle?.currentMileage ?? 0, type: data.sparepartType)
+                status: estimateSparepartStatus(lastServiceMillage: motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0,
+                                                currentMillage: motorcycles[0].currentMileage,
+                                                type: data.sparepartType)
             )
             gauges.append(gauge)
         }

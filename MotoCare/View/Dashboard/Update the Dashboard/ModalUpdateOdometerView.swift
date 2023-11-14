@@ -15,6 +15,8 @@ struct ModalUpdateOdometerView: View {
     
     @Query var motorcycles: [Motorcycle]
     
+    @State var motorcycle: Motorcycle = Motorcycle()
+    @State private var selectedSpareparts: [Sparepart] = []
     @State private var currentMileage: String = ""
     
     var isTextFieldEmpty: Bool {
@@ -55,8 +57,9 @@ struct ModalUpdateOdometerView: View {
                 
                 VStack{
                     Button(action: {
-                        motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
-                        modelContext.insert(motorcycleVM.motorcycle)
+//                        motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
+//                        modelContext.insert(motorcycleVM.motorcycle)
+                        saveMotorcycle()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Simpan")
@@ -69,6 +72,30 @@ struct ModalUpdateOdometerView: View {
                     .padding(.top, 65)
                 }
             }
+        }
+    }
+    
+    func saveMotorcycle() {
+        motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
+        // Pastikan objek motorcycle yang sudah ada sudah disimpan di dalam modelContext
+        if let existingMotorcycle = modelContext.model(for: motorcycle.id) as? Motorcycle {
+            existingMotorcycle.currentMileage = Int(currentMileage) ?? 0
+            
+            let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                                        maintenanceMileage: Int(currentMileage) ?? 0)
+            existingMotorcycle.maintenanceHistories.append(maintenanceHistory)
+            
+            for part in selectedSpareparts {
+                let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+                maintenanceHistory.sparePartHistory.append(sparepart)
+            }
+            
+            print("Success saved!")
+        } else {
+            // Jika objek motorcycle yang sudah ada belum ada di dalam modelContext, buat objek motorcycle baru
+            motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
+            modelContext.insert(motorcycle)
+            print("Save success")
         }
     }
 }
