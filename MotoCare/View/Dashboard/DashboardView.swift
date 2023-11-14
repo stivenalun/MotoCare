@@ -13,7 +13,7 @@ struct DashboardView: View {
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     @Query var sparepartHistories: [SparepartHistory]
-    @Query var maintenanceHistories: [MaintenanceHistory]
+    @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
     
     @State private var showModal = false
     @State private var isModalPresented = false
@@ -108,7 +108,7 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].maintenanceHistories.last?.sparePartHistory ?? []), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(sparepartHistories: maintenanceHistories.last?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.last?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
                                 
                                 Button(action: {
                                     isUpdateModalPresented.toggle()
@@ -157,9 +157,9 @@ struct DashboardView: View {
         }
     }
     
-    func convertData(history: [SparepartHistory]) -> [GaugeData] {
+    func convertData(sparepartHistories: [SparepartHistory], maintenanceMileage: Int) -> [GaugeData] {
         var gauges = [GaugeData]()
-        for data in history {
+        for data in sparepartHistories {
             var icon = ""
             var checkIntervalInKilometer: Double = 0
             var replaceIntervalInKilometer: Double = 0
@@ -194,13 +194,13 @@ struct DashboardView: View {
             }
             
             let gauge = GaugeData(
-                value: Double(motorcycles[0].currentMileage - (motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0)),
+                value: Double(motorcycles[0].currentMileage - maintenanceMileage),
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
                 labelText: data.name,
                 imageSparePart: image,
-                status: estimateSparepartStatus(lastServiceMillage: motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0,
+                status: estimateSparepartStatus(lastServiceMillage: maintenanceMileage,
                                                 currentMillage: motorcycles[0].currentMileage,
                                                 type: data.sparepartType)
             )

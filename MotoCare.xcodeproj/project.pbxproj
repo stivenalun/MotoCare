@@ -147,9 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				E9AB95772AEFEBAC004EE0F4 /* Motorcycle.swift */,
-				E9AB95792AEFEE5E004EE0F4 /* SparepartData.swift */,
 				E9AB957B2AEFEF9C004EE0F4 /* MaintenanceHistory.swift */,
 				E9AB957D2AEFF0AA004EE0F4 /* SparepartHistory.swift */,
+				E9AB95792AEFEE5E004EE0F4 /* SparepartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
