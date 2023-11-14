@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/stivenalun/Downloads/MotorCareSwiftData 2/MotoCare.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
