@@ -1,10 +1,12 @@
 import SwiftUI
 
-struct ManualView: View {
+struct ManualInputMaintenanceHistory: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     
-    let motorcycle: Motorcycle
+    @Bindable var motorcycle: Motorcycle
+    
+//    @Query private var motorcycle: [Motorcycle]
     
     @State private var isModalPresented = false
     @State private var lastServiceMileage = ""
@@ -139,7 +141,7 @@ struct ManualView: View {
                         
                         VStack{
                             Button {
-                                saveMaintenanceHistory()
+                                addMaintenanceHistory()
                                 isNavigate = true
                             } label: {
                                 Text("Selesai")
@@ -168,27 +170,22 @@ struct ManualView: View {
         }
     }
     
+
     
-    func saveMaintenanceHistory() {
-        let date = Date()
-        var sparepartHistory = [SparepartHistory]()
+    func addMaintenanceHistory() {
+        // MARK: Save maintenance history
+        let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
         
+        motorcycle.maintenanceHistories.append(maintenanceHistory)
+        
+        // MARK: Save sparepart history
         for part in selectedSpareparts {
             let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-            sparepartHistory.append(sparepart)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
-        let maintenance = MaintenanceHistory(date: date,
-                                             maintenanceMileage: Double(lastServiceMileage) ?? 0.0,
-                                             sparePartHistory: sparepartHistory)
-        
-        motorcycle.modelContext?.insert(maintenance)
-        // modelContext.insert(maintenance)
-        do {
-            try motorcycle.modelContext?.save()
-        } catch {
-            print("Failed to save: \(error)")
-        }
+        print("Success saved!")
     }
 }
     

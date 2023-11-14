@@ -12,6 +12,7 @@ struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
+    @Query var sparepartHistories: [SparepartHistory]
     @Query var maintenanceHistories: [MaintenanceHistory]
     
     @State private var showModal = false
@@ -103,11 +104,11 @@ struct DashboardView: View {
                                     .frame(width: 357, height: 132)
                                 }
                                 .onAppear {
-                                    print(motorcycles[0].maintenanceHistory)
+                                    print(motorcycles[0].maintenanceHistories)
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].maintenanceHistory.last?.sparePartHistory ?? []), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(history: motorcycles[0].maintenanceHistories.last?.sparePartHistory ?? []), selectedItem: $selectedItem, showModal: $showModal)
                                 
                                 Button(action: {
                                     isUpdateModalPresented.toggle()
@@ -192,16 +193,18 @@ struct DashboardView: View {
                 
             }
             
-//            let gauge = GaugeData(
-//                value: Double(data.motorcycle?.currentMileage ?? 0) - Double(data.lastServiceMileage),
-//                minimum: 0,
-//                maximum: replaceIntervalInKilometer,
-//                iconSparePart: icon,
-//                labelText: data.name,
-//                imageSparePart: image,
-//                status: estimateSparepartStatus(lastServiceMillage: data.lastServiceMileage, currentMillage: data.motorcycle?.currentMileage ?? 0, type: data.sparepartType)
-//            )
-//            gauges.append(gauge)
+            let gauge = GaugeData(
+                value: Double(motorcycles[0].currentMileage - (motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0)),
+                minimum: 0,
+                maximum: replaceIntervalInKilometer,
+                iconSparePart: icon,
+                labelText: data.name,
+                imageSparePart: image,
+                status: estimateSparepartStatus(lastServiceMillage: motorcycles[0].maintenanceHistories.last?.maintenanceMileage ?? 0,
+                                                currentMillage: motorcycles[0].currentMileage,
+                                                type: data.sparepartType)
+            )
+            gauges.append(gauge)
         }
         return gauges
     }
