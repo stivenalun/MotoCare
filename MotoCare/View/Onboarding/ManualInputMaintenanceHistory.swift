@@ -1,10 +1,12 @@
 import SwiftUI
 
-struct ManualView: View {
+struct ManualInputMaintenanceHistory: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     
-    let motorcycle: Motorcycle
+    @Bindable var motorcycle: Motorcycle
+    
+//    @Query private var motorcycle: [Motorcycle]
     
     @State private var isModalPresented = false
     @State private var lastServiceMileage = ""
@@ -124,9 +126,9 @@ struct ManualView: View {
                             )
                             .padding(.bottom, 5)
                         
-                        Button("+ Sparepart ") {
+                        Button("+ Sparepart") {
                             isModalPresented.toggle()
-                            currentServisSelection = 3
+                            currentServisSelection = 1
                         }
                         .modifier(ButtonStyleModifier())
                         
@@ -139,7 +141,7 @@ struct ManualView: View {
                         
                         VStack{
                             Button {
-                                addSpareparts()
+                                addMaintenanceHistory()
                                 isNavigate = true
                             } label: {
                                 Text("Selesai")
@@ -168,13 +170,22 @@ struct ManualView: View {
         }
     }
     
-    func addSpareparts() {
+
+    
+    func addMaintenanceHistory() {
+        // MARK: Save maintenance history
+        let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
+        
+        motorcycle.maintenanceHistories.append(maintenanceHistory)
+        
+        // MARK: Save sparepart history
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, lastServiceMileage: Int(lastServiceMileage)!, sparepartType: part.type)
-            sparepart.motorcycle = motorcycle
-            // simpen ke database
-            motorcycle.spareparts?.append(sparepart)
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
+        
+        print("Success saved!")
     }
 }
     

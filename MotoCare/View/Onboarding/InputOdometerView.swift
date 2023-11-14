@@ -12,7 +12,7 @@ struct InputOdometerView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     
-    @Query private var motorcycle: [Motorcycle]
+    @State var motorcycle: Motorcycle = Motorcycle()
     
     @State private var currentMileage: String = ""
     @State private var isShowingInputLastReceiptView = false
@@ -34,11 +34,11 @@ struct InputOdometerView: View {
                     .padding(.horizontal, 18)
                     .padding(.top, 10)
                 
-//                Spacer()
-//                    .frame(height: 60)
+                //                Spacer()
+                //                    .frame(height: 60)
                 
-//                LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
-//                    .frame(width: 200, height: 300)
+                //                LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
+                //                    .frame(width: 200, height: 300)
                 
                 Text("Jarak tempuh motormu sudah sampai mana ya?")
                     .font(.system(size: 33))
@@ -78,8 +78,9 @@ struct InputOdometerView: View {
                 Spacer()
                 
                 Button(action: {
-                    motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
-                    modelContext.insert(motorcycleVM.motorcycle)
+//                    motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
+//                    modelContext.insert(motorcycleVM.motorcycle)
+                    saveMotorcycle()
                     isShowingInputLastReceiptView.toggle()
                 }) {
                     Text("Lanjutkan")
@@ -93,12 +94,19 @@ struct InputOdometerView: View {
                 .disabled(isTextFieldEmpty)
             }
             .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
-                InputLastReceiptsView(motorcycle: motorcycleVM.motorcycle)
+                InputLastReceiptsView(motorcycle: motorcycle)
             }
         } .ignoresSafeArea(.keyboard)
+    }
+    
+    func saveMotorcycle() {
+        motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
+        modelContext.insert(motorcycle)
+        print("save success")
+//        path = [motorcycle]
     }
 }
 
 #Preview {
-    InputOdometerView()
+    InputOdometerView(motorcycle: Motorcycle())
 }

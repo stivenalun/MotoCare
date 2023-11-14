@@ -9,7 +9,8 @@ import SwiftUI
 
 struct InputLastReceiptsView: View {
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-    let motorcycle: Motorcycle
+    
+    @Bindable var motorcycle: Motorcycle
     
     @State private var isShowingManualReceiptView = false
     @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
@@ -64,7 +65,7 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView(motorcycle: motorcycleVM.motorcycle), label: {
+                    NavigationLink(destination: ManualInputMaintenanceHistory(motorcycle: motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
@@ -101,7 +102,7 @@ struct InputLastReceiptsView: View {
                 }
             }
             .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualView(motorcycle: motorcycleVM.motorcycle)
+                ManualInputMaintenanceHistory(motorcycle: motorcycle)
             }
         }
     }

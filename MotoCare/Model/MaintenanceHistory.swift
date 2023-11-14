@@ -10,16 +10,13 @@ import SwiftData
 
 @Model
 class MaintenanceHistory {
-    @Attribute(.unique) var id_maintenancehistory: String
     var date: Date
-    var maintenanceMileage: Double
-    @Relationship var sparePartHistory: SparepartHistory
+    var maintenanceMileage: Int
+    @Relationship var sparePartHistory: [SparepartHistory] = [SparepartHistory]()
     
-    init(id_maintenancehistory: String, date: Date, maintenanceMileage: Double, sparePartHistory: SparepartHistory) {
-        self.id_maintenancehistory = id_maintenancehistory
+    init(date: Date, maintenanceMileage: Int) {
         self.date = date
         self.maintenanceMileage = maintenanceMileage
-        self.sparePartHistory = sparePartHistory
     }
     
 }

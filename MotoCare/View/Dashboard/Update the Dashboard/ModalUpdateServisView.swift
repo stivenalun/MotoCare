@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ModalUpdateServisView: View {
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-    let motorcycle: Motorcycle
+    @Bindable var motorcycle: Motorcycle
     
     @State private var isShowingManualReceiptView = false
     @State private var recognizedText = "Now, please scan or manually input your three last maintenance receipt."
@@ -60,7 +61,7 @@ struct ModalUpdateServisView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualView2(motorcycle: motorcycleVM.motorcycle), label: {
+                    NavigationLink(destination: ManualUpdateView(motorcycle: motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
@@ -87,7 +88,7 @@ struct ModalUpdateServisView: View {
                 }
             }
             .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualView(motorcycle: motorcycleVM.motorcycle)
+                ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
             }
         }
     }
