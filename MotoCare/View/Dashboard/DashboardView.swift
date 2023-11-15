@@ -10,7 +10,7 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
-    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+//    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     @Query var sparepartHistories: [SparepartHistory]
     @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
@@ -71,7 +71,7 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-                                                    Text("\(motorcycles[0].currentMileage ) Km")
+                                                    Text("\(motorcycles[0].currentMileage) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
@@ -108,7 +108,14 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(sparepartHistories: maintenanceHistories.last?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.last?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                    .onAppear {
+                                        
+                                        maintenanceHistories.forEach { maintenance in
+                                            print("date: ", maintenance.date)
+                                        }
+                                        
+                                    }
                                 
                                 Button(action: {
                                     isUpdateModalPresented.toggle()

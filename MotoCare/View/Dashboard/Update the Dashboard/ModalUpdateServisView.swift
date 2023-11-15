@@ -79,13 +79,13 @@ struct ModalUpdateServisView: View {
                 )
             }
             .sheet(isPresented: $showingScanningView2) {
-                CameraUpdateView(
-                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
-                )
-                .onDisappear {
-                    isScanned = true
-                    print(isScanned)
-                }
+//                CameraUpdateView(
+//                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
+//                )
+//                .onDisappear {
+//                    isScanned = true
+//                    print(isScanned)
+//                }
             }
             .sheet(isPresented: $isShowingManualReceiptView) {
                 ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)

@@ -16,7 +16,6 @@
 		6DA46FB72AFCCA960068EA15 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA46FB62AFCCA960068EA15 /* SplashView.swift */; };
 		6DD936382AFD3F5300EE7124 /* Done.json in Resources */ = {isa = PBXBuildFile; fileRef = 6DD936372AFD3F5300EE7124 /* Done.json */; };
 		6DD9363C2AFD4ACC00EE7124 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */; };
-		C79805B82B02319B001B753D /* CameraUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79805B72B02319B001B753D /* CameraUpdateView.swift */; };
 		C79805BA2B024AB9001B753D /* UpdateResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79805B92B024AB9001B753D /* UpdateResultView.swift */; };
 		E95F9BE42B021424009C9B53 /* ModalUpdateOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */; };
 		E95F9BE72B021A77009C9B53 /* ModalUpdateServisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */; };
@@ -98,10 +97,10 @@
 			isa = PBXGroup;
 			children = (
 				E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */,
-				C79805B72B02319B001B753D /* CameraUpdateView.swift */,
 				E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */,
-				C79805B92B024AB9001B753D /* UpdateResultView.swift */,
 				E95F9BE82B021E78009C9B53 /* ManualUpdateView.swift */,
+				C79805B72B02319B001B753D /* CameraUpdateView.swift */,
+				C79805B92B024AB9001B753D /* UpdateResultView.swift */,
 			);
 			path = "Update the Dashboard";
 			sourceTree = "<group>";
@@ -482,7 +481,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -513,7 +512,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
