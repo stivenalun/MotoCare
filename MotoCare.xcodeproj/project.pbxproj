@@ -53,7 +53,7 @@
 		6DA46FB62AFCCA960068EA15 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6DD936372AFD3F5300EE7124 /* Done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Done.json; sourceTree = "<group>"; };
 		6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		C7604EC52B03752F00B4BECE /* CameraUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUpdateView.swift; sourceTree = "<group>"; };
+		C79805B72B02319B001B753D /* CameraUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUpdateView.swift; sourceTree = "<group>"; };
 		C79805B92B024AB9001B753D /* UpdateResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultView.swift; sourceTree = "<group>"; };
 		E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateOdometerView.swift; sourceTree = "<group>"; };
 		E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateServisView.swift; sourceTree = "<group>"; };
@@ -102,6 +102,8 @@
 				C79805B92B024AB9001B753D /* UpdateResultView.swift */,
 				C7604EC52B03752F00B4BECE /* CameraUpdateView.swift */,
 				E95F9BE82B021E78009C9B53 /* ManualUpdateView.swift */,
+				C79805B72B02319B001B753D /* CameraUpdateView.swift */,
+				C79805B92B024AB9001B753D /* UpdateResultView.swift */,
 			);
 			path = "Update the Dashboard";
 			sourceTree = "<group>";
@@ -153,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				E9AB95772AEFEBAC004EE0F4 /* Motorcycle.swift */,
-				E9AB95792AEFEE5E004EE0F4 /* SparepartData.swift */,
 				E9AB957B2AEFEF9C004EE0F4 /* MaintenanceHistory.swift */,
 				E9AB957D2AEFF0AA004EE0F4 /* SparepartHistory.swift */,
+				E9AB95792AEFEE5E004EE0F4 /* SparepartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

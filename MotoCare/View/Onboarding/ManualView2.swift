@@ -10,11 +10,10 @@ import SwiftUI
 struct ManualView2: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-    
+
     let motorcycle: Motorcycle
     
-    @State private var servis1 = ""
-    @State private var servis2 = ""
+    @State private var lastServiceMileage = ""
     @FocusState var isInputActive: Bool
     
 
@@ -41,7 +40,7 @@ struct ManualView2: View {
                                     .cornerRadius(10)
                                     .frame(width: 350, height: 35)
                                     .overlay(
-                                        TextField("Jarak tempuh", text: $servis1)
+                                        TextField("Jarak tempuh", text: $lastServiceMileage)
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
@@ -62,8 +61,9 @@ struct ManualView2: View {
                                 VStack{
                                     HStack(spacing:15){
                                         Rectangle()
-                                            .foregroundColor(Color(red: 0.19, green: 0.29, blue: 0.3))
+                                            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                             .frame(width: 120, height: 30)
+    
                                             .cornerRadius(10)
                                             .padding(.leading, -4)
                                             .overlay(
@@ -72,12 +72,12 @@ struct ManualView2: View {
                                                     label: Part.vbelt.rawValue,
                                                     size: 17,
                                                     textSize: 17,
-                                                    imageName: "vbelt",
+                                                    imageName: "v-belt",
                                                     callback: checkboxSelected
                                                 )
                                             )
                                         Rectangle()
-                                            .foregroundColor(Color(red: 0.19, green: 0.29, blue: 0.3))
+                                            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                             .frame(width: 115, height: 30)
                                             .cornerRadius(10)
                                             .padding(.leading, -4)
@@ -87,7 +87,7 @@ struct ManualView2: View {
                                                     label: Part.busi.rawValue,
                                                     size: 17,
                                                     textSize: 17,
-                                                    imageName: "busi",
+                                                    imageName: "spark-plug",
                                                     callback: checkboxSelected
                                                 )
                                             )
@@ -96,7 +96,7 @@ struct ManualView2: View {
                                     
                                     HStack(spacing:15){
                                         Rectangle()
-                                            .foregroundColor(Color(red: 0.19, green: 0.29, blue: 0.3))
+                                            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                             .frame(width: 130, height: 30)
                                             .cornerRadius(10)
                                             .padding(.leading, -4)
@@ -106,12 +106,12 @@ struct ManualView2: View {
                                                     label: Part.airfilter.rawValue,
                                                     size: 17,
                                                     textSize: 17,
-                                                    imageName: "air",
+                                                    imageName: "air-filter",
                                                     callback: checkboxSelected
                                                 )
                                             )
                                         Rectangle()
-                                            .foregroundColor(Color(red: 0.19, green: 0.29, blue: 0.3))
+                                            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                             .frame(width: 145, height: 30)
                                             .cornerRadius(10)
                                             .padding(.leading, -4)
@@ -121,7 +121,7 @@ struct ManualView2: View {
                                                     label: Part.oligardan.rawValue,
                                                     size: 17,
                                                     textSize: 17,
-                                                    imageName: "vbelt",
+                                                    imageName: "final-drive-oil",
                                                     callback: checkboxSelected
                                                 )
                                             )
@@ -130,7 +130,7 @@ struct ManualView2: View {
                                     
                                     HStack(spacing:15){
                                         Rectangle()
-                                            .foregroundColor(Color(red: 0.19, green: 0.29, blue: 0.3))
+                                            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                             .frame(width: 140, height: 30)
                                             .cornerRadius(10)
                                             .padding(.leading, -4)
@@ -140,7 +140,7 @@ struct ManualView2: View {
                                                     label: Part.olimesin.rawValue,
                                                     size: 17,
                                                     textSize: 17,
-                                                    imageName: "vbelt",
+                                                    imageName: "engine-oil",
                                                     callback: checkboxSelected
                                                 )
                                             )
@@ -151,6 +151,14 @@ struct ManualView2: View {
                             .padding()
                             .navigationBarTitle("Manual Input")
                         }
+                    }
+                    NavigationLink(destination: FinishOnboardingView()) {
+                        Text("Selesai")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(width: 335, height: 45)
+                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                            .cornerRadius(11)
                     }
                 }
             }
@@ -197,7 +205,7 @@ struct CheckboxField: View {
             self.callback(self.id, self.isMarked)
         }) {
             HStack(alignment: .center, spacing: 6) {
-                Image(systemName: self.isMarked ? "circle.fill" : "circle")
+                Image(systemName: self.isMarked ? "checkmark.circle.fill" : "circle")
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -222,6 +230,11 @@ enum Part: String {
     case airfilter = "Air Filter"
     case oligardan = "Oli Gardan"
 }
+    
+    
+//#Preview {
+//    ManualView2()
+//}
     
     
 //#Preview {

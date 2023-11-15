@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ManualUpdateView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     
     @Bindable var motorcycle: Motorcycle
+    
+    @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
     
 //    @Query private var motorcycle: [Motorcycle]
     
@@ -108,11 +111,13 @@ struct ManualUpdateView: View {
                                                     maintenanceMileage: Int(lastServiceMileage) ?? 0)
         
         motorcycle.maintenanceHistories.append(maintenanceHistory)
+        print("X: \(maintenanceHistory.date)")
         
         // MARK: Save sparepart history
         for part in selectedSpareparts {
             let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+            print("Y: \(maintenanceHistories.first?.date)")
+            maintenanceHistories.first?.sparePartHistory.append(sparepart)
         }
         
         print("Success saved!")
