@@ -79,7 +79,7 @@ struct ModalUpdateServisView: View {
                 )
             }
             .sheet(isPresented: $showingScanningView2) {
-                CameraUpdateView(
+                CameraUpdateView (
                     recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
                 )
                 .onDisappear {
