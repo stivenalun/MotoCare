@@ -57,9 +57,7 @@ struct ModalUpdateOdometerView: View {
                 
                 VStack{
                     Button(action: {
-//                        motorcycleVM.motorcycle.currentMileage = Int(currentMileage)!
-//                        modelContext.insert(motorcycleVM.motorcycle)
-                        saveMotorcycle()
+                        editMotorcycle()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Simpan")
@@ -74,9 +72,8 @@ struct ModalUpdateOdometerView: View {
             }
         }
     }
-    func saveMotorcycle() {
-        motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
-        modelContext.insert(motorcycle)
+    func editMotorcycle() {
+        motorcycles[0].currentMileage = Int(currentMileage) ?? 0
         print("save success")
 //        path = [motorcycle]
     }

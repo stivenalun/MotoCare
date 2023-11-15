@@ -89,9 +89,9 @@ struct InputLastReceiptsView: View {
                     extractedText6: $extractedText6,
 //                    modelContext: /* berikan nilai modelContext yang sesuai */,
 //                    motorcycleVM: /* berikan nilai motorcycleVM yang sesuai */,
-                    motorcycle: someMotorcycle,
-                    date: someDate,
-                    maintenanceMileage: someMileage
+                    motorcycle: motorcycle
+//                    date: someDate,
+//                    maintenanceMileage: someMileage
                 )
             }
 

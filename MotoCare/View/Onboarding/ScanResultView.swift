@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct ScanResultView: View {
     @State private var text = ""
@@ -11,11 +12,11 @@ struct ScanResultView: View {
     
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-//    let availableSpareparts: [Sparepart] = sparepartData
+    let availableSpareparts: [Sparepart] = sparepartData
     @Bindable var motorcycle: Motorcycle
     @State private var isNavigate = false
-    var date: Date
-    var maintenanceMileage: Int
+//    var date: Date
+//    var maintenanceMileage: Int
     
     var body: some View {
         ScrollView {
@@ -219,30 +220,34 @@ struct ScanResultView: View {
                 .padding(20)
                 
                 // Tombol Selesai
-//                Button {
-//                    addMaintenanceHistory()
-//                    isNavigate = true
-//                } label: {
-//                    Text("Selesai")
-//                        .font(.headline)
-//                        .foregroundColor(.black)
-//                        .frame(width: 335, height: 55, alignment: .center)
-//                        .background(Color("TabIconColor"))
-//                        .cornerRadius(25)
-//                }
-                NavigationLink(destination: FinishOnboardingView()) {
-                                  Text("Selesai")
-                                      .font(.headline)
-                                      .foregroundColor(.black)
-                                      .frame(width: 335, height: 55)
-                                      .background(Color(red: 1, green: 0.83, blue: 0.15))
-                                      .cornerRadius(25)
-                                      .onTapGesture {
-                                          addMaintenanceHistory()
-                                      }
-                    }
+                Button {
+                    addMaintenanceHistory()
+                    isNavigate = true
+                } label: {
+                    Text("Selesai")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(width: 335, height: 55, alignment: .center)
+                        .background(Color("TabIconColor"))
+                        .cornerRadius(25)
+                }
+//                NavigationLink(destination: FinishOnboardingView()) {
+//                                  Text("Selesai")
+//                                      .font(.headline)
+//                                      .foregroundColor(.black)
+//                                      .frame(width: 335, height: 55)
+//                                      .background(Color(red: 1, green: 0.83, blue: 0.15))
+//                                      .cornerRadius(25)
+//                                      .onTapGesture {
+//                                          addMaintenanceHistory()
+//                                          
+//                                      }
+//                    }
             }
             .padding()
+        }
+        .navigationDestination(isPresented: $isNavigate) {
+            FinishOnboardingView()
         }
     }
    func addMaintenanceHistory() {
@@ -272,7 +277,7 @@ struct ScanResultView: View {
             let data = text.components(separatedBy: ",")
 
             for item in data where item != "" {
-                let sparepart = SparepartHistory(name: item, sparepartType: .olimesin) // Ganti "TypePlaceholder" dengan tipe yang sesuai
+                let sparepart = SparepartHistory(name: item, sparepartType: .olimesin)
                 motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
             }
         }
