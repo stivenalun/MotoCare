@@ -108,14 +108,8 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
-                                    .onAppear {
-                                        
-                                        maintenanceHistories.forEach { maintenance in
-                                            print("date: ", maintenance.date)
-                                        }
-                                        
-                                    }
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData2(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                    
                                 
                                 Button(action: {
                                     isUpdateModalPresented.toggle()
@@ -212,6 +206,70 @@ struct DashboardView: View {
                                                 type: data.sparepartType)
             )
             gauges.append(gauge)
+        }
+        return gauges
+    }
+    
+    func convertData2(spareparts: [Sparepart], sparepartHistories: [SparepartHistory], maintenanceMileage: Int) -> [GaugeData] {
+        var gauges = [GaugeData]()
+        for data in spareparts {
+            var icon = ""
+            var checkIntervalInKilometer: Double = 0
+            var replaceIntervalInKilometer: Double = 0
+            var image = ""
+            switch data.type {
+            case .busi:
+                icon = "spark-plug"
+                checkIntervalInKilometer = 4000
+                replaceIntervalInKilometer = 8000
+                image = "SparkPlugImage"
+            case .vbelt:
+                icon = "v-belt"
+                checkIntervalInKilometer = 8000
+                replaceIntervalInKilometer = 25000
+                image = "VBeltImage"
+            case .olimesin:
+                icon = "engine-oil"
+                checkIntervalInKilometer = 4000
+                replaceIntervalInKilometer = 4000
+                image = "EngineOilImage"
+            case .oligardan:
+                icon = "final-drive-oil"
+                checkIntervalInKilometer = 4000
+                replaceIntervalInKilometer = 12000
+                image = "FinalDriveOilImage"
+            case .airfilter:
+                icon = "air-filter"
+                checkIntervalInKilometer = 16000
+                replaceIntervalInKilometer = 16000
+                image = "AirFilterImage"
+                
+            }
+            
+            var gauge = GaugeData(
+                value: Double(motorcycles[0].currentMileage - maintenanceMileage),
+                minimum: 0,
+                maximum: replaceIntervalInKilometer,
+                iconSparePart: icon,
+                labelText: data.name,
+                imageSparePart: image,
+                status: estimateSparepartStatus(lastServiceMillage: maintenanceMileage,
+                                                currentMillage: motorcycles[0].currentMileage,
+                                                type: data.type)
+            )
+            sparepartHistories.forEach { spHistory in
+                if data.type == spHistory.sparepartType {
+                    print("ada")
+                }
+            }
+            if let sparepart = sparepartHistories.first(where: { $0.sparepartType == data.type }) {
+                gauges.append(gauge)
+            } else {
+                gauge.value = 0
+                gauge.status = .none
+                gauges.append(gauge)
+            }
+            
         }
         return gauges
     }
@@ -344,6 +402,7 @@ enum SparepartStatus: String {
     case ganti = "GANTI"
     case periksa = "PERIKSA"
     case aman = "AMAN"
+    case none = "NO DATA"
     
     var sparepartStatusValue: String {
         switch self {
@@ -353,6 +412,8 @@ enum SparepartStatus: String {
             return "CEK"
         case .aman:
             return "AMAN"
+        case .none:
+            return "NO DATA"
         }
     }
     
@@ -364,6 +425,8 @@ enum SparepartStatus: String {
             return "questionmark.circle"
         case .aman:
             return "checkmark.circle"
+        case .none:
+            return "autostartstop.trianglebadge.exclamationmark"
         }
     }
     
@@ -375,7 +438,10 @@ enum SparepartStatus: String {
             return .yellow
         case .aman:
             return .green
+        default:
+            return .gray
         }
+        
     }
     
     var modalStatus: String {
@@ -386,6 +452,8 @@ enum SparepartStatus: String {
             return "Lakukan Pemeriksaan"
         case .aman:
             return "Kondisi Bagus"
+        default:
+            return "No Data"
         }
     }
 }
