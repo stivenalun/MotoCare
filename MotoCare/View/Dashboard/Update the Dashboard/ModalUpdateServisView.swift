@@ -17,7 +17,7 @@ struct ModalUpdateServisView: View {
     @State private var showingScanningView2 = false
     
     @State var extractedUpdatedText1: String?
-    @State var extractedUpdatedText2: String?
+    @State var UpdatescannedServiceMileage: String?
     @State var isScanned: Bool = false
     
     var body: some View {
@@ -75,12 +75,12 @@ struct ModalUpdateServisView: View {
             .navigationDestination(isPresented: $isScanned) {
                 UpdateScanResultView (
                     extractedUpdatedText1: $extractedUpdatedText1,
-                    extractedUpdatedText2: $extractedUpdatedText2, motorcycle: motorcycle
+                    UpdatescannedServiceMileage: $UpdatescannedServiceMileage, motorcycle: motorcycle
                 )
             }
             .sheet(isPresented: $showingScanningView2) {
                 CameraUpdateView (
-                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
+                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, UpdatescannedServiceMileage: $UpdatescannedServiceMileage
                 )
                 .onDisappear {
                     isScanned = true

@@ -233,18 +233,6 @@ struct ScanResultView: View {
                         .background(Color("TabIconColor"))
                         .cornerRadius(25)
                 }
-//                NavigationLink(destination: FinishOnboardingView()) {
-//                                  Text("Selesai")
-//                                      .font(.headline)
-//                                      .foregroundColor(.black)
-//                                      .frame(width: 335, height: 55)
-//                                      .background(Color(red: 1, green: 0.83, blue: 0.15))
-//                                      .cornerRadius(25)
-//                                      .onTapGesture {
-//                                          addMaintenanceHistory()
-//                                          
-//                                      }
-//                    }
             }
             .padding()
         }
@@ -253,29 +241,38 @@ struct ScanResultView: View {
         }
     }
     
-   func addMaintenanceHistory() {
+//   func addMaintenanceHistory() {
+//        // MARK: Save maintenance history
+//        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
+//        motorcycle.maintenanceHistories.append(maintenanceHistory)
+//       
+//       if let extractedText1 = extractedText1 {
+//                   do {
+//                       try saveSparePartHistory(from: extractedText1)
+//                   } catch {
+//                       print("Error saving spare part history: \(error)")
+//                   }
+//               }
+//
+//        print("Success saved!")
+//    }
+    
+    func addMaintenanceHistory() {
         // MARK: Save maintenance history
         let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
         motorcycle.maintenanceHistories.append(maintenanceHistory)
-       
-       if let extractedText1 = extractedText1 {
-                   do {
-                       try saveSparePartHistory(from: extractedText1)
-                   } catch {
-                       print("Error saving spare part history: \(error)")
-                   }
-               }
-
-//        if let extractedText1 = extractedText1 {
-//            try saveSparePartHistory(from: extractedText1)
-//        }
-//        if let extractedText3 = extractedText3 {
-//            saveSparePartHistory(from: extractedText3)
-//        }
-//        if let extractedText5 = extractedText5 {
-//            saveSparePartHistory(from: extractedText5)
-//        }
-
+        
+        // MARK: Save sparepart history
+        let extractedTexts = [extractedText1, extractedText3, extractedText5].compactMap { $0 }
+        
+        for extractedText in extractedTexts {
+            do {
+                try saveSparePartHistory(from: extractedText)
+            } catch {
+                print("Error saving spare part history: \(error)")
+            }
+        }
+        
         print("Success saved!")
     }
     
@@ -309,59 +306,6 @@ struct ScanResultView: View {
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
     }
-
-    
-//    func saveSparePartHistory(from text: String) throws {
-//       let data = text.components(separatedBy: ",")
-//
-//       for item in data where item != "" {
-//           print ("Item: \(item)")
-//           let sparepartType: SparepartType
-//           switch item {
-//           case "Air Filter":
-//               sparepartType = .airfilter
-//           case "Busi":
-//               sparepartType = .busi
-//           case "Oli Gardan":
-//               sparepartType = .oligardan
-//           case "Oli Mesin":
-//               sparepartType = .olimesin
-//           case "V-Belt":
-//               sparepartType = .vbelt
-//           // tambahkan case lainnya di sini untuk jenis sparepart lainnya
-//           default:
-//               sparepartType = .vbelt // default jika jenis sparepart tidak dikenal
-//           }
-//           let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
-//           motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
-//       }
-//    }
-
-    
-//    func saveSparePartHistory(from text: String) {
-//            let data = text.components(separatedBy: ",")
-//
-//            for item in data where item != "" {
-//                let sparepart = SparepartHistory(name: item, sparepartType: .olimesin)
-//                motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
-//            }
-//        }
-    
-//    func addMaintenanceHistory() {
-//        // MARK: Save maintenance history
-//        let maintenanceHistory = MaintenanceHistory(date: Date(),
-//                                                    maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
-//        
-//        motorcycle.maintenanceHistories.append(maintenanceHistory)
-//        
-//        // MARK: Save sparepart history
-//        for part in selectedSpareparts {
-//            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-//            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
-//        }
-//        
-//        print("Success saved!")
-//    }
 }
 
 // Preview

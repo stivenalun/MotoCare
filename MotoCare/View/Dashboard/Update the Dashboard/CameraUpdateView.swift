@@ -21,10 +21,10 @@ struct CameraUpdateView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
     @Binding var extractedUpdatedText1: String?
-    @Binding var extractedUpdatedText2: String?
+    @Binding var UpdatescannedServiceMileage: String?
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2, parent: self)
+        Coordinator(recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, UpdatescannedServiceMileage: $UpdatescannedServiceMileage, parent: self)
     }
     
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
@@ -40,20 +40,20 @@ struct CameraUpdateView: UIViewControllerRepresentable {
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
         var recognizedText: Binding<String>
         var extractedUpdatedText1: Binding<String?>
-        var extractedUpdatedText2: Binding<String?>
+        var UpdatescannedServiceMileage: Binding<String?>
         var parent: CameraUpdateView
         
-        init(recognizedText: Binding<String>, extractedUpdatedText1: Binding<String?>, extractedUpdatedText2: Binding<String?>, parent: CameraUpdateView) {
+        init(recognizedText: Binding<String>, extractedUpdatedText1: Binding<String?>, UpdatescannedServiceMileage: Binding<String?>, parent: CameraUpdateView) {
             self.recognizedText = recognizedText
             self.extractedUpdatedText1 = extractedUpdatedText1
-            self.extractedUpdatedText2 = extractedUpdatedText2
+            self.UpdatescannedServiceMileage = UpdatescannedServiceMileage
             self.parent = parent
         }
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             let extractedImages = extractImages(from: scan, targetIndexes: [0, 1, 2])
             var processedUpdatedText1 = recognizeAndExtractText1(from: extractedImages, targetText: "Ganti")
-            var processedUpdatedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "km.")
+            var processedUpdatedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "Km")
             
             
             processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "Ganti", with: "")
@@ -77,7 +77,7 @@ struct CameraUpdateView: UIViewControllerRepresentable {
             
             recognizedText.wrappedValue = processedUpdatedText1 + processedUpdatedText2
             extractedUpdatedText1.wrappedValue = processedUpdatedText1
-            self.extractedUpdatedText2.wrappedValue = processedUpdatedText2
+            self.UpdatescannedServiceMileage.wrappedValue = processedUpdatedText2
             parent.presentationMode.wrappedValue.dismiss()
         }
         

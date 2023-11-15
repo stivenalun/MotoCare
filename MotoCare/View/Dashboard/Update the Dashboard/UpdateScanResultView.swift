@@ -10,13 +10,16 @@ import SwiftUI
 struct UpdateScanResultView: View {
     @State private var text = ""
     @Binding var extractedUpdatedText1: String?
-    @Binding var extractedUpdatedText2: String?
+    @Binding var UpdatescannedServiceMileage: String?
     
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     let availableSpareparts: [Sparepart] = sparepartData
     @Bindable var motorcycle: Motorcycle
     @State private var isNavigate = false
+//    var date: Date
+//    var maintenanceMileage: Int
+    @State private var scannedSpareparts: [Sparepart] = []
     
     
     var body: some View {
@@ -45,12 +48,12 @@ struct UpdateScanResultView: View {
                         
                         TextField("xxx kilometer", text: Binding<String>(
                             get: {
-                                return extractedUpdatedText2 ?? ""
+                                return UpdatescannedServiceMileage ?? ""
                             },
                             set: { newValue in
-                                if let distance = Int(extractedUpdatedText2 ?? "") {
+                                if let distance = Int(UpdatescannedServiceMileage ?? "") {
                                     let newDistance = distance - 3100
-                                    extractedUpdatedText2 = String(newDistance)
+                                    UpdatescannedServiceMileage = String(newDistance)
                                 } else {
                                     print("Invalid input")
                                 }
@@ -110,27 +113,54 @@ struct UpdateScanResultView: View {
             .padding()
         }
         .navigationDestination(isPresented: $isNavigate) {
-            DashboardView()
+            FinishOnboardingView()
         }
     }
+    
     func addScanMaintenanceHistory() {
-         let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(extractedUpdatedText2 ?? "") ?? 0)
+         let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(UpdatescannedServiceMileage ?? "") ?? 0)
          motorcycle.maintenanceHistories.append(maintenanceHistory)
         
-         if let extractedUpdatedText1 = extractedUpdatedText1 {
-             saveUpdateSparePartHistory(from: extractedUpdatedText1)
-         }
+        if let extractedUpdateText1 = extractedUpdatedText1 {
+                    do {
+                        try saveScanSparePartHistory(from: extractedUpdateText1)
+                    } catch {
+                        print("Error saving spare part history: \(error)")
+                    }
+                }
          print("Success saved!")
      }
-    func saveUpdateSparePartHistory(from text: String) {
-            let data = text.components(separatedBy: ",")
-        
+    func saveScanSparePartHistory(from text: String) throws {
+        let data = text.components(separatedBy: ",")
 
         for item in data where item != "" {
-            let sparepart = SparepartHistory(name: item, sparepartType: .airfilter)
-                motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+            print ("Item: \(item)")
+
+            let lowercaseItem = item.lowercased()
+            let sparepartType: SparepartType
+
+            switch lowercaseItem {
+            case "airfilter":
+                sparepartType = .airfilter
+            case "busi":
+                sparepartType = .busi
+            case "oligardan":
+                sparepartType = .oligardan
+            case "olimesin":
+                sparepartType = .olimesin
+            case "vbelt":
+                sparepartType = .vbelt
+            default:
+                // Handle jika jenis sparepart tidak dikenal
+                print("Jenis sparepart tidak dikenal: \(item)")
+                continue
             }
+
+            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
+    }
+    
 }
 
 // Preview
