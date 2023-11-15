@@ -36,7 +36,7 @@ struct Sparepart: Identifiable, Equatable {
     }
 }
 
-enum SparepartType: Codable {
+enum SparepartType: String, Codable {
     case busi
     case vbelt
     case olimesin

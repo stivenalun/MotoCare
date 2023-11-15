@@ -75,7 +75,7 @@ struct ManualUpdateView: View {
                         
                         VStack{
                             Button {
-                                addMaintenanceHistory()
+                                updateMaintenanceHistory()
                                 isNavigate = true
                             } label: {
                                 Text("Selesai")
@@ -105,7 +105,7 @@ struct ManualUpdateView: View {
     }
     
     
-    func addMaintenanceHistory() {
+    func updateMaintenanceHistory() {
         // MARK: Save maintenance history
         let maintenanceHistory = MaintenanceHistory(date: Date(),
                                                     maintenanceMileage: Int(lastServiceMileage) ?? 0)

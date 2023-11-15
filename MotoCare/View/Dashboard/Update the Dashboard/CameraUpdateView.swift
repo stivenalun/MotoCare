@@ -16,6 +16,8 @@ extension CharacterSet {
 }
 
 struct CameraUpdateView: UIViewControllerRepresentable {
+    @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String
     @Binding var extractedUpdatedText1: String?

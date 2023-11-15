@@ -7,10 +7,16 @@
 
 import SwiftUI
 
-struct UpdateResultView: View {
+struct UpdateScanResultView: View {
     @State private var text = ""
     @Binding var extractedUpdatedText1: String?
     @Binding var extractedUpdatedText2: String?
+    
+    @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let availableSpareparts: [Sparepart] = sparepartData
+    @Bindable var motorcycle: Motorcycle
+    @State private var isNavigate = false
     
     
     var body: some View {
@@ -89,26 +95,50 @@ struct UpdateResultView: View {
                 .padding(20)
                 
                 // Tombol Selesai
-                NavigationLink(destination: FinishOnboardingView()) {
-                    Text("Yeay Selesai")
+                Button {
+                    addScanMaintenanceHistory()
+                    isNavigate = true
+                } label: {
+                    Text("Selesai")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 335, height: 55)
-                        .background(Color(red: 1, green: 0.83, blue: 0.15))
+                        .frame(width: 335, height: 55, alignment: .center)
+                        .background(Color("TabIconColor"))
                         .cornerRadius(25)
                 }
             }
             .padding()
         }
+        .navigationDestination(isPresented: $isNavigate) {
+            DashboardView()
+        }
     }
+    func addScanMaintenanceHistory() {
+         let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(extractedUpdatedText2 ?? "") ?? 0)
+         motorcycle.maintenanceHistories.append(maintenanceHistory)
+        
+         if let extractedUpdatedText1 = extractedUpdatedText1 {
+             saveUpdateSparePartHistory(from: extractedUpdatedText1)
+         }
+         print("Success saved!")
+     }
+    func saveUpdateSparePartHistory(from text: String) {
+            let data = text.components(separatedBy: ",")
+        
+
+        for item in data where item != "" {
+            let sparepart = SparepartHistory(name: item, sparepartType: .airfilter)
+                motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+            }
+        }
 }
 
 // Preview
-struct UpdateResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdateResultView(
-            extractedUpdatedText1: .constant(""),
-            extractedUpdatedText2: .constant("")
-        )
-    }
-}
+//struct UpdateResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UpdateResultView(
+//            extractedUpdatedText1: .constant(""),
+//            extractedUpdatedText2: .constant("")
+//        )
+//    }
+//}

@@ -82,7 +82,7 @@ struct InputLastReceiptsView: View {
             .navigationDestination(isPresented: $isScanned) {
                 ScanResultView (
                     extractedText1: $extractedText1,
-                    extractedText2: $extractedText2,
+                    scannedServiceMileage: $extractedText2,
                     extractedText3: $extractedText3,
                     extractedText4: $extractedText4,
                     extractedText5: $extractedText5,

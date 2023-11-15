@@ -69,26 +69,27 @@ struct ModalUpdateServisView: View {
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                     } )
-
+                    
                 } .padding(.bottom, 30)
             }
             .navigationDestination(isPresented: $isScanned) {
-                UpdateResultView (
+                UpdateScanResultView (
                     extractedUpdatedText1: $extractedUpdatedText1,
-                    extractedUpdatedText2: $extractedUpdatedText2
+                    extractedUpdatedText2: $extractedUpdatedText2, motorcycle: motorcycle
                 )
             }
             .sheet(isPresented: $showingScanningView2) {
-//                CameraUpdateView(
-//                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
-//                )
-//                .onDisappear {
-//                    isScanned = true
-//                    print(isScanned)
-//                }
-            }
-            .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
+                CameraUpdateView (
+                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
+                )
+                .onDisappear {
+                    isScanned = true
+                    print(isScanned)
+                    //                }
+                }
+                .sheet(isPresented: $isShowingManualReceiptView) {
+                    ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
+                }
             }
         }
     }

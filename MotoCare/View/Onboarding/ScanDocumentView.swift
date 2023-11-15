@@ -72,10 +72,15 @@ struct ScanDocumentView: UIViewControllerRepresentable {
             processedText3 = processedText3.replacingOccurrences(of: "Ganti", with: "")
             processedText5 = processedText5.replacingOccurrences(of: "Ganti", with: "")
             
+            //hapus spasinya
+            processedText1 = processedText1.replacingOccurrences(of: " ", with: "")
+            processedText3 = processedText3.replacingOccurrences(of: " ", with: "")
+            processedText5 = processedText5.replacingOccurrences(of: " ", with: "")
+            
             // Mengganti "Oli Gear" dengan "Oli Gardan"
-            processedText1 = processedText1.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
-            processedText3 = processedText3.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
-            processedText5 = processedText5.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
+            processedText1 = processedText1.replacingOccurrences(of: "OliGear", with: "OliGardan")
+            processedText3 = processedText3.replacingOccurrences(of: "OliGear", with: "OliGardan")
+            processedText5 = processedText5.replacingOccurrences(of: "OliGear", with: "OliGardan")
             
             processedText2 = cleanString(processedText2)
             processedText4 = cleanString(processedText4)
