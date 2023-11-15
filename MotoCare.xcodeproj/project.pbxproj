@@ -16,6 +16,7 @@
 		6DA46FB72AFCCA960068EA15 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA46FB62AFCCA960068EA15 /* SplashView.swift */; };
 		6DD936382AFD3F5300EE7124 /* Done.json in Resources */ = {isa = PBXBuildFile; fileRef = 6DD936372AFD3F5300EE7124 /* Done.json */; };
 		6DD9363C2AFD4ACC00EE7124 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */; };
+		C7604EC62B03752F00B4BECE /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C79805BA2B024AB9001B753D /* UpdateResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79805B92B024AB9001B753D /* UpdateResultView.swift */; };
 		E95F9BE42B021424009C9B53 /* ModalUpdateOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */; };
 		E95F9BE72B021A77009C9B53 /* ModalUpdateServisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */; };
@@ -40,7 +41,6 @@
 		E9AB95C92AF03578004EE0F4 /* MaintenanceHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95C82AF03578004EE0F4 /* MaintenanceHistoryView.swift */; };
 		E9AB95CB2AF03591004EE0F4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB95CA2AF03591004EE0F4 /* SettingsView.swift */; };
 		E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */; };
-		E9E2CE742B04BF1300B612C9 /* CameraUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2CE732B04BF1300B612C9 /* CameraUpdateView.swift */; };
 		E9E6491A2AFEA56100288DF7 /* MotorcycleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +53,7 @@
 		6DA46FB62AFCCA960068EA15 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		6DD936372AFD3F5300EE7124 /* Done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Done.json; sourceTree = "<group>"; };
 		6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		C79805B72B02319B001B753D /* CameraUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUpdateView.swift; sourceTree = "<group>"; };
 		C79805B92B024AB9001B753D /* UpdateResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultView.swift; sourceTree = "<group>"; };
 		E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateOdometerView.swift; sourceTree = "<group>"; };
 		E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateServisView.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		E9AB95C82AF03578004EE0F4 /* MaintenanceHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceHistoryView.swift; sourceTree = "<group>"; };
 		E9AB95CA2AF03591004EE0F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E9AC4E072AF0F9A0001DDCF3 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
-		E9E2CE732B04BF1300B612C9 /* CameraUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUpdateView.swift; sourceTree = "<group>"; };
 		E9E649192AFEA56100288DF7 /* MotorcycleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 				E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */,
 				E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */,
 				E95F9BE82B021E78009C9B53 /* ManualUpdateView.swift */,
-				E9E2CE732B04BF1300B612C9 /* CameraUpdateView.swift */,
+				C79805B72B02319B001B753D /* CameraUpdateView.swift */,
 				C79805B92B024AB9001B753D /* UpdateResultView.swift */,
 			);
 			path = "Update the Dashboard";
@@ -315,7 +315,7 @@
 				6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */,
 				E9AB95782AEFEBAC004EE0F4 /* Motorcycle.swift in Sources */,
 				C79805BA2B024AB9001B753D /* UpdateResultView.swift in Sources */,
-				E9E2CE742B04BF1300B612C9 /* CameraUpdateView.swift in Sources */,
+				C7604EC62B03752F00B4BECE /* (null) in Sources */,
 				E9AB95BB2AF03428004EE0F4 /* InputOdometerView.swift in Sources */,
 				6D6DA0922AFB40E600A00673 /* LottieView.swift in Sources */,
 				6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */,
@@ -468,7 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = GNTKTFQL7U;
+				DEVELOPMENT_TEAM = 8F62H4MXUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -483,7 +483,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -499,7 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = GNTKTFQL7U;
+				DEVELOPMENT_TEAM = 8F62H4MXUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -514,7 +514,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ann.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

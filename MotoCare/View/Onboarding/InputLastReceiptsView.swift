@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct InputLastReceiptsView: View {
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-    
+    let someMotorcycle = Motorcycle(/* berikan parameter yang sesuai */)
+    let someDate = Date(/* berikan parameter yang sesuai */)
+    let someMileage = 10000 // Berikan nilai mileage yang sesuai
     @Bindable var motorcycle: Motorcycle
     
     @State private var isShowingManualReceiptView = false
@@ -83,12 +86,19 @@ struct InputLastReceiptsView: View {
                     extractedText3: $extractedText3,
                     extractedText4: $extractedText4,
                     extractedText5: $extractedText5,
-                    extractedText6: $extractedText6
+                    extractedText6: $extractedText6,
+//                    modelContext: /* berikan nilai modelContext yang sesuai */,
+//                    motorcycleVM: /* berikan nilai motorcycleVM yang sesuai */,
+                    motorcycle: motorcycle
+//                    date: someDate,
+//                    maintenanceMileage: someMileage
                 )
             }
+
+
             .sheet(isPresented: $showingScanningView) {
                 ScanDocumentView (
-                    recognizedText: $recognizedText,
+                    recognizedText: $recognizedText, 
                     extractedText1: $extractedText1,
                     extractedText2: $extractedText2,
                     extractedText3: $extractedText3,

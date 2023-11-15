@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct ScanResultView: View {
     @State private var text = ""
@@ -8,6 +9,14 @@ struct ScanResultView: View {
     @Binding var extractedText4: String?
     @Binding var extractedText5: String?
     @Binding var extractedText6: String?
+    
+    @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let availableSpareparts: [Sparepart] = sparepartData
+    @Bindable var motorcycle: Motorcycle
+    @State private var isNavigate = false
+//    var date: Date
+//    var maintenanceMileage: Int
     
     var body: some View {
         ScrollView {
@@ -211,31 +220,80 @@ struct ScanResultView: View {
                 .padding(20)
                 
                 // Tombol Selesai
-                NavigationLink(destination: FinishOnboardingView()) {
+                Button {
+                    addMaintenanceHistory()
+                    isNavigate = true
+                } label: {
                     Text("Selesai")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 335, height: 55)
-                        .background(Color(red: 1, green: 0.83, blue: 0.15))
+                        .frame(width: 335, height: 55, alignment: .center)
+                        .background(Color("TabIconColor"))
                         .cornerRadius(25)
                 }
+//                NavigationLink(destination: FinishOnboardingView()) {
+//                                  Text("Selesai")
+//                                      .font(.headline)
+//                                      .foregroundColor(.black)
+//                                      .frame(width: 335, height: 55)
+//                                      .background(Color(red: 1, green: 0.83, blue: 0.15))
+//                                      .cornerRadius(25)
+//                                      .onTapGesture {
+//                                          addMaintenanceHistory()
+//                                          
+//                                      }
+//                    }
             }
             .padding()
         }
+        .navigationDestination(isPresented: $isNavigate) {
+            FinishOnboardingView()
+        }
     }
+   func addMaintenanceHistory() {
+        // MARK: Save maintenance history
+        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(extractedText2 ?? "") ?? 0)
+        motorcycle.maintenanceHistories.append(maintenanceHistory)
+
+        // MARK: Save sparepart history for Servis 1
+        if let extractedText1 = extractedText1 {
+            saveSparePartHistory(from: extractedText1)
+        }
+
+        // MARK: Save sparepart history for Servis 2
+        if let extractedText3 = extractedText3 {
+            saveSparePartHistory(from: extractedText3)
+        }
+
+        // MARK: Save sparepart history for Servis 3
+        if let extractedText5 = extractedText5 {
+            saveSparePartHistory(from: extractedText5)
+        }
+
+        print("Success saved!")
+    }
+    
+    func saveSparePartHistory(from text: String) {
+            let data = text.components(separatedBy: ",")
+
+            for item in data where item != "" {
+                let sparepart = SparepartHistory(name: item, sparepartType: .olimesin)
+                motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+            }
+        }
 }
 
 // Preview
-struct ScanResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScanResultView(
-            extractedText1: .constant(""),
-            extractedText2: .constant(""),
-            extractedText3: .constant(""),
-            extractedText4: .constant(""),
-            extractedText5: .constant(""),
-            extractedText6: .constant("")
-        )
-    }
-}
+//struct ScanResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScanResultView(
+//            extractedText1: .constant(""),
+//            extractedText2: .constant(""),
+//            extractedText3: .constant(""),
+//            extractedText4: .constant(""),
+//            extractedText5: .constant(""),
+//            extractedText6: .constant("")
+//        )
+//    }
+//}
 

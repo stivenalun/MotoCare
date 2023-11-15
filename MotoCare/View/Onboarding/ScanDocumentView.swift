@@ -9,6 +9,11 @@ extension CharacterSet {
 }
 
 struct ScanDocumentView: UIViewControllerRepresentable {
+    @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let someMotorcycle = Motorcycle(/* berikan parameter yang sesuai */)
+    let someDate = Date(/* berikan parameter yang sesuai */)
+    let someMileage = 10000 // Berikan nilai mileage yang sesuai
     @Environment(\.presentationMode) var presentationMode
     @Binding var recognizedText: String // Menggunakan @Binding
     @Binding var extractedText1: String?

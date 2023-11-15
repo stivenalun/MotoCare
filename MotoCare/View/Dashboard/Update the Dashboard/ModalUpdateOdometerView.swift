@@ -72,7 +72,6 @@ struct ModalUpdateOdometerView: View {
             }
         }
     }
-    
     func editMotorcycle() {
         motorcycles[0].currentMileage = Int(currentMileage) ?? 0
         print("save success")
