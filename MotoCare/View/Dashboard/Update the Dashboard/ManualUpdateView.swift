@@ -10,6 +10,7 @@ import SwiftData
 
 struct ManualUpdateView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     
     @Bindable var motorcycle: Motorcycle

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct ManualInputMaintenanceHistory: View {
     @Environment(\.modelContext) var modelContext
