@@ -285,7 +285,7 @@ struct DashboardView: View {
             sparepart.type == type
         }.first?.replaceIntervalInKilometer) else { return .aman }
         
-        if totalMillageFromService <= checkIntervalMillage && totalMillageFromService >= replaceIntervalMillage {
+        if totalMillageFromService >= checkIntervalMillage && totalMillageFromService <= replaceIntervalMillage {
             return .periksa
         } else if totalMillageFromService >= replaceIntervalMillage {
             return .ganti
