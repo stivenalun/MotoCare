@@ -97,7 +97,7 @@ struct ManualUpdateView: View {
                         .presentationDetents([.large, .medium, .fraction(0.40)])
                     }
                     .navigationDestination(isPresented: $isNavigate) {
-                        FinishOnboardingView()
+                        FinishUpdateView()
                     }
                 }
             }
@@ -111,12 +111,12 @@ struct ManualUpdateView: View {
                                                     maintenanceMileage: Int(lastServiceMileage) ?? 0)
         
         motorcycle.maintenanceHistories.append(maintenanceHistory)
-        print("X: \(maintenanceHistory.date)")
+//        print("X: \(maintenanceHistory.date)")
         
         // MARK: Save sparepart history
         for part in selectedSpareparts {
             let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-            print("Y: \(maintenanceHistories.first?.date)")
+//            print("Y: \(maintenanceHistories.first?.date)")
             maintenanceHistories.first?.sparePartHistory.append(sparepart)
         }
         

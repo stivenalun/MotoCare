@@ -17,8 +17,10 @@ struct DashboardView: View {
     
     @State private var showModal = false
     @State private var isModalPresented = false
-    @State private var isUpdateModalPresented = false
+//    @State private var isUpdateModalPresented = false
     @State private var selectedItem: GaugeData?
+    
+    @AppStorage("modalopen") var isUpdateModalPresented = false
     
     var body: some View {
         NavigationView {
@@ -285,7 +287,7 @@ struct DashboardView: View {
             sparepart.type == type
         }.first?.replaceIntervalInKilometer) else { return .aman }
         
-        if totalMillageFromService >= checkIntervalMillage && totalMillageFromService <= replaceIntervalMillage {
+        if totalMillageFromService <= checkIntervalMillage && totalMillageFromService >= replaceIntervalMillage {
             return .periksa
         } else if totalMillageFromService >= replaceIntervalMillage {
             return .ganti
