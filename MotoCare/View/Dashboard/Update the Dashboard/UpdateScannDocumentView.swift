@@ -15,7 +15,7 @@ extension CharacterSet {
     }
 }
 
-struct CameraUpdateView: UIViewControllerRepresentable {
+struct UpdateScannDocumentView: UIViewControllerRepresentable {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -41,9 +41,9 @@ struct CameraUpdateView: UIViewControllerRepresentable {
         var recognizedText: Binding<String>
         var extractedUpdatedText1: Binding<String?>
         var UpdatescannedServiceMileage: Binding<String?>
-        var parent: CameraUpdateView
+        var parent: UpdateScannDocumentView
         
-        init(recognizedText: Binding<String>, extractedUpdatedText1: Binding<String?>, UpdatescannedServiceMileage: Binding<String?>, parent: CameraUpdateView) {
+        init(recognizedText: Binding<String>, extractedUpdatedText1: Binding<String?>, UpdatescannedServiceMileage: Binding<String?>, parent: UpdateScannDocumentView) {
             self.recognizedText = recognizedText
             self.extractedUpdatedText1 = extractedUpdatedText1
             self.UpdatescannedServiceMileage = UpdatescannedServiceMileage
