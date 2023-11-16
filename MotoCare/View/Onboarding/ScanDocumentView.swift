@@ -61,21 +61,31 @@ struct ScanDocumentView: UIViewControllerRepresentable {
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
             let extractedImages = extractImages(from: scan, targetIndexes: [0, 1, 2])
             var processedText1 = recognizeAndExtractText1(from: extractedImages, targetText: "Ganti")
-            var processedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "km.")
+            var processedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "Km")
             var processedText3 = recognizeAndExtractText3(from: extractedImages, targetText: "Ganti")
-            var processedText4 = recognizeAndExtractText4(from: extractedImages, targetText: "km.")
+            var processedText4 = recognizeAndExtractText4(from: extractedImages, targetText: "Km")
             var processedText5 = recognizeAndExtractText5(from: extractedImages, targetText: "Ganti")
-            var processedText6 = recognizeAndExtractText6(from: extractedImages, targetText: "km.")
+            var processedText6 = recognizeAndExtractText6(from: extractedImages, targetText: "Km")
             
             // Menghapus "Ganti" dari processedText1
             processedText1 = processedText1.replacingOccurrences(of: "Ganti", with: "")
             processedText3 = processedText3.replacingOccurrences(of: "Ganti", with: "")
             processedText5 = processedText5.replacingOccurrences(of: "Ganti", with: "")
             
+            //hapus spasinya
+            processedText1 = processedText1.replacingOccurrences(of: " ", with: "")
+            processedText3 = processedText3.replacingOccurrences(of: " ", with: "")
+            processedText5 = processedText5.replacingOccurrences(of: " ", with: "")
+            
+            //hapus -
+            processedText1 = processedText1.replacingOccurrences(of: "-", with: "")
+            processedText3 = processedText3.replacingOccurrences(of: "-", with: "")
+            processedText5 = processedText5.replacingOccurrences(of: "-", with: "")
+            
             // Mengganti "Oli Gear" dengan "Oli Gardan"
-            processedText1 = processedText1.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
-            processedText3 = processedText3.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
-            processedText5 = processedText5.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
+            processedText1 = processedText1.replacingOccurrences(of: "OliGear", with: "OliGardan")
+            processedText3 = processedText3.replacingOccurrences(of: "OliGear", with: "OliGardan")
+            processedText5 = processedText5.replacingOccurrences(of: "OliGear", with: "OliGardan")
             
             processedText2 = cleanString(processedText2)
             processedText4 = cleanString(processedText4)

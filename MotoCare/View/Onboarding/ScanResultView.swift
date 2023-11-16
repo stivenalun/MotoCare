@@ -4,7 +4,7 @@ import SwiftData
 struct ScanResultView: View {
     @State private var text = ""
     @Binding var extractedText1: String?
-    @Binding var extractedText2: String?
+    @Binding var scannedServiceMileage: String?
     @Binding var extractedText3: String?
     @Binding var extractedText4: String?
     @Binding var extractedText5: String?
@@ -17,6 +17,7 @@ struct ScanResultView: View {
     @State private var isNavigate = false
 //    var date: Date
 //    var maintenanceMileage: Int
+    @State private var scannedSpareparts: [Sparepart] = []
     
     var body: some View {
         ScrollView {
@@ -44,12 +45,12 @@ struct ScanResultView: View {
                         
                         TextField("xxx kilometer", text: Binding<String>(
                             get: {
-                                return extractedText2 ?? ""
+                                return scannedServiceMileage ?? ""
                             },
                             set: { newValue in
-                                if let distance = Int(extractedText2 ?? "") {
+                                if let distance = Int(scannedServiceMileage ?? "") {
                                    let newDistance = distance - 3100
-                                   extractedText2 = String(newDistance)
+                                   scannedServiceMileage = String(newDistance)
                                 } else {
                                    print("Invalid input")
                                 }
@@ -74,6 +75,7 @@ struct ScanResultView: View {
                             let data = extractedText1.components(separatedBy: ",")
                             
                             ForEach(data, id: \.self) { item in
+                                
                                 if item != "" {
                                     Text(item)
                                         .foregroundColor(.black)
@@ -231,18 +233,6 @@ struct ScanResultView: View {
                         .background(Color("TabIconColor"))
                         .cornerRadius(25)
                 }
-//                NavigationLink(destination: FinishOnboardingView()) {
-//                                  Text("Selesai")
-//                                      .font(.headline)
-//                                      .foregroundColor(.black)
-//                                      .frame(width: 335, height: 55)
-//                                      .background(Color(red: 1, green: 0.83, blue: 0.15))
-//                                      .cornerRadius(25)
-//                                      .onTapGesture {
-//                                          addMaintenanceHistory()
-//                                          
-//                                      }
-//                    }
             }
             .padding()
         }
@@ -250,37 +240,72 @@ struct ScanResultView: View {
             FinishOnboardingView()
         }
     }
-   func addMaintenanceHistory() {
+    
+//   func addMaintenanceHistory() {
+//        // MARK: Save maintenance history
+//        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
+//        motorcycle.maintenanceHistories.append(maintenanceHistory)
+//       
+//       if let extractedText1 = extractedText1 {
+//                   do {
+//                       try saveSparePartHistory(from: extractedText1)
+//                   } catch {
+//                       print("Error saving spare part history: \(error)")
+//                   }
+//               }
+//
+//        print("Success saved!")
+//    }
+    
+    func addMaintenanceHistory() {
         // MARK: Save maintenance history
-        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(extractedText2 ?? "") ?? 0)
+        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
         motorcycle.maintenanceHistories.append(maintenanceHistory)
-
-        // MARK: Save sparepart history for Servis 1
-        if let extractedText1 = extractedText1 {
-            saveSparePartHistory(from: extractedText1)
+        
+        // MARK: Save sparepart history
+        let extractedTexts = [extractedText1, extractedText3, extractedText5].compactMap { $0 }
+        
+        for extractedText in extractedTexts {
+            do {
+                try saveSparePartHistory(from: extractedText)
+            } catch {
+                print("Error saving spare part history: \(error)")
+            }
         }
-
-        // MARK: Save sparepart history for Servis 2
-        if let extractedText3 = extractedText3 {
-            saveSparePartHistory(from: extractedText3)
-        }
-
-        // MARK: Save sparepart history for Servis 3
-        if let extractedText5 = extractedText5 {
-            saveSparePartHistory(from: extractedText5)
-        }
-
+        
         print("Success saved!")
     }
     
-    func saveSparePartHistory(from text: String) {
-            let data = text.components(separatedBy: ",")
+    func saveSparePartHistory(from text: String) throws {
+        let data = text.components(separatedBy: ",")
 
-            for item in data where item != "" {
-                let sparepart = SparepartHistory(name: item, sparepartType: .olimesin)
-                motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        for item in data where item != "" {
+            print ("Item: \(item)")
+
+            let lowercaseItem = item.lowercased()
+            let sparepartType: SparepartType
+
+            switch lowercaseItem {
+            case "airfilter":
+                sparepartType = .airfilter
+            case "busi":
+                sparepartType = .busi
+            case "oligardan":
+                sparepartType = .oligardan
+            case "olimesin":
+                sparepartType = .olimesin
+            case "vbelt":
+                sparepartType = .vbelt
+            default:
+                // Handle jika jenis sparepart tidak dikenal
+                print("Jenis sparepart tidak dikenal: \(item)")
+                continue
             }
+
+            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
+    }
 }
 
 // Preview

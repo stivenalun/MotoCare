@@ -129,7 +129,7 @@ struct ManualInputMaintenanceHistory: View {
                         
                         Button("+ Sparepart") {
                             isModalPresented.toggle()
-                            currentServisSelection = 1
+                            currentServisSelection = 3
                         }
                         .modifier(ButtonStyleModifier())
                         
@@ -171,23 +171,48 @@ struct ManualInputMaintenanceHistory: View {
         }
     }
     
-
-    
     func addMaintenanceHistory() {
         // MARK: Save maintenance history
         let maintenanceHistory = MaintenanceHistory(date: Date(),
                                                     maintenanceMileage: Int(lastServiceMileage) ?? 0)
         
         motorcycle.maintenanceHistories.append(maintenanceHistory)
-        
-        // MARK: Save sparepart history
+    
         for part in selectedSpareparts {
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        }
+        
+        for part in selectedSparepartsServis2 {
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        }
+        
+        for part in selectedSparepartsServis3 {
             let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
         print("Success saved!")
     }
+    
+
+    
+//    func addMaintenanceHistory() {
+//        // MARK: Save maintenance history
+//        let maintenanceHistory = MaintenanceHistory(date: Date(),
+//                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
+//        
+//        motorcycle.maintenanceHistories.append(maintenanceHistory)
+//
+//        // MARK: Save sparepart history
+//        for part in selectedSpareparts {
+//            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+//            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+//        }
+//        
+//        print("Success saved!")
+//    }
 }
     
 struct SparepartSelectionView: View {

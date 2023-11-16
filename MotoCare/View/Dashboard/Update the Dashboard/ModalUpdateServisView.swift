@@ -17,7 +17,7 @@ struct ModalUpdateServisView: View {
     @State private var showingScanningView2 = false
     
     @State var extractedUpdatedText1: String?
-    @State var extractedUpdatedText2: String?
+    @State var UpdatescannedServiceMileage: String?
     @State var isScanned: Bool = false
     
     var body: some View {
@@ -69,26 +69,27 @@ struct ModalUpdateServisView: View {
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                     } )
-
+                    
                 } .padding(.bottom, 30)
             }
             .navigationDestination(isPresented: $isScanned) {
-                UpdateResultView (
+                UpdateScanResultView (
                     extractedUpdatedText1: $extractedUpdatedText1,
-                    extractedUpdatedText2: $extractedUpdatedText2
+                    UpdatescannedServiceMileage: $UpdatescannedServiceMileage, motorcycle: motorcycle
                 )
             }
             .sheet(isPresented: $showingScanningView2) {
-                CameraUpdateView(
-                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, extractedUpdatedText2: $extractedUpdatedText2
+                UpdateScannDocumentView (
+                    recognizedText: $recognizedText, extractedUpdatedText1: $extractedUpdatedText1, UpdatescannedServiceMileage: $UpdatescannedServiceMileage
                 )
                 .onDisappear {
                     isScanned = true
                     print(isScanned)
+                    //                }
                 }
-            }
-            .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
+                .sheet(isPresented: $isShowingManualReceiptView) {
+                    ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
+                }
             }
         }
     }

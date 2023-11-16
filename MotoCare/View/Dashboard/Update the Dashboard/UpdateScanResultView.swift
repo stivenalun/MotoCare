@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct UpdateResultView: View {
+struct UpdateScanResultView: View {
     @State private var text = ""
     @Binding var extractedUpdatedText1: String?
-    @Binding var extractedUpdatedText2: String?
+    @Binding var UpdatescannedServiceMileage: String?
+    
+    @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    let availableSpareparts: [Sparepart] = sparepartData
+    @Bindable var motorcycle: Motorcycle
+    @State private var isNavigate = false
+    @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
+    @State private var scannedSpareparts: [Sparepart] = []
     
     
     var body: some View {
@@ -39,12 +48,12 @@ struct UpdateResultView: View {
                         
                         TextField("xxx kilometer", text: Binding<String>(
                             get: {
-                                return extractedUpdatedText2 ?? ""
+                                return UpdatescannedServiceMileage ?? ""
                             },
                             set: { newValue in
-                                if let distance = Int(extractedUpdatedText2 ?? "") {
+                                if let distance = Int(UpdatescannedServiceMileage ?? "") {
                                     let newDistance = distance - 3100
-                                    extractedUpdatedText2 = String(newDistance)
+                                    UpdatescannedServiceMileage = String(newDistance)
                                 } else {
                                     print("Invalid input")
                                 }
@@ -89,26 +98,77 @@ struct UpdateResultView: View {
                 .padding(20)
                 
                 // Tombol Selesai
-                NavigationLink(destination: FinishOnboardingView()) {
-                    Text("Yeay Selesai")
+                Button {
+                    ScanUpdateMaintenanceHistory()
+                    isNavigate = true
+                } label: {
+                    Text("Selesai")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 335, height: 55)
-                        .background(Color(red: 1, green: 0.83, blue: 0.15))
+                        .frame(width: 335, height: 55, alignment: .center)
+                        .background(Color("TabIconColor"))
                         .cornerRadius(25)
                 }
             }
             .padding()
         }
+        .navigationDestination(isPresented: $isNavigate) {
+            FinishOnboardingView()
+        }
     }
+    
+    func ScanUpdateMaintenanceHistory() {
+         let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(UpdatescannedServiceMileage ?? "") ?? 0)
+         motorcycle.maintenanceHistories.append(maintenanceHistory)
+
+        if let extractedUpdateText1 = extractedUpdatedText1 {
+                    do {
+                        try saveScanSparePartHistory(from: extractedUpdateText1)
+                    } catch {
+                        print("Error saving spare part history: \(error)")
+                    }
+                }
+         print("Success saved!")
+     }
+    func saveScanSparePartHistory(from text: String) throws {
+        let data = text.components(separatedBy: ",")
+
+        for item in data where item != "" {
+            print ("Item: \(item)")
+
+            let lowercaseItem = item.lowercased()
+            let sparepartType: SparepartType
+
+            switch lowercaseItem {
+            case "airfilter":
+                sparepartType = .airfilter
+            case "busi":
+                sparepartType = .busi
+            case "oligardan":
+                sparepartType = .oligardan
+            case "olimesin":
+                sparepartType = .olimesin
+            case "vbelt":
+                sparepartType = .vbelt
+            default:
+                // Handle jika jenis sparepart tidak dikenal
+                print("Jenis sparepart tidak dikenal: \(item)")
+                continue
+            }
+
+            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        }
+    }
+    
 }
 
 // Preview
-struct UpdateResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdateResultView(
-            extractedUpdatedText1: .constant(""),
-            extractedUpdatedText2: .constant("")
-        )
-    }
-}
+//struct UpdateResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UpdateResultView(
+//            extractedUpdatedText1: .constant(""),
+//            extractedUpdatedText2: .constant("")
+//        )
+//    }
+//}
