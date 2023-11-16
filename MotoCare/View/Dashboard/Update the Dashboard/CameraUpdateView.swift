@@ -55,9 +55,17 @@ struct CameraUpdateView: UIViewControllerRepresentable {
             var processedUpdatedText1 = recognizeAndExtractText1(from: extractedImages, targetText: "Ganti")
             var processedUpdatedText2 = recognizeAndExtractText2(from: extractedImages, targetText: "Km")
             
-            
             processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "Ganti", with: "")
-            processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "Oli Gear", with: "Oli Gardan")
+            
+            //hapus spasinya
+            processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: " ", with: "")
+            
+            //hapus -
+            processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "-", with: "")
+          
+            // Mengganti "Oli Gear" dengan "Oli Gardan"
+            processedUpdatedText1 = processedUpdatedText1.replacingOccurrences(of: "OliGear", with: "OliGardan")
+           
             processedUpdatedText2 = cleanString(processedUpdatedText2)
             
             if !processedUpdatedText2.isEmpty {

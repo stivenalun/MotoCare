@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct UpdateScanResultView: View {
     @State private var text = ""
@@ -17,8 +18,7 @@ struct UpdateScanResultView: View {
     let availableSpareparts: [Sparepart] = sparepartData
     @Bindable var motorcycle: Motorcycle
     @State private var isNavigate = false
-//    var date: Date
-//    var maintenanceMileage: Int
+    @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
     @State private var scannedSpareparts: [Sparepart] = []
     
     
@@ -99,7 +99,7 @@ struct UpdateScanResultView: View {
                 
                 // Tombol Selesai
                 Button {
-                    addScanMaintenanceHistory()
+                    ScanUpdateMaintenanceHistory()
                     isNavigate = true
                 } label: {
                     Text("Selesai")
@@ -117,10 +117,10 @@ struct UpdateScanResultView: View {
         }
     }
     
-    func addScanMaintenanceHistory() {
+    func ScanUpdateMaintenanceHistory() {
          let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(UpdatescannedServiceMileage ?? "") ?? 0)
          motorcycle.maintenanceHistories.append(maintenanceHistory)
-        
+
         if let extractedUpdateText1 = extractedUpdatedText1 {
                     do {
                         try saveScanSparePartHistory(from: extractedUpdateText1)
