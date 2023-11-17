@@ -10,12 +10,12 @@ import SwiftUI
 struct ManualView2: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var motorcycleVM : MotorcycleViewModel
-
-    let motorcycle: Motorcycle
-    
+    @Bindable var motorcycle: Motorcycle
     @State private var lastServiceMileage = ""
     @FocusState var isInputActive: Bool
     
+
+    @State private var selectedSpareparts: [Sparepart] = []
 
     var body: some View {
         NavigationView {
@@ -68,8 +68,8 @@ struct ManualView2: View {
                                             .padding(.leading, -4)
                                             .overlay(
                                                 CheckboxField(
-                                                    id: Part.vbelt.rawValue,
-                                                    label: Part.vbelt.rawValue,
+                                                    id: SparepartType.vbelt.rawValue,
+                                                    label: SparepartType.vbelt.rawValue,
                                                     size: 17,
                                                     textSize: 17,
                                                     imageName: "v-belt",
@@ -83,8 +83,8 @@ struct ManualView2: View {
                                             .padding(.leading, -4)
                                             .overlay(
                                                 CheckboxField(
-                                                    id: Part.busi.rawValue,
-                                                    label: Part.busi.rawValue,
+                                                    id: SparepartType.busi.rawValue,
+                                                    label: SparepartType.busi.rawValue,
                                                     size: 17,
                                                     textSize: 17,
                                                     imageName: "spark-plug",
@@ -102,8 +102,8 @@ struct ManualView2: View {
                                             .padding(.leading, -4)
                                             .overlay(
                                                 CheckboxField(
-                                                    id: Part.airfilter.rawValue,
-                                                    label: Part.airfilter.rawValue,
+                                                    id: SparepartType.airfilter.rawValue,
+                                                    label: SparepartType.airfilter.rawValue,
                                                     size: 17,
                                                     textSize: 17,
                                                     imageName: "air-filter",
@@ -117,8 +117,8 @@ struct ManualView2: View {
                                             .padding(.leading, -4)
                                             .overlay(
                                                 CheckboxField(
-                                                    id: Part.oligardan.rawValue,
-                                                    label: Part.oligardan.rawValue,
+                                                    id: SparepartType.oligardan.rawValue,
+                                                    label: SparepartType.oligardan.rawValue,
                                                     size: 17,
                                                     textSize: 17,
                                                     imageName: "final-drive-oil",
@@ -136,8 +136,8 @@ struct ManualView2: View {
                                             .padding(.leading, -4)
                                             .overlay(
                                                 CheckboxField(
-                                                    id: Part.olimesin.rawValue,
-                                                    label: Part.olimesin.rawValue,
+                                                    id: SparepartType.olimesin.rawValue,
+                                                    label: SparepartType.olimesin.rawValue,
                                                     size: 17,
                                                     textSize: 17,
                                                     imageName: "engine-oil",
@@ -152,21 +152,53 @@ struct ManualView2: View {
                             .navigationBarTitle("Manual Input")
                         }
                     }
-                    NavigationLink(destination: FinishOnboardingView()) {
-                        Text("Selesai")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 335, height: 45)
-                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(11)
-                    }
+                    NavigationLink(
+                        destination: FinishOnboardingView(),
+                        label: {
+                            Text("Selesai")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .frame(width: 335, height: 45)
+                                .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                .cornerRadius(11)
+                        })
+                        .onTapGesture {
+                            addMaintenanceHistory()
+                        }
                 }
             }
         }
     }
     func checkboxSelected(id: String, isMarked: Bool) {
             print("\(id) is marked: \(isMarked)")
+        
+//        if isMarked {
+//                // If marked, add to the selectedSpareparts array
+//                selectedSpareparts.append(id)
+//            } else {
+//                // If unmarked, remove from the selectedSpareparts array
+//                if let index = selectedSpareparts.firstIndex(of: id) {
+//                    selectedSpareparts.remove(at: index)
+//                }
+//            }
+        
         }
+    
+    func addMaintenanceHistory() {
+        // MARK: Save maintenance history
+        let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
+        
+        motorcycle.maintenanceHistories.append(maintenanceHistory)
+    
+        for part in selectedSpareparts {
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        }
+        
+        
+        print("Success saved!")
+    }
 }
 
 //MARK:- Checkbox Field
@@ -223,13 +255,6 @@ struct CheckboxField: View {
     }
 }
 
-enum Part: String {
-    case vbelt = "V-Belt"
-    case busi = "Busi"
-    case olimesin = "Oli Mesin"
-    case airfilter = "Air Filter"
-    case oligardan = "Oli Gardan"
-}
     
     
 //#Preview {
