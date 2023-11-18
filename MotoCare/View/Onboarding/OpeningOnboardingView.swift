@@ -18,7 +18,7 @@ struct OpeningOnboardingView: View {
                 VStack {
                     Image("lexy")
                         .resizable()
-                        .padding(.horizontal, 25)
+                        .padding(.horizontal, 35)
                         .aspectRatio(contentMode: .fit)
                     
                     Text("Perawatan motor dibuat mudah")

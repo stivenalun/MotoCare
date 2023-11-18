@@ -32,11 +32,12 @@ struct InputLastReceiptsView: View {
             ZStack{
                 BackgroundView()
                 VStack{
-                    Image("receipt")
+                    Spacer()
+                    Image("nota")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding(.top, 50)
-                        .frame(width: 350, height: 280)
+                        .padding(.top, 30)
+                        .frame(width: 350, height: 260)
                     
                     Text("Ayo isi riwayat servis part motormu!")
                         .navigationBarBackButtonHidden(true)
@@ -51,6 +52,8 @@ struct InputLastReceiptsView: View {
                         .font(.system(size: 17))
                         .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
+                    Spacer()
+                    Spacer()
                     Spacer()
                 }
                 
@@ -68,7 +71,7 @@ struct InputLastReceiptsView: View {
                     }
                     .padding(10)
                     
-                    NavigationLink(destination: ManualInputMaintenanceHistory(motorcycle: motorcycle), label: {
+                    NavigationLink(destination: ManualView2(motorcycle: motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.black)
