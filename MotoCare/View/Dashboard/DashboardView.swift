@@ -19,8 +19,12 @@ struct DashboardView: View {
     @State private var isModalPresented = false
 //    @State private var isUpdateModalPresented = false
     @State private var selectedItem: GaugeData?
+    @State private var modalDetent = PresentationDetent.medium
     
     @AppStorage("modalopen") var isUpdateModalPresented = false
+    
+    private var delegate: NotificationDelegate = NotificationDelegate()
+
     
     var body: some View {
         NavigationView {
@@ -110,7 +114,7 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData2(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
                                     
                                 
                                 Button(action: {
@@ -139,80 +143,75 @@ struct DashboardView: View {
             }
             .onAppear {
                 print(motorcycles.count)
-            }
-        }
-        .sheet(isPresented: $showModal) {
-            if let selectedItem = selectedItem {
-                NavigationView {
-                    ModalSparepartView(data: selectedItem)
-                        .background(
-                            LinearGradient(
-                                stops: [
-                                    Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
-                                    Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
-                                ],
-                                startPoint: UnitPoint(x: 0.95, y: 0),
-                                endPoint: UnitPoint(x: 0.26, y: 0.98)
-                            ))
-                        .ignoresSafeArea()
+                
+                let center = UNUserNotificationCenter.current()
+                center.delegate = delegate
+                center.requestAuthorization(options: [.alert, .sound, .badge]) { result, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.setupNotification()
+                    }
                 }
             }
         }
-    }
-    
-    func convertData(sparepartHistories: [SparepartHistory], maintenanceMileage: Int) -> [GaugeData] {
-        var gauges = [GaugeData]()
-        for data in sparepartHistories {
-            var icon = ""
-            var checkIntervalInKilometer: Double = 0
-            var replaceIntervalInKilometer: Double = 0
-            var image = ""
-            switch data.sparepartType {
-            case .busi:
-                icon = "spark-plug"
-                checkIntervalInKilometer = 4000
-                replaceIntervalInKilometer = 8000
-                image = "SparkPlugImage"
-            case .vbelt:
-                icon = "v-belt"
-                checkIntervalInKilometer = 8000
-                replaceIntervalInKilometer = 25000
-                image = "VBeltImage"
-            case .olimesin:
-                icon = "engine-oil"
-                checkIntervalInKilometer = 4000
-                replaceIntervalInKilometer = 4000
-                image = "EngineOilImage"
-            case .oligardan:
-                icon = "final-drive-oil"
-                checkIntervalInKilometer = 4000
-                replaceIntervalInKilometer = 12000
-                image = "FinalDriveOilImage"
-            case .airfilter:
-                icon = "air-filter"
-                checkIntervalInKilometer = 16000
-                replaceIntervalInKilometer = 16000
-                image = "AirFilterImage"
-                
-            }
-            
-            let gauge = GaugeData(
-                value: Double(motorcycles[0].currentMileage - maintenanceMileage),
-                minimum: 0,
-                maximum: replaceIntervalInKilometer,
-                iconSparePart: icon,
-                labelText: data.name,
-                imageSparePart: image,
-                status: estimateSparepartStatus(lastServiceMillage: maintenanceMileage,
-                                                currentMillage: motorcycles[0].currentMileage,
-                                                type: data.sparepartType)
-            )
-            gauges.append(gauge)
+        .sheet(isPresented: $showModal) {
+            ModalSparepartView(data: $selectedItem)
+                .presentationDetents([.height(550), .large], selection: $modalDetent)
+                .background(
+                    LinearGradient(
+                        stops: [
+                            Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
+                            Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
+                        ],
+                        startPoint: UnitPoint(x: 0.95, y: 0),
+                        endPoint: UnitPoint(x: 0.26, y: 0.98)
+                    ))
+                .ignoresSafeArea()
         }
-        return gauges
     }
     
-    func convertData2(spareparts: [Sparepart], sparepartHistories: [SparepartHistory], maintenanceMileage: Int) -> [GaugeData] {
+    func setupNotification() {
+        let center = UNUserNotificationCenter.current()
+        
+        // create content
+        let content = UNMutableNotificationContent()
+        content.title = "Motomo butuh kamu!"
+        content.body =  "Sudah waktunya perbarui jarak tempuh kamu nih. Yuk ke Dashboard sekarang."
+        content.categoryIdentifier = NotificationCategory.general.rawValue
+        content.userInfo = ["customData": "Some Data"]
+        
+        // create trigger
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        
+        // create trigger tiap 2 minggu sekali
+        var dateComponents = DateComponents()
+        dateComponents.hour = 10
+        dateComponents.minute = 30
+        dateComponents.day = 14 // 2 weeks in days
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        // create request
+        let request = UNNotificationRequest(identifier: "Identifier", content: content, trigger: trigger)
+        
+        // define actions
+        let dismiss = UNNotificationAction(identifier: NotificationAction.dimiss.rawValue, title: "Dismiss", options: [])
+        
+        let reminder = UNNotificationAction(identifier: NotificationAction.reminder.rawValue, title: "Reminder", options: [])
+        
+        let generalCategory = UNNotificationCategory(identifier: NotificationCategory.general.rawValue, actions: [dismiss, reminder], intentIdentifiers: [], options: [])
+        
+        center.setNotificationCategories([generalCategory])
+        
+        // add request to notification center
+        center.add(request) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
+    func convertData(spareparts: [Sparepart], sparepartHistories: [SparepartHistory], maintenanceMileage: Int) -> [GaugeData] {
         var gauges = [GaugeData]()
         for data in spareparts {
             var icon = ""
@@ -249,7 +248,7 @@ struct DashboardView: View {
             }
             
             var gauge = GaugeData(
-                value: Double(motorcycles[0].currentMileage - maintenanceMileage),
+                value: replaceIntervalInKilometer - Double(motorcycles[0].currentMileage - maintenanceMileage),
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
@@ -271,7 +270,7 @@ struct DashboardView: View {
                 gauge.status = .none
                 gauges.append(gauge)
             }
-            
+            print("sparepart histories: \(sparepartHistories.count)")
         }
         return gauges
     }
@@ -333,7 +332,7 @@ struct StatusSparepartView : View{
                                 .frame(width: 176, height: 123)
                             
                             HStack {
-                                Gauge(value: data.value, in: data.minimum...data.maximum) {
+                                Gauge(value: data.status == .ganti || data.status == .none ? data.minimum : data.value, in: data.minimum...data.maximum) {
                                     
                                 }
                                 .gaugeStyle(.accessoryCircularCapacity)

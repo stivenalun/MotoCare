@@ -152,4 +152,3 @@ struct UpdateScannDocumentView: UIViewControllerRepresentable {
         }
     }
 }
-

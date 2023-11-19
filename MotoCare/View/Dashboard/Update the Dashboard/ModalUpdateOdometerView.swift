@@ -75,31 +75,8 @@ struct ModalUpdateOdometerView: View {
     func editMotorcycle() {
         motorcycles[0].currentMileage = Int(currentMileage) ?? 0
         print("save success")
-//        path = [motorcycle]
     }
-//    func saveMotorcycle() {
-//        motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
-//        // Pastikan objek motorcycle yang sudah ada sudah disimpan di dalam modelContext
-//        if let existingMotorcycle = modelContext.model(for: motorcycle.id) as? Motorcycle {
-//            existingMotorcycle.currentMileage = Int(currentMileage) ?? 0
-//            
-//            let maintenanceHistory = MaintenanceHistory(date: Date(),
-//                                                        maintenanceMileage: Int(currentMileage) ?? 0)
-//            existingMotorcycle.maintenanceHistories.append(maintenanceHistory)
-//            
-//            for part in selectedSpareparts {
-//                let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-//                maintenanceHistory.sparePartHistory.append(sparepart)
-//            }
-//            
-//            print("Success saved!")
-//        } else {
-//            // Jika objek motorcycle yang sudah ada belum ada di dalam modelContext, buat objek motorcycle baru
-//            motorcycle = Motorcycle(brand: "Lexi", currentMileage: Int(currentMileage) ?? 0)
-//            modelContext.insert(motorcycle)
-//            print("Save success")
-//        }
-//    }
+
 }
 
 #Preview {
