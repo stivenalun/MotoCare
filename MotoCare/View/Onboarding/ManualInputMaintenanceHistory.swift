@@ -62,7 +62,7 @@ struct ManualInputMaintenanceHistory: View {
                         
                         HStack {
                             ForEach(selectedSpareparts, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.name)
+                                Text(selectedSparepart.type.rawValue)
                                     .modifier(SelectedSparepartModifier())
                             }
                         }
@@ -100,7 +100,7 @@ struct ManualInputMaintenanceHistory: View {
                         
                         HStack {
                             ForEach(selectedSparepartsServis2, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.name)
+                                Text(selectedSparepart.type.rawValue)
                                     .modifier(SelectedSparepartModifier())
                             }
                         }
@@ -135,7 +135,7 @@ struct ManualInputMaintenanceHistory: View {
                         
                         HStack {
                             ForEach(selectedSparepartsServis3, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.name)
+                                Text(selectedSparepart.type.rawValue)
                                     .modifier(SelectedSparepartModifier())
                             }
                         }
@@ -179,17 +179,17 @@ struct ManualInputMaintenanceHistory: View {
         motorcycle.maintenanceHistories.append(maintenanceHistory)
     
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
         for part in selectedSparepartsServis2 {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
         for part in selectedSparepartsServis3 {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
@@ -233,7 +233,7 @@ struct SparepartSelectionView: View {
                         }
                     }) {
                         HStack {
-                            Text(sparepart.name)
+                            Text(sparepart.type.rawValue)
                             Spacer()
                             if selectedSpareparts.contains(sparepart) {
                                 Image(systemName: "checkmark")

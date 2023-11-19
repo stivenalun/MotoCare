@@ -19,8 +19,10 @@ struct SplashView: View {
         ZStack {
             if self.isActive {
                 OpeningOnboardingView()
+                    .preferredColorScheme(.dark)
             } else if goToDashboard {
                 MainTabView()
+                    .preferredColorScheme(.dark)
             } else {
                 Rectangle()
                 Color("Black")
@@ -36,7 +38,11 @@ struct SplashView: View {
                         .padding(.bottom, 80)
                 }
             }
-        } .edgesIgnoringSafeArea(.all)
+        }
+        .background(content: {
+            BackgroundView()
+        })
+        .edgesIgnoringSafeArea(.all)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation {
@@ -50,7 +56,6 @@ struct SplashView: View {
             }
         }
     }
-        
 }
 
 struct SplashView_Previews: PreviewProvider {
