@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct BackgroundView: View {
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack {
-            Image("background")
-                .resizable()
+            Color.black
                 .edgesIgnoringSafeArea(.all)
         }
+        .background(colorScheme == .dark ? Color.black : Color.white)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
