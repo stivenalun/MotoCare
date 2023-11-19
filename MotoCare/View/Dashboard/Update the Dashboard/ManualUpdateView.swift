@@ -105,24 +105,50 @@ struct ManualUpdateView: View {
         }
     }
     
-    
     func updateMaintenanceHistory() {
-        // MARK: Save maintenance history
-        let maintenanceHistory = MaintenanceHistory(date: Date(),
-                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
-        
-        motorcycle.maintenanceHistories.append(maintenanceHistory)
-//        print("X: \(maintenanceHistory.date)")
-        
-        // MARK: Save sparepart history
-        for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-//            print("Y: \(maintenanceHistories.first?.date)")
-            maintenanceHistories.first?.sparePartHistory.append(sparepart)
-        }
-        
-        print("Success saved!")
+       // MARK: Save maintenance history
+       let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                               maintenanceMileage: Int(lastServiceMileage) ?? 0)
+
+       // Find the last maintenance history
+       if let lastHistory = motorcycle.maintenanceHistories.last {
+           // Update the last maintenance history with the new data
+           lastHistory.date = maintenanceHistory.date
+           lastHistory.maintenanceMileage = maintenanceHistory.maintenanceMileage
+       } else {
+           // If there is no last maintenance history, append the new one
+           motorcycle.maintenanceHistories.append(maintenanceHistory)
+       }
+
+       // MARK: Save sparepart history
+       for part in selectedSpareparts {
+           let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+           if let lastHistory = motorcycle.maintenanceHistories.last {
+               // Append the new sparepart to the last maintenance history
+               lastHistory.sparePartHistory.append(sparepart)
+           }
+       }
+
+       print("Success saved!")
     }
+
+//    func updateMaintenanceHistory() {
+//        // MARK: Save maintenance history
+//        let maintenanceHistory = MaintenanceHistory(date: Date(),
+//                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
+//        
+//        motorcycle.maintenanceHistories.append(maintenanceHistory)
+////        print("X: \(maintenanceHistory.date)")
+//        
+//        // MARK: Save sparepart history
+//        for part in selectedSpareparts {
+//            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+////            print("Y: \(maintenanceHistories.first?.date)")
+//            maintenanceHistories.first?.sparePartHistory.append(sparepart)
+//        }
+//        
+//        print("Success saved!")
+//    }
 
 }
 //

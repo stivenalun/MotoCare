@@ -119,7 +119,16 @@ struct UpdateScanResultView: View {
     
     func ScanUpdateMaintenanceHistory() {
          let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(UpdatescannedServiceMileage ?? "") ?? 0)
-         motorcycle.maintenanceHistories.append(maintenanceHistory)
+//         motorcycle.maintenanceHistories.append(maintenanceHistory)
+        // Find the last maintenance history
+        if let lastHistory = motorcycle.maintenanceHistories.last {
+            // Update the last maintenance history with the new data
+            lastHistory.date = maintenanceHistory.date
+            lastHistory.maintenanceMileage = maintenanceHistory.maintenanceMileage
+        } else {
+            // If there is no last maintenance history, append the new one
+            motorcycle.maintenanceHistories.append(maintenanceHistory)
+        }
 
         if let extractedUpdateText1 = extractedUpdatedText1 {
                     do {
@@ -157,7 +166,11 @@ struct UpdateScanResultView: View {
             }
 
             let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
-            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+//            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+            if let lastHistory = motorcycle.maintenanceHistories.last {
+                // Append the new sparepart to the last maintenance history
+                lastHistory.sparePartHistory.append(sparepart)
+            }
         }
     }
     
