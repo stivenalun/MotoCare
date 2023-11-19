@@ -10,6 +10,8 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
+    @ObservedObject var bluetoothService = BluetoothService()
+    
 //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     @Query var sparepartHistories: [SparepartHistory]
@@ -77,15 +79,13 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-                                                    Text("\(motorcycles[0].currentMileage) Km")
+//                                                    Text("\(motorcycles[0].currentMileage) Km")
+                                                    Text("\(motorcycles[0].currentMileage + bluetoothService.totalTrip) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
                                                         .fontWeight(.bold)
                                                         .padding(.bottom, 13)
-                                                    HStack {
-                                                        
-                                                    }
                                                     Button(action: {
                                                         isModalPresented = true
                                                         
@@ -136,7 +136,7 @@ struct DashboardView: View {
                                 }
                             }
                             .padding()
-                            .navigationBarTitle("Dashboard")
+//                            .navigationBarTitle("Dashboard")
                         }
                     }
                 }

@@ -19,6 +19,7 @@ enum ConnectionStatus: String {
 
 let sensorService: CBUUID = CBUUID(string: "d888a9c2-f3cc-11ed-a05b-0242ac120003")
 let sensorCharacteristic: CBUUID = CBUUID(string: "d888a9c3-f3cc-11ed-a05b-0242ac120003")
+var motorcycles: [Motorcycle] = []
 
 class BluetoothService: NSObject, ObservableObject {
     
@@ -118,6 +119,7 @@ extension BluetoothService: CBPeripheralDelegate {
                     
                     let sensorData: Int = Int(stringValue) ?? 0
                     totalTrip = sensorData
+//                    motorcycles[0].totalTrip = totalTrip
                     
                     // Handle the received data here (e.g., display it in your app's UI)
                 }
