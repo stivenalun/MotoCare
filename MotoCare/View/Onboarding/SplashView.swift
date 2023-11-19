@@ -27,12 +27,13 @@ struct SplashView: View {
                 Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 221, height: 101)
+                    .frame(width: 371, height: 231)
                 VStack{
                     Spacer()
-                    Text("Your Motorcycle Companion App")
+                    Text("Sahabat baik motormu!")
+                        .font(.system(size: 17))
                         .foregroundColor(.white)
-                        .padding(.bottom, 60)
+                        .padding(.bottom, 80)
                 }
             }
         } .edgesIgnoringSafeArea(.all)

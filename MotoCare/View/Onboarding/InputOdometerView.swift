@@ -27,10 +27,10 @@ struct InputOdometerView: View {
             BackgroundView()
             VStack {
                 Spacer()
-                Image("odometer3")
+                Image("odometer")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 358, height: 187)
+                    .frame(width: 328, height: 187)
                     .padding(.horizontal, 18)
                     .padding(.top, 10)
                 
@@ -53,7 +53,7 @@ struct InputOdometerView: View {
                     .cornerRadius(10)
                     .frame(width: 350, height: 35)
                     .overlay(
-                        TextField("Masukan jarak tempuhmu                  Km", text: $currentMileage)
+                        TextField("Masukan jarak tempuhmu saat ini", text: $currentMileage)
                             .foregroundColor(.primary)
                             .padding(.horizontal, 10)
                             .keyboardType(.numberPad)

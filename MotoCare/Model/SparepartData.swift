@@ -37,11 +37,11 @@ struct Sparepart: Identifiable, Equatable {
 }
 
 enum SparepartType: String, Codable {
-    case busi
-    case vbelt
-    case olimesin
-    case oligardan
-    case airfilter
+    case busi = "Busi"
+    case vbelt = "V-Belt"
+    case olimesin = "Oli Mesin"
+    case oligardan = "Oli Gardan"
+    case airfilter = "Air Filter"
 }
 
 let sparepartData = [

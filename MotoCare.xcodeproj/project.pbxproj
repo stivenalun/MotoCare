@@ -101,6 +101,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D92924E2B0765EF00627CEE /* Bluetooth iOT */ = {
+			isa = PBXGroup;
+			children = (
+				6D9CCDFA2B05C221006444A7 /* BluetoothView.swift */,
+				6D9CCDF82B05C1EE006444A7 /* BluetoothService.swift */,
+			);
+			path = "Bluetooth iOT";
+			sourceTree = "<group>";
+		};
+		6D92924F2B0768B700627CEE /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				6DD936372AFD3F5300EE7124 /* Done.json */,
+				6D6DA0932AFB436C00A00673 /* Constants.swift */,
+				6D6DA08F2AFB405900A00673 /* Lottie Lego.json */,
+				6D6DA0912AFB40E600A00673 /* LottieView.swift */,
+				6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		E95F9BE52B0214E6009C9B53 /* Update the Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +138,6 @@
 		E9AB955D2AEFEB4C004EE0F4 = {
 			isa = PBXGroup;
 			children = (
-				6D6DA0932AFB436C00A00673 /* Constants.swift */,
 				E9AB95682AEFEB4C004EE0F4 /* MotoCare */,
 				E9AB95672AEFEB4C004EE0F4 /* Products */,
 			);
@@ -140,12 +160,8 @@
 				E9AB95B72AF033F5004EE0F4 /* View */,
 				E9AB957F2AEFF21A004EE0F4 /* Model */,
 				E9AB956D2AEFEB4E004EE0F4 /* Assets.xcassets */,
-				6D9CCDF82B05C1EE006444A7 /* BluetoothService.swift */,
-				6D9CCDFA2B05C221006444A7 /* BluetoothView.swift */,
-				6D6DA0912AFB40E600A00673 /* LottieView.swift */,
-				6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */,
-				6DD936372AFD3F5300EE7124 /* Done.json */,
-				6D6DA08F2AFB405900A00673 /* Lottie Lego.json */,
+				6D92924E2B0765EF00627CEE /* Bluetooth iOT */,
+				6D92924F2B0768B700627CEE /* Animation */,
 				E9AB956F2AEFEB4E004EE0F4 /* Preview Content */,
 			);
 			path = MotoCare;
