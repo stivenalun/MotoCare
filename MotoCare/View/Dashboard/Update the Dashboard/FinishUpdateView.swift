@@ -14,10 +14,10 @@ struct FinishUpdateView: View {
             ZStack{
                 BackgroundView()
                 VStack{
-                    Text("Setup selesai. \n\nYuk langsung dilihat \nstatus kondisi motormu!")
+                    Text("Update selesai ")
                         .font(.system(size: 31))
                         .fontWeight(.bold)
-                        .frame(width: 355, height: 158, alignment: .topLeading)
+                        .frame(width: 355, height: 158, alignment: .center)
                         .padding(.top, 100)
                         .foregroundColor(.white)
                     
@@ -29,7 +29,7 @@ struct FinishUpdateView: View {
                         Button(action: {
                             isUpdateModalPresented.toggle()
                         }, label: {
-                            Text("Lanjutkan")
+                            Text("Tambahkan")
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .frame(width: 355, height: 55, alignment: .center)

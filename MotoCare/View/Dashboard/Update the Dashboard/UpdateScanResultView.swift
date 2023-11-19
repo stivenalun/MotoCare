@@ -113,7 +113,7 @@ struct UpdateScanResultView: View {
             .padding()
         }
         .navigationDestination(isPresented: $isNavigate) {
-            FinishOnboardingView()
+            FinishUpdateView()
         }
     }
     
