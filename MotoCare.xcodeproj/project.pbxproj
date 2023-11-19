@@ -335,7 +335,7 @@
 				E9AB957C2AEFEF9C004EE0F4 /* MaintenanceHistory.swift in Sources */,
 				E9AC4E082AF0F9A0001DDCF3 /* ScanResultView.swift in Sources */,
 				E9AB957E2AEFF0AA004EE0F4 /* SparepartHistory.swift in Sources */,
-				C7604EC82B04D1B100B4BECE /* CameraUpdateView.swift in Sources */,
+				C7604EC82B04D1B100B4BECE /* UpdateScannDocumentView.swift in Sources */,
 				6D9CCDF92B05C1EE006444A7 /* BluetoothService.swift in Sources */,
 				6D9CCDFB2B05C221006444A7 /* BluetoothView.swift in Sources */,
 				C7604EC82B04D1B100B4BECE /* UpdateScannDocumentView.swift in Sources */,
@@ -483,7 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 62B759R8T7;
+				DEVELOPMENT_TEAM = 8F62H4MXUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
@@ -515,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = 62B759R8T7;
+				DEVELOPMENT_TEAM = 8F62H4MXUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";

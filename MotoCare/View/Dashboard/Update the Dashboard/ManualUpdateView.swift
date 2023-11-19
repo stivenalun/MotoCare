@@ -38,7 +38,7 @@ struct ManualUpdateView: View {
                             .frame(width: 355, height: 50, alignment: .topLeading)
                             .foregroundColor(.white)
                         
-                        Text("Servis 1")
+                        Text("Servis")
                             .modifier(ServisTitleModifier())
                         
                         Rectangle()
