@@ -5,6 +5,7 @@
 //  Created by Nur Hidayatul Fatihah on 30/10/23.
 //
 
+
 import Foundation
 import SwiftData
 
@@ -45,7 +46,7 @@ enum SparepartType: String, Codable {
 }
 
 let sparepartData = [
-    Sparepart(name: "Busi", checkIntervalInKilometer: 4000, replaceIntervalInKilometer: 8000, type: .busi, icon: "spark-plug", image: "SparkPlug"),
+    Sparepart(name: "Busi", checkIntervalInKilometer: 4000, replaceIntervalInKilometer: 8000, type: .busi, icon: "spark-plug", image: "SparkPlugImage"),
     Sparepart(name: "Air Filter", checkIntervalInKilometer: 16000, replaceIntervalInKilometer: 16000, type: .airfilter, icon: "air-filter", image: "AirFilterImage"),
     Sparepart(name: "Oli Mesin", checkIntervalInKilometer: 0, replaceIntervalInKilometer: 4000, type: .olimesin, icon: "engine-oil", image: "EngineOilImage"),
     Sparepart(name: "Oli Gardan", checkIntervalInKilometer: 4000, replaceIntervalInKilometer: 12000, type: .oligardan, icon: "final-drive-oil", image: "FinalDriveOilImage"),

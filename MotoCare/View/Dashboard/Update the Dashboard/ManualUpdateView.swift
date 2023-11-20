@@ -66,7 +66,7 @@ struct ManualUpdateView: View {
                         
                         HStack {
                             ForEach(selectedSpareparts, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.name)
+                                Text(selectedSparepart.type.rawValue)
                                     .modifier(SelectedSparepartModifier())
                             }
                         }
@@ -114,7 +114,7 @@ struct ManualUpdateView: View {
        }
        // MARK: Save sparepart history
        for part in selectedSpareparts {
-           let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+           let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
            if let lastHistory = motorcycle.maintenanceHistories.last {
                lastHistory.sparePartHistory.append(sparepart)
            }

@@ -314,3 +314,4 @@ struct CheckboxField: View {
         .foregroundColor(Color.white)
     }
 }
+

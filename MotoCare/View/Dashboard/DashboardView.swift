@@ -252,7 +252,7 @@ struct DashboardView: View {
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
-                labelText: data.name,
+                labelText: data.type.rawValue,
                 imageSparePart: image,
                 status: estimateSparepartStatus(lastServiceMillage: maintenanceMileage,
                                                 currentMillage: motorcycles[0].currentMileage,

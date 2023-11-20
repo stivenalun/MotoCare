@@ -17,6 +17,7 @@ struct MotorCareSwiftDataApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
+                .preferredColorScheme(.dark)
         }
         .modelContainer(for: [Motorcycle.self, SparepartData.self, MaintenanceHistory.self, SparepartHistory.self])
     }
