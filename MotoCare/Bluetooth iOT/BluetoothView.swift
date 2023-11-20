@@ -8,37 +8,54 @@
 import SwiftUI
 
 struct BluetoothView: View {
-
-    @StateObject var service = BluetoothService()
+    @EnvironmentObject var service: BluetoothService
 
     var body: some View {
-        ZStack{
+        ZStack {
             BackgroundView()
             VStack {
-                
-                Text(service.peripheralStatus.rawValue)
+                Spacer()
+                Text("Status : \(service.peripheralStatus.rawValue)")
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(service.peripheralStatus == .connected ? .green : .red)
                 
-                Text("\(service.totalTrip) meter")
-                    .font(.largeTitle)
-                    .fontWeight(.heavy)
-                    .foregroundColor(.white)
+//                Text("\(service.totalTrip) meter")
+//                    .font(.largeTitle)
+//                    .fontWeight(.heavy)
+//                    .foregroundColor(.white)
                 
                 Text("\(service.totalTrip / 1000) km")
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(.white)
                 
+                Spacer()
+                
+                Button(action: {
+                    let newValue = service.peripheralStatus
+                    print(newValue)
+                    
+                    if newValue == .connected {
+                        // Disconnect logic here
+                        // service.disconnect() or whatever your disconnect logic is
+                        service.disconnectPeripheral()
+                    } else {
+                        service.scanForPeripherals()
+                        // Connect logic here
+                    }
+                    
+                    // Additional logic as needed
+                    
+                }) {
+                    Text(service.peripheralStatus == .connected ? "Disconnect from Bluetooth" : "Connect to Bluetooth")
+                        .padding()
+                        .background(service.peripheralStatus == .connected ? Color.red : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                Spacer()
             }
             .padding()
-            .onChange(of: service.peripheralStatus) { oldValue, newValue in
-                print(newValue)
-                
-                if newValue != .connected {
-                    service.scanForPeripherals()
-                }
-            }
         }
     }
 }

@@ -51,18 +51,14 @@ extension BluetoothService: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
         if peripheral.name == "Nano 33 IoT" {
             print("1 Discovered \(peripheral.name ?? "no name")")
-            hallSensorPeripheral = peripheral
-            centralManager.connect(hallSensorPeripheral!)
-            peripheralStatus = .connecting
+            connectToPeripheral(peripheral: peripheral)
         } else if peripheral.name == "Arduino" {
             print("2 Discovered \(peripheral.name ?? "no name")")
-            hallSensorPeripheral = peripheral
-            centralManager.connect(hallSensorPeripheral!)
-            peripheralStatus = .connecting
+            connectToPeripheral(peripheral: peripheral)
         }
+        discoveredPeripherals.removeAll()
         discoveredPeripherals.append(peripheral)
     }
     
@@ -76,6 +72,11 @@ extension BluetoothService: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         peripheralStatus = .disconnected
+//        if peripheral.name == "Arduino" {
+//            print("2 Discovered \(peripheral.name ?? "no name")")
+//            disconnectPeripheral(peripheral: peripheral)
+//        }
+//        discoveredPeripherals.removeAll()
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -88,6 +89,12 @@ extension BluetoothService: CBCentralManagerDelegate {
         hallSensorPeripheral = peripheral
         centralManager.connect(hallSensorPeripheral!)
         peripheralStatus = .connecting
+    }
+    
+    func disconnectPeripheral(){
+        centralManager.cancelPeripheralConnection(hallSensorPeripheral!)
+        peripheralStatus = .disconnected
+        totalTrip = 0
     }
 
     
