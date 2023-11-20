@@ -2,13 +2,10 @@ import SwiftUI
 
 struct BackgroundView: View {
     var body: some View {
-        Image("background")
+        Image("Background")
             .resizable()
             .edgesIgnoringSafeArea(.all)
     }
 }
 
-#Preview {
-    BackgroundView()
-}
 

@@ -16,23 +16,25 @@ struct OpeningOnboardingView: View {
             ZStack{
                 BackgroundView()
                 VStack {
-                    Image("lexy")
+                    Image("lexyy")
                         .resizable()
-                        .padding(.horizontal, 35)
                         .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, 40)
+                        .padding(.bottom, 40)
                     
                     Text("Perawatan motor dibuat mudah")
                         .font(.system(size: 34))
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
-                        .frame(maxWidth: 350, alignment: .topLeading)
+                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                        .padding(.bottom, 10)
                     
-                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
+                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotomo, sobat terbaik anda")
                         .font(.system(size: 17))
-                        .padding(.top, 1)
-                        .padding(.bottom, 100)
                         .foregroundColor(Color.white)
-                        .frame(maxWidth: 350, alignment: .topLeading)
+                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                    Spacer()
+                        .frame(height: 100)
                 }
                 
                 VStack{
@@ -41,7 +43,7 @@ struct OpeningOnboardingView: View {
                         Text("Lanjutkan")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: 350, height: 44)
+                            .frame(width: DeviceInfo.maxWidth, height: 44)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                             .padding(.bottom, 30)
@@ -53,7 +55,7 @@ struct OpeningOnboardingView: View {
     }
 }
 
-#Preview {
-    OpeningOnboardingView()
-}
+//#Preview {
+//    OpeningOnboardingView()
+//}
         

@@ -1,8 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "odometer3.pdf",
-      "idiom" : "universal"
+      "filename" : "odometer.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
