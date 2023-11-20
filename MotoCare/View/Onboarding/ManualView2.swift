@@ -12,13 +12,7 @@ struct ManualView2: View {
     @State private var selectedSparepartsServis3: [Sparepart] = []
     @FocusState var isInputActive: Bool
     @State private var isPushed: Bool = false
-<<<<<<< HEAD
-    
-    @State private var selectedSpareparts: [Sparepart] = []
-    
-=======
 
->>>>>>> container-baru
     var body: some View {
         NavigationView {
             ZStack {
@@ -32,11 +26,11 @@ struct ManualView2: View {
                                     .foregroundColor(.white)
                                     .padding(.bottom, 20)
                                     .frame(maxWidth: 350, alignment: .topLeading)
-                                
+
                                 Text("Riwayat Servis 1")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-                                
+
                                 Rectangle()
                                     .fill(Color("BackColor"))
                                     .cornerRadius(10)
@@ -145,64 +139,6 @@ struct ManualView2: View {
                                                 }
                                             }
                                     )
-<<<<<<< HEAD
-                                
-                                Text ("Sparepart yang diservis")
-                                    .padding(.top, 2)
-                                    .foregroundColor(.white)
-                                VStack{
-                                    HStack(spacing:15){
-                                        RectangleStyle()
-                                            .frame(width: 120, height: 30)
-                                            .overlay(
-                                                CheckboxField(
-                                                    partData: sparepartData[4],
-                                                    callback: checkboxSelected
-                                                )
-                                            )
-                                        RectangleStyle()
-                                            .frame(width: 115, height: 30)
-                                            .overlay(
-                                                CheckboxField(
-                                                    partData: sparepartData[0],
-                                                    callback: checkboxSelected
-                                                )
-                                            )
-                                        Spacer()
-                                    } .padding(.horizontal, 5)
-                                    
-                                    HStack(spacing:15){
-                                        RectangleStyle()
-                                            .frame(width: 130, height: 30)
-                                            .overlay(
-                                                CheckboxField(
-                                                    partData: sparepartData[1],
-                                                    callback: checkboxSelected
-                                                )
-                                            )
-                                        RectangleStyle()
-                                            .frame(width: 145, height: 30)
-                                            .overlay(
-                                                CheckboxField(
-                                                    partData: sparepartData[3],
-                                                    callback: checkboxSelected
-                                                )
-                                            )
-                                        Spacer()
-                                    } .padding(.horizontal, 5)
-                                    
-                                    HStack(spacing:15){
-                                        RectangleStyle()
-                                            .frame(width: 140, height: 30)
-                                            .overlay(
-                                                CheckboxField(
-                                                    partData: sparepartData[2],
-                                                    callback: checkboxSelected
-                                                )
-                                            )
-                                        Spacer()
-                                    } .padding(.horizontal, 5)
-=======
 
                                 Text("Sparepart yang diservis")
                                     .padding(.top, 2)
@@ -220,7 +156,6 @@ struct ManualView2: View {
                                         CheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSparepartsServis3)
                                     }
                                     // Add more CheckboxRows as needed
->>>>>>> container-baru
                                 }
                             }
 
@@ -252,29 +187,6 @@ struct ManualView2: View {
     }
 
     func checkboxSelected(sparepart: Sparepart, isMarked: Bool) {
-<<<<<<< HEAD
-        print("\(sparepart) is marked: \(isMarked)")
-        //
-        if isMarked {
-            // If marked, add to the selectedSpareparts array
-            selectedSpareparts.append(sparepart)
-        } else {
-            // If unmarked, remove from the selectedSpareparts array
-            if let index = selectedSpareparts.firstIndex(of: sparepart) {
-                selectedSpareparts.remove(at: index)
-            }
-        }
-        //
-    }
-    
-    func addMaintenanceHistory() {
-        // MARK: Save maintenance history
-        let maintenanceHistory = MaintenanceHistory(date: Date(),
-                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
-        
-        motorcycle.maintenanceHistories.append(maintenanceHistory)
-        
-=======
         handleCheckboxSelection(sparepart: sparepart, isMarked: isMarked, selectedSpareparts: $selectedSpareparts)
     }
 
@@ -308,22 +220,11 @@ struct ManualView2: View {
     }
 
     private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
->>>>>>> container-baru
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
     }
-    
-    struct RectangleStyle: View {
-        var body: some View {
-            Rectangle()
-                .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
-                .cornerRadius(10)
-                .padding(.leading, -4)
-        }
-    }
-    
 }
 
 struct CheckboxRow: View {
@@ -362,19 +263,11 @@ struct CheckboxRow: View {
 }
 
 struct CheckboxField: View {
-    
-    let partData: Sparepart
+    let id: Sparepart
+    let label: Sparepart
     let size: CGFloat
     let color: Color
     let textSize: Int
-<<<<<<< HEAD
-    let callback: (Sparepart, Bool)->()
-    
-    init(
-        partData: Sparepart,
-        color: Color = Color.white,
-        callback: @escaping (Sparepart, Bool)->()
-=======
     let imageName: String
     let callback: (Bool)->()
 
@@ -386,12 +279,13 @@ struct CheckboxField: View {
         textSize: Int = 14,
         imageName: String,
         callback: @escaping (Bool)->()
->>>>>>> container-baru
     ) {
-        self.partData = partData
-        self.size = 17
+        self.id = sparepart
+        self.label = sparepart
+        self.size = size
         self.color = color
-        self.textSize = 17
+        self.textSize = textSize
+        self.imageName = sparepart.icon
         self.callback = callback
     }
 
@@ -400,11 +294,7 @@ struct CheckboxField: View {
     var body: some View {
         Button(action: {
             self.isMarked.toggle()
-<<<<<<< HEAD
-            self.callback(partData, self.isMarked)
-=======
             self.callback(self.isMarked)
->>>>>>> container-baru
         }) {
             HStack(alignment: .center, spacing: 6) {
                 Image(systemName: self.isMarked ? "checkmark.circle.fill" : "circle")
@@ -412,11 +302,11 @@ struct CheckboxField: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: self.size, height: self.size)
-                Image(partData.icon)
+                Image(self.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: self.size, height: self.size)
-                Text(partData.type.rawValue)
+                Text(label.name)
                     .font(Font.system(size: size))
                 Spacer()
             }.foregroundColor(self.color)
@@ -424,18 +314,4 @@ struct CheckboxField: View {
         .foregroundColor(Color.white)
     }
 }
-<<<<<<< HEAD
 
-
-
-//#Preview {
-//    ManualView2()
-//}
-
-
-//#Preview {
-//    ManualView2(motorcycle: motorcycleVM.motorcycle)
-//}
-
-=======
->>>>>>> container-baru

@@ -46,68 +46,10 @@ struct SettingsView: View {
             })
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
-            //                  Form {
-            //                      Section("IOT Configuration") {
-            //                          List {
-            //                              HStack {
-            //                                 Text("Status")
-            //                                 Spacer()
-            //                                 Text(isDeviceConnected ? "Connected" : "Disconnected")
-            //                                     .foregroundColor(isDeviceConnected ? .green : .red)
-            //                              }
-            //                              HStack {
-            //                                 Text("Battery")
-            //                                 Spacer()
-            //                                 Text("\(batteryPercentage)%")
-            //                              }
-            //                          }
-            //                      }
-            
-            //                      Section {
-            //                          if isDeviceConnected {
-            //                              Button(action: {
-            //                                 // Action to disconnect IoT device
-            //                                 isDeviceConnected = false
-            //                                 batteryPercentage = 0
-            //                                 isIOTPaired = false
-            //                                 isIOTConnected = false
-            //                              }) {
-            //                                 Text("Disconnect")
-            //                                     .foregroundStyle(.red)
-            //                              }
-            //                          }
-            //                      }
+
         }
         
     }
 }
 
 
-//struct DetectedDevicesView: View {
-//    @Binding var isIOTConnected: Bool
-//    @Binding var isDeviceConnected: Bool
-//
-//    var body: some View {
-//        List {
-//            // List of detected devices
-//            Text("Detected Devices 1")
-//            
-//            Section {
-//                Button(action: {
-//                    // Action to connect to the selected device
-//                    isIOTConnected = true
-//                    isDeviceConnected = true // Update the status to connected
-//                }) {
-//                    Text("Connect")
-////                        .background(Color("TabIconoColor"))
-////                        .cornerRadius(14)
-//                }
-//            }
-//        }
-//        .navigationBarTitle("Pair IoT")
-//    }
-//}
-
-//#Preview {
-//    SettingsView()
-//}
