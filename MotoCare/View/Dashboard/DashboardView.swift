@@ -80,7 +80,7 @@ struct DashboardView: View {
                                                         .foregroundColor(.white)
                                                     
 //                                                    Text("\(motorcycles[0].currentMileage) Km")
-                                                    Text("\(motorcycles[0].currentMileage + bluetoothService.totalTrip) Km")
+                                                    Text("\(motorcycles[0].currentMileage + (bluetoothService.totalTrip/1000)) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
@@ -231,7 +231,7 @@ struct DashboardView: View {
                 image = "VBeltImage"
             case .olimesin:
                 icon = "engine-oil"
-                checkIntervalInKilometer = 4000
+                checkIntervalInKilometer = 0
                 replaceIntervalInKilometer = 4000
                 image = "EngineOilImage"
             case .oligardan:

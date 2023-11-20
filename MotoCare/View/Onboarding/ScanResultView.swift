@@ -81,7 +81,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -144,7 +144,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -207,7 +207,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
