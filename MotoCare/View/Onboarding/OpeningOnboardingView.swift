@@ -13,44 +13,72 @@ struct OpeningOnboardingView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack{
-                BackgroundView()
-                VStack {
-                    Image("lexy")
-                        .resizable()
-                        .padding(.horizontal, 35)
-                        .aspectRatio(contentMode: .fit)
+            GeometryReader { geometry in
+                ZStack{
+                    BackgroundView()
+                    VStack {
+                        Image("lexy")
+                            .resizable()
+                            .padding(.horizontal, 35)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geometry.size.width)
+                        
+                        Text("Perawatan motor dibuat mudah")
+                            .font(.system(size: adaptiveTextSize()))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                            .padding(.horizontal, 16)
+                        
+                        Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
+                            .font(.system(size: adaptiveTextSize()))
+                            .padding(.top, 1)
+                            .padding(.bottom, 100)
+                            .padding(.horizontal, 16)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
                     
-                    Text("Perawatan motor dibuat mudah")
-                        .font(.system(size: 34))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .frame(maxWidth: 350, alignment: .topLeading)
-                    
-                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
-                        .font(.system(size: 17))
-                        .padding(.top, 1)
-                        .padding(.bottom, 100)
-                        .foregroundColor(Color.white)
-                        .frame(maxWidth: 350, alignment: .topLeading)
-                }
-                
-                VStack{
-                    Spacer()
-                    NavigationLink(destination: InputOdometerView()) {
-                        Text("Lanjutkan")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 350, height: 44)
-                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(11)
-                            .padding(.bottom, 30)
+                    VStack{
+                        Spacer()
+                        NavigationLink(destination: InputOdometerView()) {
+                            Text("Lanjutkan")
+                                .font(.system(size: adaptiveTextSize2()))
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, maxHeight: 44, alignment: .center)
+//                                .frame(width: 357, height: 44, alignment: .center)
+                                .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                .cornerRadius(11)
+                                .padding(.bottom, 30)
+                                .padding(.horizontal, 16)
+                        }
                     }
                 }
+                .padding(.bottom, 30)
+                .padding(.horizontal, 16)
             }
         }
         .environmentObject(motorcycleVM)
     }
+    private func adaptiveTextSize() -> CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                // Ukuran font untuk iPad
+                return 24
+            } else {
+                // Ukuran font untuk iPhone
+                return 17
+            }
+        }
+    
+    private func adaptiveTextSize2() -> CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                // Ukuran font untuk iPad
+                return 30
+            } else {
+                // Ukuran font untuk iPhone
+                return 20
+            }
+        }
 }
 
 #Preview {

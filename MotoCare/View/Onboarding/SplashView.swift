@@ -29,11 +29,11 @@ struct SplashView: View {
                 Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 371, height: 231)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 VStack{
                     Spacer()
                     Text("Sahabat baik motormu!")
-                        .font(.system(size: 17))
+                        .font(.system(size: adaptiveTextSize()))
                         .foregroundColor(.white)
                         .padding(.bottom, 80)
                 }
@@ -56,7 +56,16 @@ struct SplashView: View {
             }
         }
     }
-}
+    private func adaptiveTextSize() -> CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                // Ukuran font untuk iPad
+                return 24
+            } else {
+                // Ukuran font untuk iPhone
+                return 17
+            }
+        }
+    }
 
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {

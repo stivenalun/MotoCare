@@ -25,7 +25,7 @@ struct ManualView2: View {
                                     .font(.system(size: 17))
                                     .foregroundColor(.white)
                                     .padding(.bottom, 20)
-                                    .frame(maxWidth: 350, alignment: .topLeading)
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
 
                                 Text("Riwayat Servis 1")
                                     .fontWeight(.bold)
