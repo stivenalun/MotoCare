@@ -54,7 +54,7 @@ struct ModalUpdateOdometerView: View {
                     Rectangle()
                         .fill(Color.gray.opacity(0.7))
                         .cornerRadius(10)
-                        .frame(width: DeviceInfo.maxWidth, height: 35)
+                        .frame(width: 345, height: 35)
                         .overlay(
                             TextField("Masukan jarak tempuhmu saat ini", text: $currentMileage)
                                 .foregroundColor(.primary)

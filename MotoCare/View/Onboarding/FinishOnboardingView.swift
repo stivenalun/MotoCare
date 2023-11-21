@@ -29,7 +29,7 @@ struct FinishOnboardingView: View {
                             Text("Lanjutkan")
                                 .font(.headline)
                                 .foregroundColor(.black)
-                                .frame(width: DeviceInfo.maxWidth, height: 45, alignment: .center)
+                                .frame(width: 345, height: 45, alignment: .center)
                                 .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                                 .cornerRadius(11)
                         })}

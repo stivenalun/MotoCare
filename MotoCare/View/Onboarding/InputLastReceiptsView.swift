@@ -44,13 +44,13 @@ struct InputLastReceiptsView: View {
                         .font(.system(size: 34))
                         .fontWeight(.bold)
                         .padding(.top, 45)
-                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                        .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
                     
                     Text("Isi riwayat servis sparepart motormu dengan cara men-scan 3 resi dari bengkel atau isi manual. Mulai dari busi, oli, v-belt, oli gardan, shock breaker, dan air filter.")
                         .padding(.top, 20)
                         .font(.system(size: 17))
-                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                        .frame(maxWidth: 345, alignment: .topLeading)
                         .foregroundColor(.white)
                     Spacer()
                     Spacer()
@@ -65,7 +65,7 @@ struct InputLastReceiptsView: View {
                         Text("Scan")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: DeviceInfo.maxWidth, height: 45, alignment: .center)
+                            .frame(width: 345, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                     }
@@ -75,7 +75,7 @@ struct InputLastReceiptsView: View {
                         Text("Manual")
                             .font(.headline)
                             .foregroundColor(.white)
-                            .frame(width: DeviceInfo.maxWidth, height: 45, alignment: .center)
+                            .frame(width: 345, height: 45, alignment: .center)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 11)
                                     .stroke(Color.white, lineWidth: 2)

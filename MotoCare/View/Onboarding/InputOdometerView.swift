@@ -44,12 +44,12 @@ struct InputOdometerView: View {
                     .padding(.top, 30)
                     .padding(.bottom, 10)
                     .fontWeight(.bold)
-                    .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                    .frame(maxWidth: 345, alignment: .topLeading)
                 
                 Rectangle()
                     .fill(Color.gray.opacity(0.7))
                     .cornerRadius(10)
-                    .frame(width: DeviceInfo.maxWidth, height: 35)
+                    .frame(width: 345, height: 35)
                     .overlay(
                         TextField("Masukan jarak tempuhmu saat ini", text: $currentMileage)
                             .foregroundColor(.primary)
@@ -69,7 +69,7 @@ struct InputOdometerView: View {
                 Text("Ketahui kondisi part motor Anda dari jarak tempuh yang tertera di odometer.")
                     .font(.system(size: 17))
                     .foregroundColor(.white)
-                    .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                    .frame(maxWidth: 345, alignment: .topLeading)
                     .padding(.bottom, 30)
                     .padding(.top, 5)
                 
@@ -82,7 +82,7 @@ struct InputOdometerView: View {
                     Text("Lanjutkan")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: DeviceInfo.maxWidth, height: 45)
+                        .frame(width: 345, height: 45)
                         .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                         .cornerRadius(11)
                 }

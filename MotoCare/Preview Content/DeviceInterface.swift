@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DeviceInfo {
+class DeviceInfo {
     static var maxWidth: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:

@@ -232,7 +232,7 @@ struct ScanResultView: View {
                     Text("Selesai")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: DeviceInfo.maxWidth, height: 45, alignment: .center)
+                        .frame(width: 345, height: 45, alignment: .center)
                         .background(Color("TabIconColor"))
                         .cornerRadius(11)
                 }
