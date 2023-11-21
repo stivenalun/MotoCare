@@ -114,7 +114,9 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: summaryOfSparePartHistory(), maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                
+//                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
                                     
                                 
                                 Button(action: {
@@ -170,6 +172,24 @@ struct DashboardView: View {
                 .ignoresSafeArea()
         }
     }
+    
+    func summaryOfSparePartHistory() -> [SparepartHistory] {
+            var sparepartHistories: [SparepartHistory] = []
+            
+            let newMaintenanceHistories = maintenanceHistories.sorted { $0.date < $1.date }
+            
+            for maintenanceHistory in newMaintenanceHistories {
+                var history = maintenanceHistory.sparePartHistory
+                
+                for sparepart in history {
+                    if !sparepartHistories.contains(sparepart) {
+                        sparepartHistories.append(sparepart)
+                    }
+                }
+            }
+            
+            return sparepartHistories
+        }
     
     func setupNotification() {
         let center = UNUserNotificationCenter.current()
@@ -439,7 +459,7 @@ enum SparepartStatus: String {
             return .yellow
         case .aman:
             return .green
-        default:
+        case .none:
             return .gray
         }
         
@@ -452,9 +472,9 @@ enum SparepartStatus: String {
         case .periksa:
             return "Lakukan Pemeriksaan"
         case .aman:
-            return "Kondisi Bagus"
-        default:
-            return "No Data"
+            return "Kondisi Part masih Bagus"
+        case .none:
+            return "Belum ada data servis nih"
         }
     }
 }
