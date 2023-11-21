@@ -10,7 +10,7 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
-    @StateObject var bluetoothService = BluetoothService()
+    @ObservedObject var bluetoothService = BluetoothService()
     
 //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
@@ -80,7 +80,7 @@ struct DashboardView: View {
                                                         .foregroundColor(.white)
                                                     
 //                                                    Text("\(motorcycles[0].currentMileage) Km")
-                                                    Text("\(motorcycles[0].currentMileage + (bluetoothService.totalTrip/1000)) Km")
+                                                    Text("\(motorcycles[0].currentMileage + bluetoothService.totalTrip) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
