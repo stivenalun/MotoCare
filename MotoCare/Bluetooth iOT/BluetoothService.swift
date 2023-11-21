@@ -44,9 +44,16 @@ class BluetoothService: NSObject, ObservableObject {
 
 extension BluetoothService: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOn {
-            print("CB Powered On")
-            scanForPeripherals()
+        switch central.state {
+        case .poweredOn:
+            print("Bluetooth is powered on.")
+            // Perform Bluetooth-related operations
+        case .poweredOff:
+            print("Bluetooth is powered off.")
+            // Handle powered off state
+        // Add cases for other states as needed
+        default:
+            break
         }
     }
     
@@ -122,7 +129,7 @@ extension BluetoothService: CBPeripheralDelegate {
         if characteristic.uuid == sensorCharacteristic {
             if let data = characteristic.value {
                 if let stringValue = String(data: data, encoding: .utf8) {
-                    print("Received data: \(stringValue)")
+//                    print("Received data: \(stringValue)")
                     
                     let sensorData: Int = Int(stringValue) ?? 0
                     totalTrip = sensorData

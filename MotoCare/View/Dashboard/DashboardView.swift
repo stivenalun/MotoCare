@@ -10,7 +10,7 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
-    @ObservedObject var bluetoothService = BluetoothService()
+    @StateObject var bluetoothService = BluetoothService()
     
 //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
