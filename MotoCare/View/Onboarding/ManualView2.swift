@@ -27,12 +27,12 @@ struct ManualView2: View {
                                     .padding(.bottom, 20)
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
 
-                                Text("Riwayat Servis 1")
+                                Text("Riwayat Servis 1 (*Wajib diisi)")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
 
                                 Rectangle()
-                                    .fill(Color("BackColor"))
+                                    .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
                                     .frame(width: 350, height: 35)
                                     .overlay(
@@ -40,15 +40,6 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
-                                            .focused($isInputActive)
-                                            .toolbar {
-                                                ToolbarItemGroup(placement: .keyboard) {
-                                                    Spacer()
-                                                    Button("Done") {
-                                                        isInputActive = false
-                                                    }
-                                                }
-                                            }
                                     )
 
                                 Text("Sparepart yang diservis")
@@ -65,6 +56,7 @@ struct ManualView2: View {
                                     }
                                     HStack{
                                         CheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSpareparts)
+                                            .padding(.leading, -145)
                                     }
                                 
                                     // Add more CheckboxRows as needed
@@ -77,7 +69,7 @@ struct ManualView2: View {
                                     .foregroundColor(.white)
 
                                 Rectangle()
-                                    .fill(Color("BackColor"))
+                                    .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
                                     .frame(width: 350, height: 35)
                                     .overlay(
@@ -85,15 +77,6 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
-                                            .focused($isInputActive)
-                                            .toolbar {
-                                                ToolbarItemGroup(placement: .keyboard) {
-                                                    Spacer()
-                                                    Button("Done") {
-                                                        isInputActive = false
-                                                    }
-                                                }
-                                            }
                                     )
 
                                 Text("Sparepart yang diservis")
@@ -110,9 +93,11 @@ struct ManualView2: View {
                                     }
                                     HStack{
                                         CheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSparepartsServis2)
+                                            .padding(.leading, -145)
                                     }
                                     // Add more CheckboxRows as needed
                                 }
+                                
                             }
 
                             VStack(alignment: .leading) {
@@ -121,7 +106,7 @@ struct ManualView2: View {
                                     .foregroundColor(.white)
 
                                 Rectangle()
-                                    .fill(Color("BackColor"))
+                                    .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
                                     .frame(width: 350, height: 35)
                                     .overlay(
@@ -129,15 +114,6 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
-                                            .focused($isInputActive)
-                                            .toolbar {
-                                                ToolbarItemGroup(placement: .keyboard) {
-                                                    Spacer()
-                                                    Button("Done") {
-                                                        isInputActive = false
-                                                    }
-                                                }
-                                            }
                                     )
 
                                 Text("Sparepart yang diservis")
@@ -154,6 +130,8 @@ struct ManualView2: View {
                                     }
                                     HStack{
                                         CheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSparepartsServis3)
+                                            .padding(.leading, -145)
+                                        
                                     }
                                     // Add more CheckboxRows as needed
                                 }
@@ -234,7 +212,7 @@ struct CheckboxRow: View {
     var body: some View {
         Rectangle()
             .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
-            .frame(width: 120, height: 30)
+            .frame(width: 145, height: 30)
             .cornerRadius(10)
             .padding(.leading, -4)
             .overlay(

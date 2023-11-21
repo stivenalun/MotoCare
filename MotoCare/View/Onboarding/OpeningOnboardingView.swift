@@ -13,49 +13,42 @@ struct OpeningOnboardingView: View {
     
     var body: some View {
         NavigationStack {
-            GeometryReader { geometry in
-                ZStack{
-                    BackgroundView()
-                    VStack {
-                        Image("lexy")
-                            .resizable()
-                            .padding(.horizontal, 35)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width)
-                        
-                        Text("Perawatan motor dibuat mudah")
-                            .font(.system(size: adaptiveTextSize()))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .padding(.horizontal, 16)
-                        
-                        Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotoCare, sobat terbaik anda")
-                            .font(.system(size: adaptiveTextSize()))
-                            .padding(.top, 1)
-                            .padding(.bottom, 100)
-                            .padding(.horizontal, 16)
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
+            ZStack{
+                BackgroundView()
+                VStack {
+                    Image("lexyy")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, 40)
+                        .padding(.bottom, 40)
                     
-                    VStack{
-                        Spacer()
-                        NavigationLink(destination: InputOdometerView()) {
-                            Text("Lanjutkan")
-                                .font(.system(size: adaptiveTextSize2()))
-                                .foregroundColor(.black)
-                                .frame(maxWidth: .infinity, maxHeight: 44, alignment: .center)
-//                                .frame(width: 357, height: 44, alignment: .center)
-                                .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                                .cornerRadius(11)
-                                .padding(.bottom, 30)
-                                .padding(.horizontal, 16)
-                        }
+                    Text("Perawatan motor dibuat mudah")
+                        .font(.system(size: 34))
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                        .padding(.bottom, 10)
+                    
+                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotomo, sobat terbaik anda")
+                        .font(.system(size: 17))
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: DeviceInfo.maxWidth, alignment: .topLeading)
+                    Spacer()
+                        .frame(height: 100)
+                }
+                
+                VStack{
+                    Spacer()
+                    NavigationLink(destination: InputOdometerView()) {
+                        Text("Lanjutkan")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(width: DeviceInfo.maxWidth, height: 44)
+                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                            .cornerRadius(11)
+                            .padding(.bottom, 30)
                     }
                 }
-                .padding(.bottom, 30)
-                .padding(.horizontal, 16)
             }
         }
         .environmentObject(motorcycleVM)
@@ -81,7 +74,7 @@ struct OpeningOnboardingView: View {
         }
 }
 
-#Preview {
-    OpeningOnboardingView()
-}
+//#Preview {
+//    OpeningOnboardingView()
+//}
         

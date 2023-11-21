@@ -24,25 +24,27 @@ struct SplashView: View {
                 MainTabView()
                     .preferredColorScheme(.dark)
             } else {
-                Rectangle()
-                Color("Black")
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                VStack{
+                GeometryReader { proxy in
+                    Image("logoo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: proxy.size.width * 0.5)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
+                VStack {
                     Spacer()
                     Text("Sahabat baik motormu!")
-                        .font(.system(size: adaptiveTextSize()))
+                        .font(.system(size: 18))
+                        .dynamicTypeSize(...DynamicTypeSize.large)
                         .foregroundColor(.white)
-                        .padding(.bottom, 80)
+                    Spacer()
+                        .frame(height: 80)
                 }
             }
         }
         .background(content: {
             BackgroundView()
         })
-        .edgesIgnoringSafeArea(.all)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation {
@@ -67,8 +69,7 @@ struct SplashView: View {
         }
     }
 
-struct SplashView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashView()
-    }
-}
+//#Preview {
+//    SplashView()
+//}
+
