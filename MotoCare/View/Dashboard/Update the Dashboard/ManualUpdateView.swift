@@ -17,8 +17,6 @@ struct ManualUpdateView: View {
     
     @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
     
-//    @Query private var motorcycle: [Motorcycle]
-    
     @State private var isModalPresented = false
     @State private var lastServiceMileage = ""
     @State private var selectedSpareparts: [Sparepart] = []
@@ -68,7 +66,7 @@ struct ManualUpdateView: View {
                         
                         HStack {
                             ForEach(selectedSpareparts, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.name)
+                                Text(selectedSparepart.type.rawValue)
                                     .modifier(SelectedSparepartModifier())
                             }
                         }
@@ -147,9 +145,4 @@ struct ManualUpdateView: View {
         
         print("Success saved!")
     }
-
 }
-//
-//#Preview {
-//    ManualUpdateView()
-//}

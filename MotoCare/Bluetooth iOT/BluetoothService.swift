@@ -19,6 +19,7 @@ enum ConnectionStatus: String {
 
 let sensorService: CBUUID = CBUUID(string: "d888a9c2-f3cc-11ed-a05b-0242ac120003")
 let sensorCharacteristic: CBUUID = CBUUID(string: "d888a9c3-f3cc-11ed-a05b-0242ac120003")
+var motorcycles: [Motorcycle] = []
 
 class BluetoothService: NSObject, ObservableObject {
     
@@ -50,18 +51,14 @@ extension BluetoothService: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
         if peripheral.name == "Nano 33 IoT" {
             print("1 Discovered \(peripheral.name ?? "no name")")
-            hallSensorPeripheral = peripheral
-            centralManager.connect(hallSensorPeripheral!)
-            peripheralStatus = .connecting
+            connectToPeripheral(peripheral: peripheral)
         } else if peripheral.name == "Arduino" {
             print("2 Discovered \(peripheral.name ?? "no name")")
-            hallSensorPeripheral = peripheral
-            centralManager.connect(hallSensorPeripheral!)
-            peripheralStatus = .connecting
+            connectToPeripheral(peripheral: peripheral)
         }
+        discoveredPeripherals.removeAll()
         discoveredPeripherals.append(peripheral)
     }
     
@@ -75,6 +72,11 @@ extension BluetoothService: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         peripheralStatus = .disconnected
+//        if peripheral.name == "Arduino" {
+//            print("2 Discovered \(peripheral.name ?? "no name")")
+//            disconnectPeripheral(peripheral: peripheral)
+//        }
+//        discoveredPeripherals.removeAll()
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -87,6 +89,12 @@ extension BluetoothService: CBCentralManagerDelegate {
         hallSensorPeripheral = peripheral
         centralManager.connect(hallSensorPeripheral!)
         peripheralStatus = .connecting
+    }
+    
+    func disconnectPeripheral(){
+        centralManager.cancelPeripheralConnection(hallSensorPeripheral!)
+        peripheralStatus = .disconnected
+        totalTrip = 0
     }
 
     
@@ -118,6 +126,7 @@ extension BluetoothService: CBPeripheralDelegate {
                     
                     let sensorData: Int = Int(stringValue) ?? 0
                     totalTrip = sensorData
+//                    motorcycles[0].totalTrip = totalTrip
                     
                     // Handle the received data here (e.g., display it in your app's UI)
                 }

@@ -10,6 +10,8 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
+    @ObservedObject var bluetoothService = BluetoothService()
+    
 //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     @Query var sparepartHistories: [SparepartHistory]
@@ -77,15 +79,13 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-                                                    Text("\(motorcycles[0].currentMileage) Km")
+//                                                    Text("\(motorcycles[0].currentMileage) Km")
+                                                    Text("\(motorcycles[0].currentMileage + (bluetoothService.totalTrip/1000)) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
                                                         .fontWeight(.bold)
                                                         .padding(.bottom, 13)
-                                                    HStack {
-                                                        
-                                                    }
                                                     Button(action: {
                                                         isModalPresented = true
                                                         
@@ -138,7 +138,7 @@ struct DashboardView: View {
                                 }
                             }
                             .padding()
-                            .navigationBarTitle("Dashboard")
+//                            .navigationBarTitle("Dashboard")
                         }
                     }
                 }
@@ -251,7 +251,7 @@ struct DashboardView: View {
                 image = "VBeltImage"
             case .olimesin:
                 icon = "engine-oil"
-                checkIntervalInKilometer = 4000
+                checkIntervalInKilometer = 0
                 replaceIntervalInKilometer = 4000
                 image = "EngineOilImage"
             case .oligardan:
@@ -272,7 +272,7 @@ struct DashboardView: View {
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
-                labelText: data.name,
+                labelText: data.type.rawValue,
                 imageSparePart: image,
                 status: estimateSparepartStatus(lastServiceMillage: maintenanceMileage,
                                                 currentMillage: motorcycles[0].currentMileage,
