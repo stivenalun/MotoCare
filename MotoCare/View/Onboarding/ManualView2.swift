@@ -26,11 +26,11 @@ struct ManualView2: View {
                                     .foregroundColor(.white)
                                     .padding(.bottom, 20)
                                     .frame(maxWidth: 350, alignment: .topLeading)
-
+                                
                                 Text("Riwayat Servis 1 (*Wajib diisi)")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-
+                                
                                 Rectangle()
                                     .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
@@ -41,7 +41,7 @@ struct ManualView2: View {
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
                                     )
-
+                                
                                 Text("Sparepart yang diservis")
                                     .padding(.top, 2)
                                     .foregroundColor(.white)
@@ -58,16 +58,16 @@ struct ManualView2: View {
                                         CheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSpareparts)
                                             .padding(.leading, -145)
                                     }
-                                
+                                    
                                     // Add more CheckboxRows as needed
                                 }
                             }
-
+                            
                             VStack(alignment: .leading) {
                                 Text("Riwayat Servis 2")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-
+                                
                                 Rectangle()
                                     .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
@@ -78,7 +78,7 @@ struct ManualView2: View {
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
                                     )
-
+                                
                                 Text("Sparepart yang diservis")
                                     .padding(.top, 2)
                                     .foregroundColor(.white)
@@ -99,12 +99,12 @@ struct ManualView2: View {
                                 }
                                 
                             }
-
+                            
                             VStack(alignment: .leading) {
                                 Text("Riwayat Servis 3")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
-
+                                
                                 Rectangle()
                                     .fill(Color.gray.opacity(0.7))
                                     .cornerRadius(10)
@@ -115,7 +115,7 @@ struct ManualView2: View {
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
                                     )
-
+                                
                                 Text("Sparepart yang diservis")
                                     .padding(.top, 2)
                                     .foregroundColor(.white)
@@ -136,29 +136,32 @@ struct ManualView2: View {
                                     // Add more CheckboxRows as needed
                                 }
                             }
-
+                            
                             .padding()
                             .navigationBarTitle("Manual Input")
                         }
                     }
-
-                    NavigationLink(
-                        destination: FinishOnboardingView(),
-                        isActive: $isPushed,
-                        label: {
-                            Button(action: {
-                                print("===================================")
-                                addMaintenanceHistory()
-                                isPushed.toggle()
-                            }, label: {
-                                Text("Selesai")
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                    .frame(width: 335, height: 45)
-                                    .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                                    .cornerRadius(11)
+                    
+                    
+                    VStack{
+                        NavigationLink(
+                            destination: FinishOnboardingView(),
+                            isActive: $isPushed,
+                            label: {
+                                Button(action: {
+                                    print("===================================")
+                                    addMaintenanceHistory()
+                                    isPushed.toggle()
+                                }, label: {
+                                    Text("Selesai")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                        .frame(width: 335, height: 45)
+                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                        .cornerRadius(11)
+                                })
                             })
-                        })
+                    } .padding(.bottom, 30)
                 }
             }
         }

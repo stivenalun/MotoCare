@@ -46,7 +46,7 @@ struct SplashView: View {
             BackgroundView()
         })
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 withAnimation {
                     if motorcycles.isEmpty {
                         self.isActive = true

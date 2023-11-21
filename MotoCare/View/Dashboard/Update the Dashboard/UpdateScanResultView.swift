@@ -61,6 +61,7 @@ struct UpdateScanResultView: View {
                         ))
                         .foregroundColor(.white)
                         .font(.body)
+                        .disabled(true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -83,7 +84,7 @@ struct UpdateScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91))
+                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -107,7 +108,7 @@ struct UpdateScanResultView: View {
                         .foregroundColor(.black)
                         .frame(width: 335, height: 55, alignment: .center)
                         .background(Color("TabIconColor"))
-                        .cornerRadius(25)
+                        .cornerRadius(11)
                 }
             }
             .padding()

@@ -117,7 +117,7 @@ struct InputLastReceiptsView: View {
                 }
             }
             .sheet(isPresented: $isShowingManualReceiptView) {
-                ManualInputMaintenanceHistory(motorcycle: motorcycle)
+                ManualView2(motorcycle: motorcycle)
             }
         }
     }

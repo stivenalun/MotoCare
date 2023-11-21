@@ -29,7 +29,7 @@ struct FinishUpdateView: View {
                         Button(action: {
                             isUpdateModalPresented.toggle()
                         }, label: {
-                            Text("Tambahkan")
+                            Text("Selesai")
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .frame(width: 355, height: 55, alignment: .center)

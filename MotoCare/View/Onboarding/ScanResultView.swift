@@ -58,6 +58,7 @@ struct ScanResultView: View {
                         ))
                         .foregroundColor(.white)
                         .font(.body)
+                        .disabled(true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -81,7 +82,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
+                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -122,6 +123,7 @@ struct ScanResultView: View {
                         ))
                         .foregroundColor(.white)
                         .font(.body)
+                        .disabled(true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -144,7 +146,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
+                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -185,6 +187,7 @@ struct ScanResultView: View {
                         ))
                         .foregroundColor(.white)
                         .font(.body)
+                        .disabled(true)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -207,7 +210,7 @@ struct ScanResultView: View {
                                         .foregroundColor(.black)
                                         .padding(10)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color(red: 1, green: 0.94, blue: 0.71))
+                                        .background(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
                                         .cornerRadius(25)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 25)
@@ -229,9 +232,9 @@ struct ScanResultView: View {
                     Text("Selesai")
                         .font(.headline)
                         .foregroundColor(.black)
-                        .frame(width: 335, height: 55, alignment: .center)
+                        .frame(width: DeviceInfo.maxWidth, height: 45, alignment: .center)
                         .background(Color("TabIconColor"))
-                        .cornerRadius(25)
+                        .cornerRadius(11)
                 }
             }
             .padding()
@@ -240,22 +243,6 @@ struct ScanResultView: View {
             FinishOnboardingView()
         }
     }
-    
-//   func addMaintenanceHistory() {
-//        // MARK: Save maintenance history
-//        let maintenanceHistory = MaintenanceHistory(date: Date(), maintenanceMileage: Int(scannedServiceMileage ?? "") ?? 0)
-//        motorcycle.maintenanceHistories.append(maintenanceHistory)
-//       
-//       if let extractedText1 = extractedText1 {
-//                   do {
-//                       try saveSparePartHistory(from: extractedText1)
-//                   } catch {
-//                       print("Error saving spare part history: \(error)")
-//                   }
-//               }
-//
-//        print("Success saved!")
-//    }
     
     func addMaintenanceHistory() {
         // MARK: Save maintenance history
@@ -308,17 +295,5 @@ struct ScanResultView: View {
     }
 }
 
-// Preview
-//struct ScanResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ScanResultView(
-//            extractedText1: .constant(""),
-//            extractedText2: .constant(""),
-//            extractedText3: .constant(""),
-//            extractedText4: .constant(""),
-//            extractedText5: .constant(""),
-//            extractedText6: .constant("")
-//        )
-//    }
-//}
+
 

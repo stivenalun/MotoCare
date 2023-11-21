@@ -1,3 +1,10 @@
+//
+//  ManualInputMaintenanceHistory.swift
+//  MotoCare
+//
+//  Created by Stiven on 22/11/23.
+//
+
 import SwiftUI
 import SwiftData
 
@@ -202,7 +209,7 @@ struct ManualInputMaintenanceHistory: View {
 //        // MARK: Save maintenance history
 //        let maintenanceHistory = MaintenanceHistory(date: Date(),
 //                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
-//        
+//
 //        motorcycle.maintenanceHistories.append(maintenanceHistory)
 //
 //        // MARK: Save sparepart history
@@ -210,7 +217,7 @@ struct ManualInputMaintenanceHistory: View {
 //            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
 //            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
 //        }
-//        
+//
 //        print("Success saved!")
 //    }
 }
@@ -294,6 +301,7 @@ struct ButtonStyleModifier: ViewModifier {
 //#Preview {
 //    ManualView()
 //}
+
 
 
 

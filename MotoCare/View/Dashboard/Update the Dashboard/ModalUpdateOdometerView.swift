@@ -27,49 +27,61 @@ struct ModalUpdateOdometerView: View {
         ZStack {
             BackgroundView()
             VStack {
-                LottiePlusView(name: Constants.done, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
-                    .frame(width: 200, height: 300)
-                
-                Text("Jarak tempuh motormu\nsudah sampai mana ya?")
+                Spacer()
+                Image("odometer")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 328, height: 187)
+                    .padding(.horizontal, 18)
+                    .padding(.top, -25)
+                    
+                Text("Perbarui jarak tempuh motormu saat ini")
                     .font(.system(size: 28))
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
                     .padding(.bottom, 15)
                     .fontWeight(.bold)
-                    .frame(width: 355)
+                    .frame(width: 380, alignment: .topLeading)
                 
                 Text("Cek odometer untuk mengetahui jarak tempuh kamu yang terkini. Kondisi spare-part-mu akan kami ukur berdasarkan ini.")
                     .padding(.horizontal, 20)
                     .font(.system(size: 17))
                     .foregroundColor(.white)
-                    .frame(width: 355, alignment: .topLeading)
+                    .frame(width: 380, alignment: .topLeading)
+                    .padding(.bottom, 15)
                 
                 HStack {
-                    TextField("Perbarui jarak tempuhmu", text: $currentMileage)
-                        .foregroundColor(.primary)
-                        .background(Color("BackColor").cornerRadius(8))
-                        .font(.system(size: 22))
-                        .padding(.horizontal, 38)
-                        .padding(.top, 40)
-                        .keyboardType(.numberPad)
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.7))
+                        .cornerRadius(10)
+                        .frame(width: DeviceInfo.maxWidth, height: 35)
+                        .overlay(
+                            TextField("Masukan jarak tempuhmu saat ini", text: $currentMileage)
+                                .foregroundColor(.primary)
+                                .padding(.horizontal, 10)
+                                .keyboardType(.numberPad)
+                            )
                 }
                 .frame(width: 390, height: 30)
-                
-                VStack{
-                    Button(action: {
-                        editMotorcycle()
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Simpan")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 335, height: 55)
-                            .background(Color("TabIconColor"))
-                            .cornerRadius(25)
-                    }
-                    .padding(.top, 65)
-                }
+                Spacer()
+                Spacer()
             }
+            VStack{
+                Spacer()
+                Button(action: {
+                    editMotorcycle()
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Simpan")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(width: 345, height: 45)
+                        .background(Color("TabIconColor"))
+                        .cornerRadius(11)
+                }
+//                    .padding(.top, 65)
+            }
+            .padding(.bottom, 30)
         }
     }
     func editMotorcycle() {

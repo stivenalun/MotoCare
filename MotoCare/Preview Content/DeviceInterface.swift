@@ -13,7 +13,7 @@ struct DeviceInfo {
         case .pad:
             return 550
         default:
-            return 350
+            return 345
         }
     }
 }

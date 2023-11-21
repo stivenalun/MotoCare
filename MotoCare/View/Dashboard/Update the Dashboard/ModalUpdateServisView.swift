@@ -25,25 +25,28 @@ struct ModalUpdateServisView: View {
             ZStack{
                 BackgroundView()
                 VStack{
-                    Image("receipt")
+                    Spacer()
+                    Image("nota")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding(.top, 50)
-                        .frame(width: 350, height: 280)
+                        .padding(.top, 30)
+                        .frame(width: 350, height: 260)
                     
-                    Text("Perbarui riwayat servis sparepart motor.")
+                    Text("Perbarui riwayat servis sparepart")
                         .navigationBarBackButtonHidden(true)
                         .font(.system(size: 34))
                         .fontWeight(.bold)
                         .padding(.top, 45)
-                        .frame(maxWidth: 345, alignment: .topLeading)
+                        .frame(maxWidth: 350, alignment: .topLeading)
                         .foregroundColor(.white)
                     
-                    Text("Perbarui kondisi spare-part motormu dengan men-scan resi atau isi manual. ")
+                    Text("Perbarui kondisi spare-part motormu dengan men-scan resi atau isi manual.")
                         .padding(.top, 20)
                         .font(.system(size: 17))
-                        .frame(maxWidth: 345, alignment: .topLeading)
+                        .frame(maxWidth: 350, alignment: .topLeading)
                         .foregroundColor(.white)
+                    Spacer()
+                    Spacer()
                     Spacer()
                 }
                 
@@ -55,7 +58,7 @@ struct ModalUpdateServisView: View {
                         Text("Scan")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(width: 335, height: 45, alignment: .center)
+                            .frame(width: 350, height: 45, alignment: .center)
                             .background(Color(red: 0.12, green: 0.83, blue: 0.91))
                             .cornerRadius(11)
                     }
@@ -64,10 +67,12 @@ struct ModalUpdateServisView: View {
                     NavigationLink(destination: ManualUpdateView(motorcycle: motorcycle), label: {
                         Text("Manual")
                             .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(width: 335, height: 45, alignment: .center)
-                            .background(Color(red: 0.12, green: 0.83, blue: 0.91))
-                            .cornerRadius(11)
+                            .foregroundColor(.white)
+                            .frame(width: 350, height: 45, alignment: .center)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 11)
+                                    .stroke(Color.white, lineWidth: 2)
+                            )
                     } )
                     
                 } .padding(.bottom, 30)
@@ -88,7 +93,7 @@ struct ModalUpdateServisView: View {
                     //                }
                 }
                 .sheet(isPresented: $isShowingManualReceiptView) {
-                    ManualInputMaintenanceHistory(motorcycle: motorcycleVM.motorcycle)
+                    ManualUpdateView(motorcycle: motorcycleVM.motorcycle)
                 }
             }
         }
