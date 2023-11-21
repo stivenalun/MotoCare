@@ -15,6 +15,9 @@ struct ModalSparepartView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .center) {
                 if let data = data {
+                    Text(data.labelText)
+                        .font(.title3)
+                        .fontWeight(.bold)
                     Image(data.imageSparePart)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

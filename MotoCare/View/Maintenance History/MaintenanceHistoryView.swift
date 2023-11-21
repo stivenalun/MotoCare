@@ -20,18 +20,21 @@ struct MaintenanceHistoryView: View {
                VStack {
                   List(maintenanceHistories) { history in
                       VStack(alignment: .leading) {
-                          Text("\(history.sparePartHistory.count) spare part diganti")
-                              .font(.title3)
-                              .fontWeight(.semibold)
-                          Text("Date: \(history.date)")
+                          Spacer()
+                          HStack {
+                              Text("\(history.date.formatted(.dateTime.day().month().year()))")
+                              Spacer()
+                              Text("\(history.sparePartHistory.count) spare part diganti")
+                                  .fontWeight(.semibold)
+                          }
+                          Spacer()
                           Text("Maintenance Mileage: \(history.maintenanceMileage)")
+                          Spacer()
                       }
                   }
 //                  .scrollContentBackground(.hidden)
                }
-               .scrollContentBackground(.hidden)
            }
-           .scrollContentBackground(.hidden)
            .navigationBarTitle("Riwayat")
        }
    }

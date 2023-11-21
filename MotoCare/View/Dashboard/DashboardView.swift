@@ -159,7 +159,7 @@ struct DashboardView: View {
         }
         .sheet(isPresented: $showModal) {
             ModalSparepartView(data: $selectedItem)
-                .presentationDetents([.height(550), .large], selection: $modalDetent)
+                .presentationDetents([.height(575), .large], selection: $modalDetent)
                 .background(
                     LinearGradient(
                         stops: [
