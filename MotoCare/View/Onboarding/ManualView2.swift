@@ -165,6 +165,7 @@ struct ManualView2: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     func checkboxSelected(sparepart: Sparepart, isMarked: Bool) {

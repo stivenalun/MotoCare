@@ -155,6 +155,7 @@ struct DashboardView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
         .sheet(isPresented: $showModal) {
             ModalSparepartView(data: $selectedItem)
                 .presentationDetents([.height(550), .large], selection: $modalDetent)

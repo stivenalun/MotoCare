@@ -32,12 +32,12 @@ struct SettingsView: View {
                             //                    })
                         })
                     
-                    NavigationLink(
-                        destination: NotificationView(),
-                        isActive: $showNotifications
-                    ) {
-                        Text("Notifications")
-                    }
+//                    NavigationLink(
+//                        destination: NotificationView(),
+//                        isActive: $showNotifications
+//                    ) {
+//                        Text("Notifications")
+//                    }
                 })
                 .scrollContentBackground(.hidden)
             })
@@ -47,8 +47,7 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
 
-        }
-        
+        } .navigationViewStyle(.stack)        
     }
 }
 
