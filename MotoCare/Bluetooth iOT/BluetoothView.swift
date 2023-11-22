@@ -40,7 +40,7 @@ struct BluetoothView: View {
                         // service.disconnect() or whatever your disconnect logic is
                         service.disconnectPeripheral()
                     } else {
-                        service.scanForPeripherals()
+                        service.startScanning()
                         // Connect logic here
                     }
                     

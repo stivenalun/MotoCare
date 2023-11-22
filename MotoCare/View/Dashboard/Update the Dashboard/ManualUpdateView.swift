@@ -41,34 +41,34 @@ struct ManualUpdateView: View {
                             .modifier(ServisTitleModifier())
                         
                         Rectangle()
-                            .fill(Color("BackColor"))
+                            .fill(Color.gray.opacity(0.7))
                             .cornerRadius(10)
-                            .frame(width: 360, height: 40)
+                            .frame(width: 350, height: 35)
                             .overlay(
                                 TextField("Jarak tempuh", text: $lastServiceMileage)
                                     .foregroundColor(.primary)
-                                    .padding(.horizontal, 20)
-                                    .focused($isInputActive)
-                                    .toolbar {
-                                        ToolbarItemGroup(placement: .keyboard) {
-                                            Spacer()
-                                        }
-                                    }
-                                    .keyboardType(.decimalPad)
+                                    .padding(.horizontal, 10)
+                                    .keyboardType(.numberPad)
                             )
-                            .padding(.bottom, 5)
                         
-                        Button("+ Sparepart") {
-                            isModalPresented.toggle()
-                            currentServisSelection = 1
-                        }
-                        .modifier(ButtonStyleModifier())
-                        
-                        HStack {
-                            ForEach(selectedSpareparts, id: \.id) { selectedSparepart in
-                                Text(selectedSparepart.type.rawValue)
-                                    .modifier(SelectedSparepartModifier())
+                        Text("Sparepart")
+                            .padding(.top, 2)
+                            .foregroundColor(.white)
+                        VStack {
+                            HStack{
+                                UpdateCheckboxRow(sparepart: sparepartData[0], selectedSpareparts: $selectedSpareparts)
+                                UpdateCheckboxRow(sparepart: sparepartData[1], selectedSpareparts: $selectedSpareparts)
                             }
+                            HStack{
+                                UpdateCheckboxRow(sparepart: sparepartData[2], selectedSpareparts: $selectedSpareparts)
+                                UpdateCheckboxRow(sparepart: sparepartData[3], selectedSpareparts: $selectedSpareparts)
+                            }
+                            HStack{
+                                UpdateCheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSpareparts)
+                                    .padding(.leading, -145)
+                            }
+                            
+                            // Add more CheckboxRows as needed
                         }
                     
                         
@@ -102,6 +102,19 @@ struct ManualUpdateView: View {
             }
         }
     }
+    func UpdatecheckboxSelected(sparepart: Sparepart, isMarked: Bool) {
+        handleCheckboxSelection(sparepart: sparepart, isMarked: isMarked, selectedSpareparts: $selectedSpareparts)
+    }
+    
+    private func handleCheckboxSelection(sparepart: Sparepart, isMarked: Bool, selectedSpareparts: Binding<[Sparepart]>) {
+        if isMarked {
+            selectedSpareparts.wrappedValue.append(sparepart)
+        } else {
+            if let index = selectedSpareparts.wrappedValue.firstIndex(of: sparepart) {
+                selectedSpareparts.wrappedValue.remove(at: index)
+            }
+        }
+    }
     
     func updateMaintenanceHistory() {
        let maintenanceHistory = MaintenanceHistory(date: Date(),
@@ -120,6 +133,101 @@ struct ManualUpdateView: View {
            }
        }
        print("Success saved!")
+    }
+    
+    private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
+        for part in selectedSpareparts {
+            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+        }
+    }
+}
+
+struct UpdateCheckboxRow: View {
+    let sparepart: Sparepart
+    @Binding var selectedSpareparts: [Sparepart]
+
+    var body: some View {
+        Rectangle()
+            .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91).opacity(0.7))
+            .frame(width: 145, height: 30)
+            .cornerRadius(10)
+            .padding(.leading, -4)
+            .overlay(
+                UpdateCheckboxField(
+                    sparepart: sparepart,
+                    label: sparepart,
+                    size: 17,
+                    textSize: 17,
+                    imageName: sparepart.icon,
+                    callback: { isMarked in
+                        handleCheckboxSelection(sparepart: sparepart, isMarked: isMarked, selectedSpareparts: $selectedSpareparts)
+                    }
+                )
+            )
+    }
+
+    private func handleCheckboxSelection(sparepart: Sparepart, isMarked: Bool, selectedSpareparts: Binding<[Sparepart]>) {
+        if isMarked {
+            selectedSpareparts.wrappedValue.append(sparepart)
+        } else {
+            if let index = selectedSpareparts.wrappedValue.firstIndex(of: sparepart) {
+                selectedSpareparts.wrappedValue.remove(at: index)
+            }
+        }
+    }
+}
+
+struct UpdateCheckboxField: View {
+    let id: Sparepart
+    let label: Sparepart
+    let size: CGFloat
+    let color: Color
+    let textSize: Int
+    let imageName: String
+    let callback: (Bool)->()
+
+    init(
+        sparepart: Sparepart,
+        label: Sparepart,
+        size: CGFloat = 10,
+        color: Color = Color.white,
+        textSize: Int = 14,
+        imageName: String,
+        callback: @escaping (Bool)->()
+    ) {
+        self.id = sparepart
+        self.label = sparepart
+        self.size = size
+        self.color = color
+        self.textSize = textSize
+        self.imageName = sparepart.icon
+        self.callback = callback
+    }
+
+    @State var isMarked: Bool = false
+
+    var body: some View {
+        Button(action: {
+            self.isMarked.toggle()
+            self.callback(self.isMarked)
+        }) {
+            HStack(alignment: .center, spacing: 6) {
+                Image(systemName: self.isMarked ? "checkmark.circle.fill" : "circle")
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: self.size, height: self.size)
+                Image(self.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: self.size, height: self.size)
+                Text(label.name)
+                    .font(Font.system(size: size))
+                Spacer()
+            }.foregroundColor(self.color)
+        }
+        .foregroundColor(Color.white)
     }
 }
 
