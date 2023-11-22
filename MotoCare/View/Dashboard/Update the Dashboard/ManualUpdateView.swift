@@ -115,32 +115,50 @@ struct ManualUpdateView: View {
             }
         }
     }
-    
     func updateMaintenanceHistory() {
-       let maintenanceHistory = MaintenanceHistory(date: Date(),
-                                               maintenanceMileage: Int(lastServiceMileage) ?? 0)
-       if let lastHistory = motorcycle.maintenanceHistories.last {
-           lastHistory.date = maintenanceHistory.date
-           lastHistory.maintenanceMileage = maintenanceHistory.maintenanceMileage
-       } else {
-           motorcycle.maintenanceHistories.append(maintenanceHistory)
-       }
-       // MARK: Save sparepart history
-       for part in selectedSpareparts {
-           let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
-           if let lastHistory = motorcycle.maintenanceHistories.last {
-               lastHistory.sparePartHistory.append(sparepart)
-           }
-       }
-       print("Success saved!")
-    }
-    
-    private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
+        // MARK: Save maintenance history
+        let maintenanceHistory = MaintenanceHistory(date: Date(),
+                                                    maintenanceMileage: Int(lastServiceMileage) ?? 0)
+        
+        motorcycle.maintenanceHistories.append(maintenanceHistory)
+//        print("X: \(maintenanceHistory.date)")
+        
+        // MARK: Save sparepart history
         for part in selectedSpareparts {
             let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+//            print("Y: \(maintenanceHistories.first?.date)")
+            maintenanceHistories.first?.sparePartHistory.append(sparepart)
         }
+        
+        print("Success saved!")
     }
+    
+    //UNTUK ANITA: function update yg dikomen ini salah, pake yg atas aja udah benerr, cmn nnti bakal ada perubahan di dashboard ada func baru itu maininnya disitu harusnya.
+//    func updateMaintenanceHistory() {
+//       let maintenanceHistory = MaintenanceHistory(date: Date(),
+//                                               maintenanceMileage: Int(lastServiceMileage) ?? 0)
+//       if let lastHistory = motorcycle.maintenanceHistories.last {
+//           lastHistory.date = maintenanceHistory.date
+//           lastHistory.maintenanceMileage = maintenanceHistory.maintenanceMileage
+//       } else {
+//           motorcycle.maintenanceHistories.append(maintenanceHistory)
+//       }
+//       // MARK: Save sparepart history
+//       for part in selectedSpareparts {
+//           let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
+//           if let lastHistory = motorcycle.maintenanceHistories.last {
+//               lastHistory.sparePartHistory.append(sparepart)
+//           }
+//       }
+//       print("Success saved!")
+//    }
+//    
+//    private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
+//        for part in selectedSpareparts {
+//            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+//            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
+//        }
+//    }
 }
 
 struct UpdateCheckboxRow: View {

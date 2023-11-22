@@ -114,7 +114,9 @@ struct DashboardView: View {
                                     
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: summaryOfSparePartHistory(), maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                
+//                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
                                     
                                 
                                 Button(action: {
@@ -170,6 +172,26 @@ struct DashboardView: View {
                     ))
                 .ignoresSafeArea()
         }
+    }
+    
+    func summaryOfSparePartHistory() -> [SparepartHistory] {
+        var sparepartHistories: [SparepartHistory] = []
+        
+        let newMaintenanceHistories = maintenanceHistories.sorted { $0.date < $1.date }
+        
+//        var busi: SparepartHistory = SparepartHistory(name: <#T##String#>, sparepartType: .busi)
+        
+        for maintenanceHistory in newMaintenanceHistories {
+            var hist = maintenanceHistory.sparePartHistory
+            
+            for s in hist {
+                if !sparepartHistories.contains(s) {
+                    sparepartHistories.append(s)
+                }
+            }
+        }
+        
+        return sparepartHistories
     }
     
     func setupNotification() {
