@@ -35,10 +35,18 @@ class BluetoothService: NSObject, ObservableObject {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    func scanForPeripherals() {
-        peripheralStatus = .scanning
-        centralManager.scanForPeripherals(withServices: nil)
-    }
+//    func scanForPeripherals() {
+//        peripheralStatus = .scanning
+//        centralManager.scanForPeripherals(withServices: nil)
+//    }
+    func startScanning() {
+            peripheralStatus = .scanning
+            centralManager.scanForPeripherals(withServices: nil)
+        }
+
+        func stopScanning() {
+            centralManager.stopScan()
+        }
     
 }
 
@@ -46,28 +54,34 @@ extension BluetoothService: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             print("CB Powered On")
-            scanForPeripherals()
+            startScanning()
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if peripheral.name == "Nano 33 IoT" {
-            print("1 Discovered \(peripheral.name ?? "no name")")
-            connectToPeripheral(peripheral: peripheral)
-        } else if peripheral.name == "Arduino" {
-            print("2 Discovered \(peripheral.name ?? "no name")")
-            connectToPeripheral(peripheral: peripheral)
+            if peripheral.name == "Nano 33 IoT" || peripheral.name == "Arduino" {
+                print("Discovered \(peripheral.name ?? "no name")")
+                connectToPeripheral(peripheral: peripheral)
+            }
         }
-        discoveredPeripherals.removeAll()
-        discoveredPeripherals.append(peripheral)
-    }
+    
+//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+//        if peripheral.name == "Nano 33 IoT" {
+//            print("1 Discovered \(peripheral.name ?? "no name")")
+//            connectToPeripheral(peripheral: peripheral)
+//        } else if peripheral.name == "Arduino" {
+//            print("2 Discovered \(peripheral.name ?? "no name")")
+//            connectToPeripheral(peripheral: peripheral)
+//        }
+//        discoveredPeripherals.removeAll()
+//        discoveredPeripherals.append(peripheral)
+//    }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheralStatus = .connected
-        
-        peripheral.delegate = self
-        peripheral.discoverServices([sensorService])
-        centralManager.stopScan()
+            peripheralStatus = .connected
+            peripheral.delegate = self
+            peripheral.discoverServices([sensorService])
+            stopScanning()
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
