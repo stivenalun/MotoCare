@@ -30,8 +30,7 @@ struct ManualUpdateView: View {
         NavigationView {
             ZStack{
                 BackgroundView()
-                VStack {
-                    ScrollView {
+                VStack (alignment: .leading) {
                         Text("Masukkan data servis terakhir!")
                             .font(.system(size: 18))
                             .frame(width: 355, height: 50, alignment: .topLeading)
@@ -43,18 +42,26 @@ struct ManualUpdateView: View {
                         Rectangle()
                             .fill(Color.gray.opacity(0.7))
                             .cornerRadius(10)
-                            .frame(width: 350, height: 35)
+                            .frame(width: 355, height: 35)
                             .overlay(
                                 TextField("Jarak tempuh", text: $lastServiceMileage)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal, 10)
                                     .keyboardType(.numberPad)
+                                    .onChange(of: lastServiceMileage) {
+                                        // Limit the character input to 6 digits
+                                        if lastServiceMileage.count > 6 {
+                                            lastServiceMileage = String(lastServiceMileage.prefix(6))
+                                        }
+                                    }
                             )
                         
-                        Text("Sparepart")
+                        Text("Pilih sparepart")
                             .padding(.top, 2)
+                            .frame(width: 355, alignment: .topLeading)
                             .foregroundColor(.white)
-                        VStack {
+                        
+                        VStack (alignment: .leading) {
                             HStack{
                                 UpdateCheckboxRow(sparepart: sparepartData[0], selectedSpareparts: $selectedSpareparts)
                                 UpdateCheckboxRow(sparepart: sparepartData[1], selectedSpareparts: $selectedSpareparts)
@@ -65,14 +72,12 @@ struct ManualUpdateView: View {
                             }
                             HStack{
                                 UpdateCheckboxRow(sparepart: sparepartData[4], selectedSpareparts: $selectedSpareparts)
-                                    .padding(.leading, -145)
                             }
-                            
                             // Add more CheckboxRows as needed
                         }
                     
-                        
                         VStack{
+                            Spacer()
                             Button {
                                 updateMaintenanceHistory()
                                 isNavigate = true
@@ -80,14 +85,14 @@ struct ManualUpdateView: View {
                                 Text("Tambahkan")
                                     .font(.headline)
                                     .foregroundColor(.black)
-                                    .frame(width: 335, height: 55, alignment: .center)
+                                    .frame(width: 335, height: 45, alignment: .center)
                                     .background(Color("TabIconColor"))
-                                    .cornerRadius(25)
+                                    .cornerRadius(11)
                             }
                         }
-                        .padding(.top, 60)
-                    }
-                    .navigationTitle("Input Manual")
+                        .padding(.bottom, 30)
+                    
+                    .navigationTitle("Manual")
                     .sheet(isPresented: $isModalPresented) {
                         // Pass state isSelectionConfirmed ke SparepartSelectionView
                         SparepartSelectionView(spareparts: availableSpareparts,
@@ -133,32 +138,6 @@ struct ManualUpdateView: View {
         print("Success saved!")
     }
     
-    //UNTUK ANITA: function update yg dikomen ini salah, pake yg atas aja udah benerr, cmn nnti bakal ada perubahan di dashboard ada func baru itu maininnya disitu harusnya.
-//    func updateMaintenanceHistory() {
-//       let maintenanceHistory = MaintenanceHistory(date: Date(),
-//                                               maintenanceMileage: Int(lastServiceMileage) ?? 0)
-//       if let lastHistory = motorcycle.maintenanceHistories.last {
-//           lastHistory.date = maintenanceHistory.date
-//           lastHistory.maintenanceMileage = maintenanceHistory.maintenanceMileage
-//       } else {
-//           motorcycle.maintenanceHistories.append(maintenanceHistory)
-//       }
-//       // MARK: Save sparepart history
-//       for part in selectedSpareparts {
-//           let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
-//           if let lastHistory = motorcycle.maintenanceHistories.last {
-//               lastHistory.sparePartHistory.append(sparepart)
-//           }
-//       }
-//       print("Success saved!")
-//    }
-//    
-//    private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
-//        for part in selectedSpareparts {
-//            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
-//            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
-//        }
-//    }
 }
 
 struct UpdateCheckboxRow: View {

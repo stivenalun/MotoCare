@@ -60,6 +60,12 @@ struct ModalUpdateOdometerView: View {
                                 .foregroundColor(.primary)
                                 .padding(.horizontal, 10)
                                 .keyboardType(.numberPad)
+                                .onChange(of: currentMileage) {
+                                    // Limit the character input to 6 digits
+                                    if currentMileage.count > 6 {
+                                        currentMileage = String(currentMileage.prefix(6))
+                                    }
+                                }
                             )
                 }
                 .frame(width: 390, height: 30)

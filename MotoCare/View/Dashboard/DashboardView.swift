@@ -47,13 +47,20 @@ struct DashboardView: View {
                                             .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91))
                                         Spacer()
                                         HStack {
-                                            Text("IoT Tidak Terhubung")
-                                                .font(.system(size: 14))
-                                                .foregroundStyle(.white)
+                                            if bluetoothService.peripheralStatus == .connected {
+                                                    Text("iOT Terhubung")
+                                                        .font(.system(size: 14))
+                                                        .foregroundStyle(.green)
+    
+                                                } else {
+                                                    Text("iOT Tidak Terhubung")
+                                                        .font(.system(size: 14))
+                                                        .foregroundStyle(.red)
+                                                }
                                         }
                                         .padding(10)
                                         .frame(width: 159, height: 27, alignment: .center)
-                                        .background(Color(red: 0.51, green: 0.51, blue: 0.51))
+                                        .background(Color(red: 0.51, green: 0.51, blue: 0.51).opacity(0.5))
                                         .cornerRadius(40)
                                     }
                                     

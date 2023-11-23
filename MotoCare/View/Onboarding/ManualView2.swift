@@ -40,6 +40,12 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
+                                            .onChange(of: lastServiceMileage) {
+                                                // Limit the character input to 6 digits
+                                                if lastServiceMileage.count > 6 {
+                                                    lastServiceMileage = String(lastServiceMileage.prefix(6))
+                                                }
+                                            }
                                     )
                                 
                                 Text("Sparepart yang diservis")
@@ -77,6 +83,12 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
+                                            .onChange(of: lastServiceMileage2) {
+                                                // Limit the character input to 6 digits
+                                                if lastServiceMileage2.count > 6 {
+                                                    lastServiceMileage2 = String(lastServiceMileage2.prefix(6))
+                                                }
+                                            }
                                     )
                                 
                                 Text("Sparepart yang diservis")
@@ -114,6 +126,12 @@ struct ManualView2: View {
                                             .foregroundColor(.primary)
                                             .padding(.horizontal, 10)
                                             .keyboardType(.numberPad)
+                                            .onChange(of: lastServiceMileage3) {
+                                                // Limit the character input to 6 digits
+                                                if lastServiceMileage3.count > 6 {
+                                                    lastServiceMileage3 = String(lastServiceMileage3.prefix(6))
+                                                }
+                                            }
                                     )
                                 
                                 Text("Sparepart yang diservis")

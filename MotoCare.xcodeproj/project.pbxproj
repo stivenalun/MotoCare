@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6D0089722B0D5F5000167900 /* ManualInputMaintenanceHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0089712B0D5F5000167900 /* ManualInputMaintenanceHistory.swift */; };
-		6D6DA08E2AFB3FC700A00673 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6DA08D2AFB3FC700A00673 /* Lottie */; };
 		6D6DA0942AFB436C00A00673 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0932AFB436C00A00673 /* Constants.swift */; };
 		6D6DA0962AFB47A600A00673 /* LottieViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA0952AFB47A600A00673 /* LottieViewPlus.swift */; };
 		6D6DA09F2AFB9ACC00A00673 /* ManualView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA09E2AFB9ACC00A00673 /* ManualView2.swift */; };
+		6D8614892B0F357C00D35751 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8614882B0F357C00D35751 /* Lottie */; };
 		6D93CEF32B0A70620033E885 /* UpdateScanDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D93CEF22B0A70620033E885 /* UpdateScanDocumentView.swift */; };
 		6D9CCDF92B05C1EE006444A7 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CCDF82B05C1EE006444A7 /* BluetoothService.swift */; };
 		6D9CCDFB2B05C221006444A7 /* BluetoothView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CCDFA2B05C221006444A7 /* BluetoothView.swift */; };
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D6DA08E2AFB3FC700A00673 /* Lottie in Frameworks */,
+				6D8614892B0F357C00D35751 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +274,7 @@
 			);
 			name = MotoCare;
 			packageProductDependencies = (
-				6D6DA08D2AFB3FC700A00673 /* Lottie */,
+				6D8614882B0F357C00D35751 /* Lottie */,
 			);
 			productName = MotorCareSwiftData;
 			productReference = E9AB95662AEFEB4C004EE0F4 /* MotoCare.app */;
@@ -305,7 +305,7 @@
 			);
 			mainGroup = E9AB955D2AEFEB4C004EE0F4;
 			packageReferences = (
-				6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				6D8614872B0F357C00D35751 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = E9AB95672AEFEB4C004EE0F4 /* Products */;
 			projectDirPath = "";
@@ -507,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = GNTKTFQL7U;
+				DEVELOPMENT_TEAM = 62B759R8T7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Motomo;
@@ -591,7 +591,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		6D8614872B0F357C00D35751 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
@@ -602,9 +602,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D6DA08D2AFB3FC700A00673 /* Lottie */ = {
+		6D8614882B0F357C00D35751 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6D6DA08C2AFB3FC700A00673 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = 6D8614872B0F357C00D35751 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

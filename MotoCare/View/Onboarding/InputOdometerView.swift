@@ -14,7 +14,7 @@ struct InputOdometerView: View {
     @State var motorcycle: Motorcycle = Motorcycle()
     @State private var currentMileage: String = ""
     @State private var isShowingInputLastReceiptView = false
-    @FocusState var isInputActive: Bool
+
     
     var isTextFieldEmpty: Bool {
         return currentMileage.isEmpty
@@ -55,15 +55,12 @@ struct InputOdometerView: View {
                             .foregroundColor(.primary)
                             .padding(.horizontal, 10)
                             .keyboardType(.numberPad)
-                            .focused($isInputActive)
-//                            .toolbar {
-//                                ToolbarItemGroup(placement: .keyboard) {
-//                                    Spacer()
-//                                    Button("Done"){
-//                                        isInputActive = false
-//                                    }
-//                                }
-//                            }
+                            .onChange(of: currentMileage) {
+                                // Limit the character input to 6 digits
+                                if currentMileage.count > 6 {
+                                    currentMileage = String(currentMileage.prefix(6))
+                                }
+                            }
                     )
                 
                 Text("Ketahui kondisi part motor Anda dari jarak tempuh yang tertera di odometer.")
