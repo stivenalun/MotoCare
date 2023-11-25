@@ -36,7 +36,7 @@ struct ManualUpdateView: View {
                             .frame(width: 355, height: 50, alignment: .topLeading)
                             .foregroundColor(.white)
                         
-                        Text("Servis")
+                        Text("Perbarui Data Servis")
                             .modifier(ServisTitleModifier())
                         
                         Rectangle()
@@ -44,7 +44,7 @@ struct ManualUpdateView: View {
                             .cornerRadius(10)
                             .frame(width: 355, height: 35)
                             .overlay(
-                                TextField("Jarak tempuh", text: $lastServiceMileage)
+                                TextField("Jarak tempuh saat servis", text: $lastServiceMileage)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal, 10)
                                     .keyboardType(.numberPad)
@@ -56,7 +56,7 @@ struct ManualUpdateView: View {
                                     }
                             )
                         
-                        Text("Pilih sparepart")
+                        Text("Pilih sparepart yang diperbaiki")
                             .padding(.top, 2)
                             .frame(width: 355, alignment: .topLeading)
                             .foregroundColor(.white)
