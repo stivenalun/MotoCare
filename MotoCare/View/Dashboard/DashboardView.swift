@@ -10,7 +10,7 @@ import SwiftData
 
 struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
-    @ObservedObject var bluetoothService = BluetoothService()
+    @ObservedObject var viewModel = DashboardViewModel()
     
 //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
@@ -24,6 +24,8 @@ struct DashboardView: View {
     @State private var modalDetent = PresentationDetent.medium
     
     @AppStorage("modalopen") var isUpdateModalPresented = false
+    @AppStorage("IOTMILLEAGE") var iOTCurrentMilleage: Int = 0
+    @AppStorage("IOTSTATUS") var iOTStatus: Bool = false
     
     private var delegate: NotificationDelegate = NotificationDelegate()
 
@@ -47,7 +49,7 @@ struct DashboardView: View {
                                             .foregroundColor(Color(red: 0.12, green: 0.83, blue: 0.91))
                                         Spacer()
                                         HStack {
-                                            if bluetoothService.peripheralStatus == .connected {
+                                            if iOTStatus {
                                                     Text("iOT Terhubung")
                                                         .font(.system(size: 14))
                                                         .foregroundStyle(.green)
@@ -86,8 +88,8 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-//                                                    Text("\(motorcycles[0].currentMileage) Km")
-                                                    Text("\(motorcycles[0].currentMileage + (bluetoothService.totalTrip/1000)) Km")
+//                                                    Text("\(iOTCurrentMilleage) Km")
+                                                    Text("\(motorcycles[0].currentMileage + (iOTCurrentMilleage/1000)) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
                                                         .foregroundColor(.white)
@@ -422,10 +424,10 @@ struct StatusSparepartView : View{
                                 }
                             }
                         }
-                        .onTapGesture {
-                            selectedItem = data
-                            showModal.toggle()
-                        }
+//                        .onTapGesture {
+//                            selectedItem = data
+//                            showModal.toggle()
+//                        }
                     }
                 }
             }

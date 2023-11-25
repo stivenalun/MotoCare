@@ -41,6 +41,7 @@ class BluetoothService: NSObject, ObservableObject {
 //    }
     func startScanning() {
             peripheralStatus = .scanning
+            UserDefaults.standard.set(false, forKey: "IOTSTATUS")
             centralManager.scanForPeripherals(withServices: nil)
         }
 
@@ -79,6 +80,7 @@ extension BluetoothService: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
             peripheralStatus = .connected
+            UserDefaults.standard.set(true, forKey: "IOTSTATUS")
             peripheral.delegate = self
             peripheral.discoverServices([sensorService])
             stopScanning()
@@ -86,6 +88,7 @@ extension BluetoothService: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         peripheralStatus = .disconnected
+        UserDefaults.standard.set(false, forKey: "IOTSTATUS")
 //        if peripheral.name == "Arduino" {
 //            print("2 Discovered \(peripheral.name ?? "no name")")
 //            disconnectPeripheral(peripheral: peripheral)
@@ -95,6 +98,7 @@ extension BluetoothService: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         peripheralStatus = .error
+        UserDefaults.standard.set(false, forKey: "IOTSTATUS")
         print(error?.localizedDescription ?? "no error")
     }
     
@@ -103,11 +107,13 @@ extension BluetoothService: CBCentralManagerDelegate {
         hallSensorPeripheral = peripheral
         centralManager.connect(hallSensorPeripheral!)
         peripheralStatus = .connecting
+        UserDefaults.standard.set(false, forKey: "IOTSTATUS")
     }
     
     func disconnectPeripheral(){
         centralManager.cancelPeripheralConnection(hallSensorPeripheral!)
         peripheralStatus = .disconnected
+        UserDefaults.standard.set(false, forKey: "IOTSTATUS")
         totalTrip = 0
     }
 
@@ -140,6 +146,8 @@ extension BluetoothService: CBPeripheralDelegate {
                     
                     let sensorData: Int = Int(stringValue) ?? 0
                     totalTrip = sensorData
+                    // save to user default
+                    UserDefaults.standard.set(totalTrip, forKey: "IOTMILLEAGE")
 //                    motorcycles[0].totalTrip = totalTrip
                     
                     // Handle the received data here (e.g., display it in your app's UI)
