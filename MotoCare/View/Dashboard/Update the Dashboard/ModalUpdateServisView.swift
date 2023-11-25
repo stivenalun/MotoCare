@@ -26,11 +26,11 @@ struct ModalUpdateServisView: View {
                 BackgroundView()
                 VStack{
                     Spacer()
-                    Image("nota")
+                    Image("UpdateImage")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.top, 30)
-                        .frame(width: 350, height: 260)
+                        .frame(width: 250, height: 160)
                     
                     Text("Perbarui riwayat servis sparepart")
                         .navigationBarBackButtonHidden(true)
