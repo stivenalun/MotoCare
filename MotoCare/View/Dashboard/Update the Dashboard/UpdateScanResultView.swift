@@ -166,7 +166,7 @@ struct UpdateScanResultView: View {
                 continue
             }
 
-            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
+            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType, maintenanceMileage: motorcycle.maintenanceHistories.last?.maintenanceMileage ?? 0)
 //            motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
             if let lastHistory = motorcycle.maintenanceHistories.last {
                 // Append the new sparepart to the last maintenance history

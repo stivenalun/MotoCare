@@ -12,9 +12,13 @@ import SwiftData
 class SparepartHistory {
     var name: String
     var sparepartType: SparepartType
+    var maintenanceMileage: Int
+    var createdAt: Date
     
-    init(name: String = "", sparepartType: SparepartType) {
+    init(name: String = "", sparepartType: SparepartType, maintenanceMileage: Int) {
         self.name = name
         self.sparepartType = sparepartType
+        self.maintenanceMileage = maintenanceMileage
+        self.createdAt = Date()
     }
 }

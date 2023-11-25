@@ -38,7 +38,7 @@ struct MaintenanceHistoryView: View {
                     }
                 }
             }
-            .navigationBarTitle("Riwayat")
+            .navigationBarTitle("Riwayat Penggantian")
         }
     }
 }

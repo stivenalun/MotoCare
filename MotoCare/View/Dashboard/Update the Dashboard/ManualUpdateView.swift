@@ -130,7 +130,9 @@ struct ManualUpdateView: View {
         
         // MARK: Save sparepart history
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.name, 
+                                             sparepartType: part.type,
+                                             maintenanceMileage: maintenanceHistory.maintenanceMileage)
 //            print("Y: \(maintenanceHistories.first?.date)")
             maintenanceHistories.first?.sparePartHistory.append(sparepart)
         }

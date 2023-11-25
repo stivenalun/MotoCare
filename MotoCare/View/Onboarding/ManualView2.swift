@@ -221,7 +221,9 @@ struct ManualView2: View {
 
     private func appendSparepartsToMaintenanceHistory(selectedSpareparts: [Sparepart]) {
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.name, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.name, 
+                                             sparepartType: part.type,
+                                             maintenanceMileage: motorcycle.maintenanceHistories.last?.maintenanceMileage ?? 0)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
     }

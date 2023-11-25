@@ -289,7 +289,9 @@ struct ScanResultView: View {
                 continue
             }
 
-            let sparepart = SparepartHistory(name: item, sparepartType: sparepartType)
+            let sparepart = SparepartHistory(name: item, 
+                                             sparepartType: sparepartType,
+                                             maintenanceMileage: motorcycle.maintenanceHistories.last?.maintenanceMileage ?? 0)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
     }

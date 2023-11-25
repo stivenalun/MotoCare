@@ -116,12 +116,13 @@ struct DashboardView: View {
                                     }
                                     .frame(width: 357, height: 132)
                                 }
-                                .onAppear {
-                                    print(motorcycles[0].maintenanceHistories)
-                                    
-                                }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: summaryOfSparePartHistory(), maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
+                                StatusSparepartView(motorcycle: motorcycles[0], 
+                                                    data: convertData(spareparts: sparepartData, 
+                                                                      sparepartHistories: summaryOfSparePartHistory(),
+                                                                      maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0),
+                                                    selectedItem: $selectedItem,
+                                                    showModal: $showModal)
                                 
 //                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
                                     
@@ -167,38 +168,52 @@ struct DashboardView: View {
         .navigationViewStyle(.stack)
         .sheet(isPresented: $showModal) {
             ModalSparepartView(data: $selectedItem)
-                .presentationDetents([.height(550), .large], selection: $modalDetent)
-                .background(
-                    LinearGradient(
-                        stops: [
-                            Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
-                            Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
-                        ],
-                        startPoint: UnitPoint(x: 0.95, y: 0),
-                        endPoint: UnitPoint(x: 0.26, y: 0.98)
-                    ))
+                .presentationDetents([.height(575), .large], selection: $modalDetent)
+//                .background(
+//                    LinearGradient(
+//                        stops: [
+//                            Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
+//                            Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
+//                        ],
+//                        startPoint: UnitPoint(x: 0.95, y: 0),
+//                        endPoint: UnitPoint(x: 0.26, y: 0.98)
+//                    ))
                 .ignoresSafeArea()
         }
     }
     
     func summaryOfSparePartHistory() -> [SparepartHistory] {
-        var sparepartHistories: [SparepartHistory] = []
         
-        let newMaintenanceHistories = maintenanceHistories.sorted { $0.date < $1.date }
-        
-//        var busi: SparepartHistory = SparepartHistory(name: <#T##String#>, sparepartType: .busi)
-        
-        for maintenanceHistory in newMaintenanceHistories {
-            var hist = maintenanceHistory.sparePartHistory
-            
-            for s in hist {
-                if !sparepartHistories.contains(s) {
-                    sparepartHistories.append(s)
+        print(sparepartHistories.count)
+        // Create a dictionary to store the latest timestamp for each event name
+        var latestTimestamps: [String: Date] = [:]
+
+        // Create an array to store the filtered results
+        var filteredSparepartHistories: [SparepartHistory] = []
+
+        // Iterate through the original array and append only the newest events for each unique event name to the filtered array
+        for event in sparepartHistories {
+            if let latestTimestamp = latestTimestamps[event.name] {
+                if event.createdAt > latestTimestamp {
+                    latestTimestamps[event.name] = event.createdAt
+                    filteredSparepartHistories.removeAll(where: { $0.name == event.name })
+                    filteredSparepartHistories.append(event)
                 }
+            } else {
+                latestTimestamps[event.name] = event.createdAt
+                filteredSparepartHistories.append(event)
             }
         }
+
+        // Print the results
+        for event in filteredSparepartHistories {
+            print("\(event.name) - \(event.createdAt)")
+        }
+
         
-        return sparepartHistories
+        return filteredSparepartHistories
+        
+
     }
     
     func setupNotification() {
@@ -278,7 +293,7 @@ struct DashboardView: View {
             }
             
             var gauge = GaugeData(
-                value: replaceIntervalInKilometer - Double(motorcycles[0].currentMileage - maintenanceMileage),
+                value: 0,
                 minimum: 0,
                 maximum: replaceIntervalInKilometer,
                 iconSparePart: icon,
@@ -288,18 +303,24 @@ struct DashboardView: View {
                                                 currentMillage: motorcycles[0].currentMileage,
                                                 type: data.type)
             )
-            sparepartHistories.forEach { spHistory in
-                if data.type == spHistory.sparepartType {
-                    print("ada")
-                }
-            }
+//            sparepartHistories.forEach { spHistory in
+//                if data.type == spHistory.sparepartType {
+//                    print("ada")
+//                }
+//            }
             if let sparepart = sparepartHistories.first(where: { $0.sparepartType == data.type }) {
+                gauge.status = estimateSparepartStatus(lastServiceMillage: sparepart.maintenanceMileage,
+                                                       currentMillage: motorcycles[0].currentMileage,
+                                                       type: data.type)
+                gauge.value = replaceIntervalInKilometer - Double(motorcycles[0].currentMileage - sparepart.maintenanceMileage)
+                print("\(sparepart.name) - \(sparepart.createdAt)")
                 gauges.append(gauge)
             } else {
                 gauge.value = 0
                 gauge.status = .none
                 gauges.append(gauge)
             }
+            
             print("sparepart histories: \(sparepartHistories.count)")
         }
         return gauges

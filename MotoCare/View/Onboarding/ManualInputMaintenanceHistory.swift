@@ -186,17 +186,23 @@ struct ManualInputMaintenanceHistory: View {
         motorcycle.maintenanceHistories.append(maintenanceHistory)
     
         for part in selectedSpareparts {
-            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue,
+                                             sparepartType: part.type,
+                                             maintenanceMileage: maintenanceHistory.maintenanceMileage)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
         for part in selectedSparepartsServis2 {
-            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue, 
+                                             sparepartType: part.type,
+                                             maintenanceMileage: maintenanceHistory.maintenanceMileage)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
         for part in selectedSparepartsServis3 {
-            let sparepart = SparepartHistory(name: part.type.rawValue, sparepartType: part.type)
+            let sparepart = SparepartHistory(name: part.type.rawValue, 
+                                             sparepartType: part.type,
+                                             maintenanceMileage: maintenanceHistory.maintenanceMileage)
             motorcycle.maintenanceHistories.last?.sparePartHistory.append(sparepart)
         }
         
