@@ -320,6 +320,7 @@ struct DashboardView: View {
 struct StatusSparepartView : View{
     @Environment(\.modelContext) private var modelContext
     let motorcycle: Motorcycle
+    @Query var motorcycles: [Motorcycle]
     
     var data: [GaugeData]
     @Binding var selectedItem: GaugeData?
@@ -361,6 +362,7 @@ struct StatusSparepartView : View{
                     .sheet(isPresented: $isUpdateModalPresented) {
                         ModalUpdateServisView(motorcycle: motorcycles[0])
                     }
+                    .padding(.top, 18)
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                         ForEach(data, id: \.id) { data in
@@ -418,7 +420,7 @@ struct StatusSparepartView : View{
                             }
                         }
                     }
-                    .padding(14)
+                    .padding(13)
                     
                 }
             }
