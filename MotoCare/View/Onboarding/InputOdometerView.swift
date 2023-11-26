@@ -28,15 +28,9 @@ struct InputOdometerView: View {
                 Image("odometer")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 328, height: 187)
+                    .frame(width: 324, height: 169)
                     .padding(.horizontal, 18)
                     .padding(.top, 10)
-                
-                //                Spacer()
-                //                    .frame(height: 60)
-                
-                //                LottiePlusView(name: Constants.arduino, loopMode: .loop, animationSpeed: 0.25,  contentMode: .scaleAspectFit)
-                //                    .frame(width: 200, height: 300)
                 
                 Text("Jarak tempuh motormu sudah sampai mana ya?")
                     .font(.system(size: 33))
@@ -45,6 +39,13 @@ struct InputOdometerView: View {
                     .padding(.bottom, 10)
                     .fontWeight(.bold)
                     .frame(maxWidth: 345, alignment: .topLeading)
+                
+                Text("Ketahui kondisi part motor Anda dari jarak tempuh yang tertera di odometer.")
+                    .font(.system(size: 17))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: 345, alignment: .topLeading)
+                    .padding(.bottom, 30)
+                    .padding(.top, 5)
                 
                 Rectangle()
                     .fill(Color.gray.opacity(0.7))
@@ -62,13 +63,6 @@ struct InputOdometerView: View {
                                 }
                             }
                     )
-                
-                Text("Ketahui kondisi part motor Anda dari jarak tempuh yang tertera di odometer.")
-                    .font(.system(size: 17))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: 345, alignment: .topLeading)
-                    .padding(.bottom, 30)
-                    .padding(.top, 5)
                 
                 Spacer()
                 
@@ -89,7 +83,7 @@ struct InputOdometerView: View {
             .navigationDestination(isPresented: $isShowingInputLastReceiptView) {
                 InputLastReceiptsView(motorcycle: motorcycle)
             }
-        } /*.ignoresSafeArea(.keyboard)*/
+        }
     }
     
     func saveMotorcycle() {

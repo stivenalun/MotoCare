@@ -12,23 +12,23 @@ struct DashboardView: View {
     @Environment(\.modelContext) var modelContext
     @ObservedObject var viewModel = DashboardViewModel()
     
-//    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
+    //    @EnvironmentObject var motorcycleVM : MotorcycleViewModel
     @Query var motorcycles: [Motorcycle]
     @Query var sparepartHistories: [SparepartHistory]
     @Query(sort: \MaintenanceHistory.date, order: .reverse) var maintenanceHistories: [MaintenanceHistory]
     
     @State private var showModal = false
     @State private var isModalPresented = false
-//    @State private var isUpdateModalPresented = false
+    //    @State private var isUpdateModalPresented = false
     @State private var selectedItem: GaugeData?
     @State private var modalDetent = PresentationDetent.medium
     
-    @AppStorage("modalopen") var isUpdateModalPresented = false
+    
     @AppStorage("IOTMILLEAGE") var iOTCurrentMilleage: Int = 0
     @AppStorage("IOTSTATUS") var iOTStatus: Bool = false
     
     private var delegate: NotificationDelegate = NotificationDelegate()
-
+    
     
     var body: some View {
         NavigationView {
@@ -50,15 +50,15 @@ struct DashboardView: View {
                                         Spacer()
                                         HStack {
                                             if iOTStatus {
-                                                    Text("iOT Terhubung")
-                                                        .font(.system(size: 14))
-                                                        .foregroundStyle(.green)
-    
-                                                } else {
-                                                    Text("iOT Tidak Terhubung")
-                                                        .font(.system(size: 14))
-                                                        .foregroundStyle(.red)
-                                                }
+                                                Text("iOT Terhubung")
+                                                    .font(.system(size: 14))
+                                                    .foregroundStyle(.green)
+                                                
+                                            } else {
+                                                Text("iOT Tidak Terhubung")
+                                                    .font(.system(size: 14))
+                                                    .foregroundStyle(.red)
+                                            }
                                         }
                                         .padding(10)
                                         .frame(width: 159, height: 27, alignment: .center)
@@ -69,18 +69,9 @@ struct DashboardView: View {
                                     ZStack {
                                         Rectangle()
                                             .foregroundColor(.clear)
-                                            .frame(width: 357, height: 142)
-                                            .background(
-                                                LinearGradient(
-                                                    stops: [
-                                                        Gradient.Stop(color: Color(red: 0.19, green: 0.29, blue: 0.3), location: 0.08),
-                                                        Gradient.Stop(color: Color(red: 0.09, green: 0.11, blue: 0.11), location: 1.00),
-                                                    ],
-                                                    startPoint: UnitPoint(x: 0.5, y: 0),
-                                                    endPoint: UnitPoint(x: 0.5, y: 1.46)
-                                                )
-                                            )
-                                            .cornerRadius(16)
+                                            .frame(width: 357, height: 149)
+                                            .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                                            .cornerRadius(20)
                                         VStack(alignment: .leading) {
                                             ZStack(alignment: .leading) {
                                                 VStack(alignment: .leading) {
@@ -88,7 +79,7 @@ struct DashboardView: View {
                                                         .font(.system(size: 13))
                                                         .foregroundColor(.white)
                                                     
-//                                                    Text("\(iOTCurrentMilleage) Km")
+                                                    //                                                    Text("\(iOTCurrentMilleage) Km")
                                                     Text("\(motorcycles[0].currentMileage + (iOTCurrentMilleage/1000)) Km")
                                                         .font(.system(size: 36))
                                                         .italic()
@@ -119,36 +110,22 @@ struct DashboardView: View {
                                     .frame(width: 357, height: 132)
                                 }
                                 
-                                StatusSparepartView(motorcycle: motorcycles[0], 
-                                                    data: convertData(spareparts: sparepartData, 
+                                
+                                
+                                
+                                
+                                
+                                StatusSparepartView(motorcycle: motorcycles[0],
+                                                    data: convertData(spareparts: sparepartData,
                                                                       sparepartHistories: summaryOfSparePartHistory(),
                                                                       maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0),
                                                     selectedItem: $selectedItem,
                                                     showModal: $showModal)
                                 
-//                                StatusSparepartView(motorcycle: motorcycles[0], data: convertData(spareparts: sparepartData, sparepartHistories: maintenanceHistories.first?.sparePartHistory ?? [], maintenanceMileage: maintenanceHistories.first?.maintenanceMileage ?? 0), selectedItem: $selectedItem, showModal: $showModal)
-                                    
                                 
-                                Button(action: {
-                                    isUpdateModalPresented.toggle()
-                                    
-                                }) {
-                                    Text("Tambahkan Servis Baru")
-                                        .font(.system(size: 16))
-                                        .fontWeight(.semibold)
-                                        .foregroundStyle(.black)
-                                        .padding(5)
-                                }
-                                .padding(10)
-                                .frame(width: 357, height: 44, alignment: .center)
-                                .background(Color("TabIconColor"))
-                                .cornerRadius(11)
-                                .sheet(isPresented: $isUpdateModalPresented) {
-                                    ModalUpdateServisView(motorcycle: motorcycles[0])
-                                }
                             }
                             .padding()
-//                            .navigationBarTitle("Dashboard")
+                            //                            .navigationBarTitle("Dashboard")
                         }
                     }
                 }
@@ -171,15 +148,15 @@ struct DashboardView: View {
         .sheet(isPresented: $showModal) {
             ModalSparepartView(data: $selectedItem)
                 .presentationDetents([.height(575), .large], selection: $modalDetent)
-//                .background(
-//                    LinearGradient(
-//                        stops: [
-//                            Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
-//                            Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
-//                        ],
-//                        startPoint: UnitPoint(x: 0.95, y: 0),
-//                        endPoint: UnitPoint(x: 0.26, y: 0.98)
-//                    ))
+            //                .background(
+            //                    LinearGradient(
+            //                        stops: [
+            //                            Gradient.Stop(color: Color(red: 0.2, green: 0.29, blue: 0.3), location: 0.00),
+            //                            Gradient.Stop(color: .black.opacity(0.9), location: 1.00),
+            //                        ],
+            //                        startPoint: UnitPoint(x: 0.95, y: 0),
+            //                        endPoint: UnitPoint(x: 0.26, y: 0.98)
+            //                    ))
                 .ignoresSafeArea()
         }
     }
@@ -189,10 +166,10 @@ struct DashboardView: View {
         print(sparepartHistories.count)
         // Create a dictionary to store the latest timestamp for each event name
         var latestTimestamps: [String: Date] = [:]
-
+        
         // Create an array to store the filtered results
         var filteredSparepartHistories: [SparepartHistory] = []
-
+        
         // Iterate through the original array and append only the newest events for each unique event name to the filtered array
         for event in sparepartHistories {
             if let latestTimestamp = latestTimestamps[event.name] {
@@ -206,16 +183,12 @@ struct DashboardView: View {
                 filteredSparepartHistories.append(event)
             }
         }
-
+        
         // Print the results
         for event in filteredSparepartHistories {
             print("\(event.name) - \(event.createdAt)")
         }
-
-        
         return filteredSparepartHistories
-        
-
     }
     
     func setupNotification() {
@@ -229,7 +202,7 @@ struct DashboardView: View {
         content.userInfo = ["customData": "Some Data"]
         
         // create trigger
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
         
         // create trigger tiap 2 minggu sekali
         var dateComponents = DateComponents()
@@ -305,11 +278,6 @@ struct DashboardView: View {
                                                 currentMillage: motorcycles[0].currentMileage,
                                                 type: data.type)
             )
-//            sparepartHistories.forEach { spHistory in
-//                if data.type == spHistory.sparepartType {
-//                    print("ada")
-//                }
-//            }
             if let sparepart = sparepartHistories.first(where: { $0.sparepartType == data.type }) {
                 gauge.status = estimateSparepartStatus(lastServiceMillage: sparepart.maintenanceMileage,
                                                        currentMillage: motorcycles[0].currentMileage,
@@ -357,6 +325,8 @@ struct StatusSparepartView : View{
     @Binding var selectedItem: GaugeData?
     @Binding var showModal: Bool
     
+    @AppStorage("modalopen") var isUpdateModalPresented = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Status Spare Part")
@@ -365,70 +335,91 @@ struct StatusSparepartView : View{
                 .foregroundColor(.white)
                 .padding(.top)
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
-                ForEach(data, id: \.id) { data in
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 357, height: 450)
+                    .background(Color(red: 0.13, green: 0.13, blue: 0.13))
+                    .cornerRadius(16)
+                
+                VStack {
                     Button(action: {
-                        self.selectedItem = data
-                        self.showModal.toggle()
+                        isUpdateModalPresented.toggle()
+                        
                     }) {
-                        //Gauge View
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(LinearGradient(
-                                    stops: [
-                                        Gradient.Stop(color: Color(red: 0.16, green: 0.22, blue: 0.23), location: 0.08),
-                                        Gradient.Stop(color: Color(red: 0.08, green: 0.09, blue: 0.09), location: 1.00),
-                                    ],
-                                    startPoint: UnitPoint(x: 0.5, y: 0),
-                                    endPoint: UnitPoint(x: 0.5, y: 1)
-                                ))
-                                .frame(width: 176, height: 123)
+                        Text("Tambahkan Servis Baru")
+                            .font(.system(size: 16))
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.black)
+                            .padding(5)
                             
-                            HStack {
-                                Gauge(value: data.status == .ganti || data.status == .none ? data.minimum : data.value, in: data.minimum...data.maximum) {
+                    }
+                    .padding(10)
+                    .frame(width: 330, height: 44, alignment: .center)
+                    .background(Color("TabIconColor"))
+                    .cornerRadius(11)
+                    .sheet(isPresented: $isUpdateModalPresented) {
+                        ModalUpdateServisView(motorcycle: motorcycles[0])
+                    }
+                    
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                        ForEach(data, id: \.id) { data in
+                            Button(action: {
+                                self.selectedItem = data
+                                self.showModal.toggle()
+                            }) {
+                                //Gauge View
+                                ZStack {
+                                    Rectangle()
+                                      .foregroundColor(.clear)
+                                      .frame(width: 162, height: 109)
+                                      .background(Color(red: 0.16, green: 0.22, blue: 0.23))
+                                      .cornerRadius(20)
                                     
-                                }
-                                .gaugeStyle(.accessoryCircularCapacity)
-                                .scaleEffect(1.10)
-                                .padding(3)
-                                .tint(data.status.tintColor)
-                                .overlay {
-                                    Image(data.iconSparePart)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 25, height: 80)
-                                        .cornerRadius(14)
-                                        .foregroundColor(.white)
-                                }
-                                VStack(alignment: .leading) {
-                                    Text(data.labelText)
-                                        .font(.title3)
-                                        .foregroundColor(.white)
-                                        .scaleEffect(0.75)
-                                    
-                                    HStack(spacing:3) {
-                                        Image(systemName: data.status.iconStatus)
-                                            .resizable()
-                                            .frame(width: 12, height:12)
-                                            .foregroundColor(data.status.tintColor)
+                                    HStack {
+                                        Gauge(value: data.status == .ganti || data.status == .none ? data.minimum : data.value, in: data.minimum...data.maximum) {
+                                            
+                                        }
+                                        .gaugeStyle(.accessoryCircularCapacity)
+                                        .scaleEffect(1.0)
+                                        .tint(data.status.tintColor)
+                                        .overlay {
+                                            Image(data.iconSparePart)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 25, height: 80)
+                                                .cornerRadius(14)
+                                                .foregroundColor(.white)
+                                        }
                                         
-                                        Text(data.status.rawValue)
-                                            .font(.system(size: 12))
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(data.status.tintColor)
+                                        VStack(alignment: .leading) {
+                                            Text(data.labelText)
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.white)
+                                            
+                                            HStack {
+                                                Image(systemName: data.status.iconStatus)
+                                                    .resizable()
+                                                    .frame(width: 12, height:12)
+                                                    .foregroundColor(data.status.tintColor)
+                                                
+                                                Text(data.status.rawValue)
+                                                    .font(.system(size: 12))
+                                                    .fontWeight(.semibold)
+                                                    .foregroundColor(data.status.tintColor)
+                                            }
+                                            .padding(6)
+                                            .frame(height: 20, alignment: .center)
+                                            .background(Color(red: 0.38, green: 0.36, blue: 0.36))
+                                            .cornerRadius(22)
+                                        }
                                     }
-                                    .padding(8)
-                                    .frame(height: 20, alignment: .center)
-                                    .background(data.status.tintColor.opacity(0.3))
-                                    .cornerRadius(22)
                                 }
                             }
                         }
-//                        .onTapGesture {
-//                            selectedItem = data
-//                            showModal.toggle()
-//                        }
                     }
+                    .padding(14)
+                    
                 }
             }
         }
@@ -453,21 +444,21 @@ struct GaugeData: Identifiable {
 }
 
 enum SparepartStatus: String {
-    case ganti = "GANTI"
-    case periksa = "PERIKSA"
-    case aman = "AMAN"
-    case none = "NO DATA"
+    case ganti = "Ganti"
+    case periksa = "Periksa"
+    case aman = "Aman"
+    case none = "No data"
     
     var sparepartStatusValue: String {
         switch self {
         case .ganti:
-            return "GANTI"
+            return "Ganti"
         case .periksa:
-            return "CEK"
+            return "Periksa"
         case .aman:
-            return "AMAN"
+            return "Aman"
         case .none:
-            return "NO DATA"
+            return "No data"
         }
     }
     

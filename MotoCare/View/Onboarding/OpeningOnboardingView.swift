@@ -22,14 +22,14 @@ struct OpeningOnboardingView: View {
                         .padding(.horizontal, 40)
                         .padding(.bottom, 40)
                     
-                    Text("Perawatan motor dibuat mudah")
+                    Text("Perawatan motor semakin mudah")
                         .font(.system(size: 34))
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                         .frame(maxWidth: 345, alignment: .topLeading)
                         .padding(.bottom, 10)
                     
-                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotomo, sobat terbaik anda")
+                    Text("Estimasikan waktu terbaik kapan motormu harus diperiksa atau diperbaiki di bengkel. \n\nMotomo, sobat terbaik motormu.")
                         .font(.system(size: 17))
                         .foregroundColor(Color.white)
                         .frame(maxWidth: 345, alignment: .topLeading)
@@ -51,6 +51,7 @@ struct OpeningOnboardingView: View {
                 }
             }
         }
+        .accentColor(Color("TabIconColor"))
         .environmentObject(motorcycleVM)
     }
 }
