@@ -41,10 +41,7 @@ struct SettingsView: View {
                 })
                 .scrollContentBackground(.hidden)
             })
-            .background(content: {
-                BackgroundView()
-            })
-            .navigationTitle("Settings")
+            .navigationTitle("Pengaturan")
             .navigationBarTitleDisplayMode(.large)
 
         } .navigationViewStyle(.stack)        

@@ -33,7 +33,7 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ZStack{
-                BackgroundView()
+//                BackgroundView()
                 VStack {
                     VStack {
                         ScrollView(showsIndicators: false) {

@@ -32,13 +32,14 @@ struct MaintenanceHistoryView: View {
                             HStack {
                                 let sparePartNames = history.sparePartHistory.map { $0.name }.joined(separator: ", ")
                                 Text(sparePartNames)
+                                    .font(.system(size: 15))
                             }
                             Spacer()
                         }
                     }
                 }
             }
-            .navigationBarTitle("Riwayat Penggantian")
+            .navigationBarTitle("Riwayat")
         }
     }
 }

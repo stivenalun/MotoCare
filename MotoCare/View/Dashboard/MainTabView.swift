@@ -19,13 +19,13 @@ struct MainTabView: View {
             MaintenanceHistoryView()
                 .tabItem {
                     Image(systemName: "clock.arrow.circlepath")
-                    Text("History")
+                    Text("Riwayat")
                 }
             
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape")
-                    Text("Settings")
+                    Text("Pengaturan")
                 }
         }
         .navigationBarBackButtonHidden(true)
