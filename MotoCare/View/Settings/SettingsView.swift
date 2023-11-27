@@ -24,7 +24,7 @@ struct SettingsView: View {
                         destination: BluetoothView().environmentObject(service),
                         isActive: $showDetectedDevices,
                         label: {
-                            Text("Pair IOT")
+                            Text("Pengaturan IoT")
                             //                    Button(action: {
                             //
                             //                    }, label: {

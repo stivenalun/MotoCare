@@ -23,7 +23,6 @@
 		C7604EC62B03752F00B4BECE /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C769A4BB2B05E95800D58C84 /* FinishUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C769A4BA2B05E95800D58C84 /* FinishUpdateView.swift */; };
 		C79805BA2B024AB9001B753D /* UpdateScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79805B92B024AB9001B753D /* UpdateScanResultView.swift */; };
-		E95AA9A42B11E1670034AC57 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AA9A32B11E1670034AC57 /* DashboardViewModel.swift */; };
 		E95F9BE42B021424009C9B53 /* ModalUpdateOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */; };
 		E95F9BE72B021A77009C9B53 /* ModalUpdateServisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */; };
 		E95F9BE92B021E78009C9B53 /* ManualUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95F9BE82B021E78009C9B53 /* ManualUpdateView.swift */; };
@@ -65,7 +64,6 @@
 		6DD9363B2AFD4ACC00EE7124 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		C769A4BA2B05E95800D58C84 /* FinishUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishUpdateView.swift; sourceTree = "<group>"; };
 		C79805B92B024AB9001B753D /* UpdateScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateScanResultView.swift; sourceTree = "<group>"; };
-		E95AA9A32B11E1670034AC57 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		E95F9BE32B021424009C9B53 /* ModalUpdateOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateOdometerView.swift; sourceTree = "<group>"; };
 		E95F9BE62B021A77009C9B53 /* ModalUpdateServisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUpdateServisView.swift; sourceTree = "<group>"; };
 		E95F9BE82B021E78009C9B53 /* ManualUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualUpdateView.swift; sourceTree = "<group>"; };
@@ -433,6 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Motomo uses bluetooth to discover, connect to, and exchange data with IoT devices, enabling the accurate calculation of current motorcycle mileage";
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -492,6 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Motomo uses bluetooth to discover, connect to, and exchange data with IoT devices, enabling the accurate calculation of current motorcycle mileage";
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -513,7 +513,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = GNTKTFQL7U;
+				DEVELOPMENT_TEAM = 62B759R8T7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Motomo;
@@ -531,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -548,10 +548,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MotoCare/Preview Content\"";
-				DEVELOPMENT_TEAM = GNTKTFQL7U;
+				DEVELOPMENT_TEAM = 62B759R8T7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Motomo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -565,7 +566,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.nur.MotoCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.MotoCare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
